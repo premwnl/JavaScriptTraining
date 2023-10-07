@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logo.jpeg">
+    <title>String Functions 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex01.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <form class="container " id="form">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 1</h4>
+                <div></div>
+                <h2>String Functions</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+
+            </div>
+            <div class="border_bottom">
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="stringText">
+                        <h3>Enter the String</h3>
+                    </label>
+                    <input type="text" value="" id="stringText" onkeypress="return onlyAlphabets(event)">
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="subStringText">
+                        <h3>Enter the String to be Searched</h3>
+                    </label>
+                    <input type="text" value="" id="subStringText" onkeypress="return onlyAlphabets(event)">
+                </div>
+            </div>
+            <div class="">
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="searchedString">
+                        <h3>Searched String</h3>
+                    </label>
+                    <input type="text" value="" id="searchedString" readonly>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="palindrome">
+                        <h3>Palindrome/Not</h3>
+                    </label>
+                    <input type="text" value="" id="palindrome" readonly>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="reversed">
+                        <h3>Reversed String</h3>
+                    </label>
+                    <input type="text" value="" id="reversed" readonly>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <button type="button" id="submit">
+                        <h3>Search</h3>
+                    </button>
+                    <button type="button" id="reset">
+                        <h3>Reset</h3>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Handling Strings</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex-01-1.js"></script>
+</body>
+
+</html>

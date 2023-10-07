@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(81, 81, 81);
+    padding-top: 2%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 1%;
+    gap: 1%;
+    display: flex;
+}
+
+.cornerContainer,
+.middleContainer {
+    background-color: #f7dfdf;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+}
+
+.cornerContainer {
+    width: 19%;
+    height: 100%;
+}
+
+.middleContainer {
+    width: 60vw;
+    height: 49%;
+}

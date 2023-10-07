@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logo.jpeg">
+    <title>Display Years in Reverse and find Leap year 8</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex08.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <div class="container " id="form">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 8</h4>
+                <div></div>
+                <h2>Display Years in Reverse and find Leap year</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="border_bottom">
+                <div class="d_flex justifyContent_start alignItems_center padding_ten date">
+                    <label class="padding_ten" for="firstDate">
+                        Enter First Date
+                    </label>
+                    <input type="date" value="" id="firstDate">
+                </div>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten date">
+                    <label class="padding_ten" for="secondDate">
+                        Enter Second Date
+                    </label>
+                    <input type="date" value="" id="secondDate">
+                </div>
+
+            </div>
+            <div class="d_flex justifyContent_start alignItems_center padding_ten ">
+                <label class="" for="">
+                    Select any Choice :
+                </label>
+                <select name="select" id="select" onchange="calculate()">
+                    <option value="">---select---</option>
+                    <option value="for">For Loop</option>
+                    <option value="while">While</option>
+                    <option value="dowhile">Do while</option>
+                    <div class="d_flex padding_ten">
+                </select>
+            </div>
+            <div class="d_flex  justifyContent_spaceBetween " style="width: 66%;margin-left: 80px;">
+                <label for="">
+                    For Loop
+                </label>
+                <label for="">
+                    While Loop
+                </label>
+                <label for="">
+                    Do While Loop
+                </label>
+            </div>
+
+            <div class="d_flex padding_ten">
+                <div class="d_flex flex_col border margin_auto">
+                    <div class="d_flex flex_col justifyContent_start alignItems_center padding_ten">
+                        <label class="" for="reverseFor">
+                            Display Years in Reverse
+                        </label>
+                        <textarea class="italic padding_ten output" value="" id="reverseFor" cols="12" rows="4"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex justifyContent_start flex_col alignItems_center padding_ten">
+                        <label class="" for="leapYearsFor">
+                            Display All Leap Years
+                        </label>
+                        <textarea class="italic padding_ten output" value="" id="leapYearsFor" cols="12" rows="3"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex justifyContent_center flex_col alignItems_center padding_ten">
+                        <label class="" for="leapYearFor">
+                            Number of Leap Years
+                        </label>
+                        <input class="output" type="number" value="" id="leapYearFor" readonly>
+                    </div>
+                </div>
+                <div class="d_flex flex_col border margin_auto">
+                    <div class="d_flex flex_col justifyContent_start alignItems_center padding_ten">
+                        <label class="" for="reverseWhile">
+                            Display Years in Reverse
+                        </label>
+                        <textarea class="italic output padding_ten" value="" id="reverseWhile" cols="12" rows="4"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex flex_col justifyContent_start alignItems_center padding_ten">
+                        <label class="" for="leapYearsWhile">
+                            Display All Leap Years
+                        </label>
+                        <textarea class="italic output padding_ten" value="" id="leapYearsWhile" cols="12" rows="3"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex flex_col justifyContent_start alignItems_center padding_ten">
+                        <label class="" for="leapYearWhile">
+                            Number of Leap Years
+                        </label>
+                        <input class="output" type="number" value="" id="leapYearWhile" readonly>
+                    </div>
+                </div>
+                <div class="d_flex flex_col border margin_auto">
+                    <div class="d_flex flex_col justifyContent_start alignItems_center padding_ten">
+                        <label class="" for="reverseDoWhile">
+                            Display Years in Reverse
+                        </label>
+                        <textarea class="italic output padding_ten" value="" id="reverseDoWhile" cols="12" rows="4"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex flex_col justifyContent_start alignItems_center padding_ten">
+                        <label class="" for="leapYearsDoWhile">
+                            Display All Leap Years
+                        </label>
+                        <textarea class="italic output padding_ten" value="" id="leapYearsDoWhile" cols="12" rows="3"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex flex_col justifyContent_center alignItems_center padding_ten">
+                        <label class="" for="leapYearDoWhile">
+                            Number of Leap Years
+                        </label>
+                        <input type="number" class=" output" value="" id="leapYearDoWhile" readonly>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_center alignItems_center padding_ten">
+                    <button onclick="reset()">
+                        <h3>Reset</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Loop Statements</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex08.js"></script>
+</body>
+
+</html>

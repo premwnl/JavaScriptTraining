@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(81, 81, 81);
+    padding-top: 2%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "item1 item2 item3"
+        "item1 item4 item3";
+    gap: 16px;
+}
+
+.container>div {
+    background-color: rgb(247, 223, 223);
+}
+
+.firstContainer {
+    grid-area: item1;
+}
+
+.secondContainer {
+    grid-area: item2;
+}
+
+.thirdContainer {
+    grid-area: item3;
+}
+
+.fourthContainer {
+    grid-area: item4;
+}

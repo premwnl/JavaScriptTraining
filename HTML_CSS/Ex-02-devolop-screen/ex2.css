@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #febd01;
+    padding-top: 2%;
+    font-family: sans-serif;
+}
+
+header {
+    background-color: #000;
+    height: 200px;
+    border-radius: 5px;
+    display: flex;
+    color: #bdaf5e;
+    justify-content: space-between;
+    align-items: center;
+    padding: 94px;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+nav {
+    display: flex;
+    height: 60px;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+    background-color: #000;
+}
+
+ol {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    list-style: none;
+    color: #fff;
+    width: 16%;
+    border-left: 1px #fff solid;
+    border-right: 1px #fff solid;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+span {
+    text-decoration: underline;
+}
+
+.container {
+    background-color: #fff;
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.firstContainer {
+    padding: 50px 94px;
+    width: 65%;
+}
+
+.firstContainer>p {
+    font-size: larger;
+    word-spacing: 1px;
+}
+
+.secondContainer {
+    height: 100%;
+}
+
+h2,
+h3,
+h4,
+.firstContainer>h1,
+.secondContainer>p {
+    padding: 20px 0;
+}

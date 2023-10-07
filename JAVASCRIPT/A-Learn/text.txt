@@ -1,0 +1,96 @@
+-------string methods
+length
+charAt
+charCodeAt
+concat
+indexOf
+lastIndexOf
+substring
+slice
+split
+replace
+replaceAll
+trim 
+toLowerCase
+toUpperCase
+startsWith
+endsWith
+includes
+
+
+-------string template
+${...} 
+multiline without using \n
+Escape special Characters
+
+
+-------operators    
+
+1. Arithmetic Operators: + - * / % **
+2. Assignment Operators:= += -= *= /= %=
+3. Comparison Operators: == === != !== < > <= >=
+4. Logical Operators: && || !
+5. Increment/Decrement Operators:++ --
+6. Ternary Operator: condition ? IfTrue : IfFalse
+7. Bitwise Operators: & |
+8. Type Operators: typeof  instanceof 
+9. Property Accessors: . []
+10. Spread Operator: ...
+11. Nullish Coalescing Operator: ??
+
+
+-------datatypes 
+primitive - string, number, boolean, undefined, null 
+non-primitive - array, object, function
+
+
+-------let var const
+var (Function-Scoped):let (Block-Scoped):const (Block-Scoped with Immutable Value):
+
+
+-------event listener
+An event listener is a function in JavaScript listens to specific events from web,and executes tasks
+
+
+-------types of statement 
+conditionl- if switch
+loop- for forin forof foreach while dowhile
+
+
+-------truth falsy
+falsy- null undefined 0 '' Nan False
+truthy - others 
+
+
+-------Math function
+abs ceil floor round max min random sqrt pow
+
+
+-------break in switch
+to terminate the execution of a switch after conditon satisfies
+
+
+-------default in switch
+if none of the case matches
+
+
+-------hoisting and Scoped:
+Hoisting is a JavaScript behavior where variable and function declarations are moved to the top of their containing scope during the compilation phase
+Scope refers to the context in which variables and functions are declared and accessed in your code
+
+
+-------palindrome without reverse
+
+let left = 0;
+let right = str.length - 1;
+
+while (left < right) {
+    if (str[left] !== str[right]) {
+        return false; 
+    }
+    left++;
+    right--;
+}
+
+
+################## reduce, higher order functions, and event loop,call stack,queue,Closure,Async ,Await,Promise

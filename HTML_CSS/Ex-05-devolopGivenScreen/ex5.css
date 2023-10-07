@@ -1,0 +1,510 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    scroll-padding-top: 199px;
+    scroll-behavior: smooth;
+    z-index: 1;
+}
+main {
+    padding-top: 200px;
+}
+header {
+    position: fixed;
+    z-index: 9;
+}
+header > div {
+    height: 80px;
+    background-image: url(Inputs/Brick-wall.jpg);
+}
+header nav {
+    height: 120px;
+    background: #f3f3f3;
+}
+ol {
+    list-style: none;
+    font-weight: 600;
+    letter-spacing: 4px;
+    width: 60%;
+}
+ol i {
+    padding-inline: 5px;
+}
+nav :is(i, a, h6), .social :is(i, div),
+.languageINR > div, button, footer {
+    text-decoration: none;
+}
+nav a, .user .absolute {
+    position: relative;
+}
+.fontPrompt {
+    font-family: 'Prompt', sans-serif;
+}
+.rotate {
+    transform: rotate(180deg);
+}
+.text_white {
+    color: #ffffff;
+}
+.text_bold {
+    font-weight: bold;
+    line-height: 28px;
+    letter-spacing: 1.1px;
+}
+.text_red {
+    color: #d50000;
+}
+.text_black {
+    color: #000000;
+}
+.text_start_center {
+    text-align: start;
+}
+.opacity {
+    opacity: 75%;
+}
+.bg_white {
+    background: #E6EAE8;
+}
+.bg_pureWhite {
+    background: #fff;
+}
+.bg_black {
+    background: #000000;
+}
+.bg_blue {
+    background: #45ADCC;
+}
+.bg_red {
+    background: #DD0000;
+}
+.bg_yellow {
+    background: #E7A724;
+}
+.zindex_two {
+    z-index: 2;
+}
+.text_center {
+    text-align: center;
+}
+.widthFull_HeightAuto {
+    width: 100%;
+    height: auto;
+}
+.widthFull {
+    width: 100%;
+}
+.heightFull {
+    height: 100%;
+}
+.HeightAuto {
+    height: auto;
+}
+.padding_webFifty_resTwenty {
+    padding: 50px;
+}
+.padding_webTwenty_resTen {
+    padding: 20px;
+}
+.padding_webTen_resFive, .padding_webTen_resBlockTwentyInlineFive, .social {
+    padding: 10px;
+}
+.paddingBottom_webTwenty_resTwenty {
+    padding-bottom: 20px;
+}
+.margin_webFive_resTwo {
+    margin: 5px;
+}
+.dFlex, .display_flex_none {
+    display: flex;
+}
+.start_center {
+    justify-content: start;
+    align-items: center;
+}
+.center_center {
+    justify-content: center;
+    align-items: center;
+}
+.center_end {
+    justify-content: center;
+    align-items: end;
+}
+.between_center {
+    justify-content: space-between;
+    align-items: center;
+}
+.end_center {
+    justify-content: end;
+    align-items: center;
+}
+.flex_wrap {
+    flex-wrap: wrap;
+}
+.flex_col {
+    flex-direction: column;
+}
+.display_none_flex, .demoItems::-webkit-scrollbar, .scrool::-webkit-scrollbar {
+    display: none;
+}
+.border_round {
+    border-radius: 100px;
+}
+.appIcon {
+    width: max(15%, 200px);
+}
+.social {
+    max-width: min(60%, 500px);
+    width: auto;
+}
+.social div {
+    border: 1px solid #ffffff;
+    aspect-ratio: 1/1;
+}
+.sticky {
+    position: absolute;
+    top: -14px;
+    left: 80%;
+    padding-inline: 5px;
+    padding-block: 2px;
+    font-weight: 400;
+    font-size: 9px;
+}
+.stickyZero {
+    position: absolute;
+    top: -6px;
+    left: 36px;
+    padding-inline: 5px;
+    padding-block: 1px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.demoItem {
+    min-width: 31%;
+}
+.feedItem, .demoItem {
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 22/13;
+}
+.demoItems {
+    overflow-x: auto;
+}
+.demoItem:nth-child(1) {
+    background-image: url(Inputs/301be29690199.560d857c7a92e_900x.jpg);
+}
+.demoItem:nth-child(2) {
+    background-image: url(Inputs/backpack_puritaan_2_900x.jpg);
+}
+.demoItem:nth-child(3) {
+    background-image: url(Inputs//8NHBORBRVR_900x.jpg);
+}
+.demoItem:nth-child(4) {
+    background-image: url(Inputs/blog_01_900x.jpg);
+}
+.itemContent {
+    height: 35%;
+    background-color: hsla(0, 0%, 0%, 0.750);
+}
+.itemContent :is(h4, p) {
+    opacity: 90%;
+    font-weight: bold;
+}
+.itemContent :is(span) {
+    opacity: 50%;
+}
+.container {
+    padding-block: 40px;
+    padding-inline: 140px;
+    gap: 30px;
+}
+.feed {
+    padding-top: 40px;
+    width: 73%;
+    gap: 80px
+}
+.firstFeedItem {
+    background-image: url(Inputs/julia01_900x.jpg);
+}
+.secondFeedItem {
+    background-image: url(Inputs/301be29690199.560d857c7a92e_900x.jpg);
+}
+.thirdFeedItem {
+    background-image: url(Inputs/Voong-bong-Castor-Design-1_900x.jpg);
+}
+.moreButton {
+    width: max(20%, 180px);
+    border: 2px solid #b87b00;
+    color: #b87b00;
+    margin-top: 20px;
+}
+.feedDescription p {
+    line-height: 36px;
+}
+.sideBar {
+    width: 27%;
+}
+.scrool {
+    height: 120px;
+    overflow-y: auto;
+}
+.scrollItem {
+    margin-block: 25px;
+}
+.bar {
+    width: 22%;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #000;
+}
+.tags {
+    border: 1px solid #000;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+.grid {
+    width: 33.3%;
+}
+.products img {
+    width: 30%;
+}
+.grid img {
+    width: 97%;
+    aspect-ratio: 1/1;
+}
+.fontNumber {
+    font-family: 'Gill Sans', sans-serif;
+}
+.pos_rel {
+    position: relative;
+}
+.arrow {
+    position: absolute;
+    font-size: 3rem;
+    border: 2px solid #b69d79;
+    padding: 3px;
+    left: 115%;
+}
+.footer .arrow {
+    left: 95%;
+}
+.arrow span {
+    background-color: #b69d79;
+}
+.navigation > h3:first-child, .gecko {
+    color: #b87b00;
+}
+.h1 {
+    font-size: 50px;
+    letter-spacing: 40px;
+    font-weight: 500;
+}
+.wrapper {
+    background: url(Inputs/footer.jpeg);
+    background-position: center;
+    background-size: cover;
+}
+.links_contact {
+    background: hsla(0, 0%, 0%, 0.906);
+    padding-block: 50px;
+    padding-inline: 130px;
+}
+.divBig {
+    width: 26%;
+}
+.divSmall {
+    width: 16%;
+}
+.footer {
+    height: 80px;
+    padding-inline: 140px;
+}
+.links_contact li, .footer li {
+    font-size: medium;
+    letter-spacing: 0.5px;
+    word-spacing: 0.5px;
+    font-weight: 600;
+}
+.links_contact {
+    margin: auto;
+}
+.inputWrapper {
+    width: 95%;
+    padding: 2px;
+    border: 2px solid #ffffff;
+    aspect-ratio: 15/2;
+}
+.sideBar .inputWrapper {
+    border: 2px solid #000000;
+}
+.inputWrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 65%;
+    font-size: large;
+}
+.inputWrapper button {
+    width: 35%;
+}
+.cards {
+    margin-top: 30px;
+}
+.cards i {
+    margin-right: 5px;
+}
+.gecko {
+    align-items: start;
+}
+.arrow i {
+    padding-inline: 15px;
+}
+.socialfooter {
+    margin-block: 10px;
+}
+@media (width<=1280px) {
+    .social div {
+        margin: 2px;
+    }
+    .footer h4 {
+        font-size: 0.7rem;
+    }
+    .padding_webTen_resZero {
+        padding: 0px;
+    }
+    .padding_webTen_resFive {
+        padding: 5px;
+    }
+    .padding_webTwenty_resTen, .inputWrapper input {
+        padding: 10px;
+    }
+    .padding_webFifty_resTwenty, .footer, .container, .feed, .padding_webInlineOneforty_resTwenty {
+        padding: 20px;
+    }
+    .padding_webTen_resBlockTwentyInlineFive {
+        padding-block: 20px;
+        padding-inline: 5px;
+    }
+    .text_start_center, .links_contact:is(div, h1, h4), .contactItems {
+        text-align: center;
+    }
+    .display_none_flex, .links_contact:is(div, h1, h4), .contactItems {
+        display: flex;
+    }
+    .display_flex_none {
+        display: none;
+    }
+    .stickyZero {
+        top: -14px;
+        left: 24px;
+    }
+    .demoItems {
+        flex-wrap: wrap;
+    }
+    .demoItem {
+        min-width: 100%;
+    }
+    .feed {
+        width: 100%;
+        gap: 0;
+    }
+    .feedItem {
+        aspect-ratio: 11/9;
+    }
+    .feedItem > .itemContent {
+        height: 55%;
+    }
+    .feedDescription {
+        text-align: justify;
+    }
+    .lastFeed {
+        margin-bottom: 50px;
+    }
+    .divBig, .divSmall {
+        width: 100%;
+    }
+    .links_contact {
+        padding-inline: 60px;
+        padding-block: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .links_contact:is(div, h1, h4), .contactItems {
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .h1 {
+        letter-spacing: 10px;
+        font-weight: 500;
+    }
+    .paddingBottom_webTwenty_resTwenty {
+        padding-bottom: 20px;
+    }
+    .inputWrapper {
+        padding: 1.5px;
+    }
+    .inputWrapper input {
+        font-size: small;
+    }
+}
+/* snow animation  */
+.snow_wrap {
+    position: relative;
+    overflow: hidden;
+}
+.snow, .snow::after, .snow::before {
+    content: "";
+    position: absolute;
+    top: -800px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background-size: 650px 650px;
+    background:
+        radial-gradient(4px 4px at 20% 10%, #fff, transparent),
+        radial-gradient(6px 6px at 40% 30%, #fff, transparent),
+        radial-gradient(3px 3px at 60% 50%, #fff, transparent),
+        radial-gradient(4px 4px at 80% 70%, #fff, transparent),
+        radial-gradient(6px 6px at 90% 20%, #fff, transparent),
+        radial-gradient(3px 3px at 10% 40%, #fff, transparent),
+        radial-gradient(4px 4px at 30% 60%, #fff, transparent),
+        radial-gradient(6px 6px at 50% 80%, #fff, transparent),
+        radial-gradient(3px 3px at 70% 90%, #fff, transparent),
+        radial-gradient(5px 5px at 15% 5%, #fff, transparent),
+        radial-gradient(6px 6px at 45% 35%, #fff, transparent),
+        radial-gradient(3px 3px at 65% 55%, #fff, transparent),
+        radial-gradient(5px 5px at 95% 75%, #fff, transparent),
+        radial-gradient(6px 6px at 85% 15%, #fff, transparent),
+        radial-gradient(6px 6px at 5% 45%, #fff, transparent),
+        radial-gradient(6px 6px at 85% 15%, #fff, transparent),
+        radial-gradient(6px 6px at 5% 45%, #fff, transparent),
+        radial-gradient(5px 5px at 35% 65%, #fff, transparent),
+        radial-gradient(5px 5px at 25% 25%, #fff, transparent),
+        radial-gradient(6px 6px at 55% 85%, #fff, transparent),
+        radial-gradient(3px 3px at 75% 85%, #fff, transparent);
+    animation: snowAnimation 30s linear 0s infinite;
+}
+.snow::after {
+    margin-left: -100px;
+    opacity: 0.5;
+    filter: blur(2px);
+    animation-duration: 20s;
+}
+.snow::before {
+    margin-left: -250px;
+    opacity: 0.7;
+    filter: blur(1px);
+    animation-duration: 25s;
+}
+@keyframes snowAnimation {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(650px);
+    }
+}

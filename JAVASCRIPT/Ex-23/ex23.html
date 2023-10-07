@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logo.jpeg">
+    <title>Reduce Method 23</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex23.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <div class="container " id="div">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 23</h4>
+                <div></div>
+                <h2>Reduce Method</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="border_bottom " style="padding-right: 60px;">
+                <div class="d_flex  justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="">
+                        First Sister
+                    </label>
+                    <input type="number" value="" min="1" max='10' id="firstWidth"
+                        onkeypress="return onlyDigits(event)">
+                    <input type="number" value="" min="1" max='10' id="firstHeight"
+                        onkeypress="return onlyDigits(event)">
+                </div>
+                <div class="d_flex  justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="item">
+                        Second Sister
+                    </label>
+                    <input type="number" value="" min="1" max='10' id="secondWidth"
+                        onkeypress="return onlyDigits(event)">
+                    <input type="number" value="" min="1" max='10' id="secondHeight"
+                        onkeypress="return onlyDigits(event)">
+                </div>
+                <div class="d_flex justifyContent_spaceBetween">
+                    <div class=""></div>
+                    <button onclick="add()">
+                        <h3>Add</h3>
+                    </button>
+                </div>
+                <div class="d_flex padding_ten">
+                    <div class="d_flex padding_ten">
+                        <label for="array">
+                            Chocolate Array
+                        </label>
+                        <textarea class="italic padding_ten input " value="" id="array" cols="36" rows="10"
+                            readonly></textarea>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween " S>
+                    <div class=""></div>
+                    <button onclick="calculate()">
+                        <h3>Calculate</h3>
+                    </button>
+                </div>
+            </div>
+            <div class="d_flex  justifyContent_spaceBetween alignItems_center padding_ten" style="padding-right: 60px;">
+                <label class="padding_ten" for="result">
+                    Equal/Not
+                </label>
+                <input type="text" value="" id="result" class="output" onkeypress="return onlyDigits(event)"
+                    style="width: 330px;" readonly>
+            </div>
+            <div class="d_flex justifyContent_spaceBetween alignItems_center " style="padding-right: 60px;">
+                <div class=""></div>
+                <button onclick="reset()">
+                    <h3>Reset</h3>
+                </button>
+            </div>
+        </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Reduce Method</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex23.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logo.jpeg">
+    <title>Sort and Find 17</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex17.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <div class="container ">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 17</h4>
+                <div></div>
+                <h2>Sort and Find Method</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+
+            </div>
+            <div class="border_bottom">
+                <div class="d_flex justifyContent_spaceBetween alignItems_center ">
+                    <label class="padding_ten" for="employeeLimit">
+                        <h3>Enter no of Employees&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                    </label>
+                    :<input type="number" value="" id="employeeLimit" min="1" max='4'
+                        onkeypress="return onlyDigits(event)">
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center">
+                    <label class="padding_ten" for="employeeNumber">
+                        <h3>Enter the Employee Number &nbsp;&nbsp;</h3>
+                    </label>
+                    :<input type="number" value="" id="employeeNumber" min="1" max='9999'
+                        onkeypress="return onlyDigits(event)">
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center">
+                    <label class="padding_ten" for="employeeName">
+                        <h3>Enter the Employee Name &nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                    </label>
+                    :<input type="text" value="" id="employeeName" onkeypress="return onlyAlphabets(event)">
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center">
+                    <label class="padding_ten" for="employeeDepartment">
+                        <h3>Enter Employee Department</h3>
+                    </label>
+                    :<input type="text" value="" id="employeeDepartment" onkeypress="return onlyAlphabets(event)">
+                </div>
+                <div class="d_flex justifyContent_end alignItems_center " style="padding-right: 60px;">
+                    <button onclick="addEmployee()">
+                        <h3>Add</h3>
+                    </button>
+
+                </div>
+            </div>
+            <div class="d_flex flex_col justifyContent_spaceBetween ">
+                <div class="d_flex justifyContent_spaceBetween margin padding_ten">
+                    <table>
+                        <label class="" for="">
+                            <h3>Employee Array</h3>
+                        </label>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                            </tr>
+                        </thead>
+                        <tbody id="arrayBody"></tbody>
+                    </table>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween margin padding_ten">
+                    <table>
+                        <label class="" for="">
+                            <h3>Employees (Sorted)</h3>
+                        </label>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sortBody"></tbody>
+                    </table>
+                </div>
+                <div class="d_flex  justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="" for="searchedName">
+                        <h3>Enter the Name to be Searched </h3>
+                    </label>
+                    <input type="text" value="" id="searchedName" onkeypress="return onlyAlphabets(event)">
+                </div>
+                <div class="d_flex  justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="" for="array">
+                        <h3>Searched Employee</h3>
+                    </label>
+                    <textarea class="italic padding_ten output" value="" id="array" cols="24" rows="4"
+                        readonly></textarea>
+                </div>
+            </div>
+            <div class="d_flex justifyContent_spaceBetween alignItems_center " style="padding-inline: 60px;">
+                <button onclick="sort()">
+                    <h3>Sort</h3>
+                </button>
+                <button onclick="search()">
+                    <h3>Search</h3>
+                </button>
+                <button onclick="reset()">
+                    <h3>Reset</h3>
+                </button>
+            </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Every, Sort and Filter</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex17.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logo.jpeg">
+    <title>Bubble Sort 20</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex20.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <div class="container " id="div">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 20</h4>
+                <div></div>
+                <h2>Bubble Sort</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="">
+                <div class="d_flex border_bottom justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="item">
+                        Enter the Array Items
+                    </label>
+                    <input type="number" value="" min="1" max='1000' id="item" onkeypress="return onlyDigits(event)">
+                    <button onclick="add()">
+                        <h3>Add</h3>
+                    </button>
+                </div>
+                <div class="d_flex ">
+                    <div class="d_flex padding_ten">
+                        <label for="array">
+                            Array
+                        </label>
+                        <textarea class="italic padding_ten input " value="" id="array" cols="32" rows="6"
+                            readonly></textarea>
+                    </div>
+                </div>
+                <p class="padding_ten" style="color: blue;text-decoration: underline;">Non-Array Method</p>
+                <div class="d_flex  justifyContent_spaceBetween">
+                    <div class="d_flex flex_col " style="margin-inline:30px ;">
+                        <label for="nonArrayAscending">
+                            Ascending Order
+                        </label>
+                        <textarea class="italic padding_ten output" value="" id="nonArrayAscending" cols="32" rows="6"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex flex_col " style="margin-inline:30px ;">
+                        <label for="nonArrayDescending">
+                            Descending Order
+                        </label>
+                        <textarea class=" italic padding_ten output" value="" id="nonArrayDescending" cols="32" rows="6"
+                            readonly></textarea>
+                    </div>
+                </div>
+                <p class="padding_ten" style="color: blue;text-decoration: underline;">Array Method</p>
+                <div class="d_flex  justifyContent_spaceBetween">
+                    <div class="d_flex flex_col " style="margin-inline:30px ;">
+                        <label for="arrayAscending">
+                            Ascending Order
+                        </label>
+                        <textarea class="italic padding_ten output" value="" id="arrayAscending" cols="32" rows="6"
+                            readonly></textarea>
+                    </div>
+                    <div class="d_flex flex_col " style="margin-inline:30px ;">
+                        <label for="arrayDescending">
+                            Descending Order
+                        </label>
+                        <textarea class=" italic padding_ten output" value="" id="arrayDescending" cols="32" rows="6"
+                            readonly>
+                                        </textarea>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center " style="padding-inline: 60px;">
+                    <button onclick="bubbleSort()">
+                        <h3>Bubble Sort</h3>
+                    </button>
+                    <button onclick="arraySort()">
+                        <h3>Array Sort</h3>
+                    </button>
+                    <button onclick="reset()">
+                        <h3>Reset</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Sorting Method</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex20.js"></script>
+</body>
+
+</html>

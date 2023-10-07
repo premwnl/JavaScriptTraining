@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logo.jpeg">
+    <title>Switch Statements 5</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex05.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <div class="container " id="form">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 5</h4>
+                <div></div>
+                <h2>Switch Statements</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="border_bottom">
+                <div class="d_flex justifyContent_start input alignItems_center padding_ten">
+                    <label class="padding_ten " for="name">
+                        Name
+                    </label>
+                    <input type="text" value="" id="name" onkeypress="return onlyAlphabets(event)">
+                </div>
+                <div class="d_flex padding_ten">
+                    <div class="d_flex flex_col justifyContent_start alignItems_center padding_ten">
+                        <label class="" for="language">
+                            Language
+                        </label>
+                        <input type="number" value="" id="language" min="0" max="100"
+                            onkeypress="return onlyDigits(event)">
+                    </div>
+                    <div class="d_flex justifyContent_start flex_col alignItems_center padding_ten">
+                        <label for="physics">
+                            Physics
+                        </label>
+                        <input type="number" value="" id="physics" min="0" max="100"
+                            onkeypress="return onlyDigits(event)">
+                    </div>
+                    <div class="d_flex justifyContent_start flex_col alignItems_center padding_ten">
+                        <label for="maths">
+                            Maths
+                        </label>
+                        <input type="number" value="" id="maths" min="0" max="100"
+                            onkeypress="return onlyDigits(event)">
+                    </div>
+                    <div class="d_flex justifyContent_start flex_col alignItems_center padding_ten">
+                        <label for="chemistry">
+                            Chemistry
+                        </label>
+                        <input type="number" value="" id="chemistry" min="0" max="100"
+                            onkeypress="return onlyDigits(event)">
+                    </div>
+                    <div class="d_flex justifyContent_start flex_col alignItems_center padding_ten">
+                        <label for="biology">
+                            Biology
+                        </label>
+                        <input type="number" value="" id="biology" min="0" max="100"
+                            onkeypress="return onlyDigits(event)">
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="d_flex justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="total">
+                        Total
+                    </label>
+                    <input type="number" value="" id="total" readonly>
+                </div>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="average">
+                        Average
+                    </label>
+                    <input type="number" value="" id="average" readonly>
+                </div>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="grade">
+                        Grade
+                    </label>
+                    <input type="text" value="" id="grade" readonly>
+                </div>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="result">
+                        Pass/fail
+                    </label>
+                    <input type="text" value="" id="result" readonly>
+                </div>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="cutoff">
+                        Cutoff
+                    </label>
+                    <input type="number" value="" id="cutoff" readonly>
+                </div>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten input">
+                    <label class="padding_ten " for="elligibility">
+                        Elligibility
+                    </label>
+                    <input type="text" value="" id="elligibility" readonly>
+                </div>
+            </div>
+            <div class="d_flex justifyContent_center alignItems_center padding_ten">
+                <button onclick="calculate()">
+                    <h3>Calculate</h3>
+                </button>
+                <button onclick="reset()">
+                    <h3>Reset</h3>
+                </button>
+            </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Basic Switch Statements</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex051.js"></script>
+</body>
+
+</html>

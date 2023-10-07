@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prem">
+    <meta name="description" content="Devolop Given Screen">
+    <title>Gecko</title>
+    <link rel="icon" href="Inputs/grid-7.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&family=Prompt&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="ex5.css" type="text/css">
+</head>
+
+<body class="widthFull_HeightAuto">
+    <!-- header  -->
+    <header class="widthFull">
+        <!-- social  -->
+        <div class="padding_webTen_resBlockTwentyInlineFive  dFlex between_center snow_wrap">
+            <!-- social app icons  -->
+            <div class="social dFlex between_center padding_webTen_resZero  heightFull ">
+                <div class="border_round widthFull heightFull dFlex center_center margin_webFive_resTwo zindex_two">
+                    <i class="fa-brands  fa-facebook-f fa-xl padding_webTen_resFive  text_white"></i>
+                </div>
+                <div class="border_round widthFull heightFull dFlex center_center margin_webFive_resTwo zindex_two">
+                    <i class="fa-brands  fa-twitter fa-xl padding_webTen_resFive  text_white"></i>
+                </div>
+                <div class="border_round widthFull heightFull dFlex center_center margin_webFive_resTwo zindex_two">
+                    <i class="fa-brands  fa-pinterest fa-xl padding_webTen_resFive  text_white"></i>
+                </div>
+                <div class="border_round widthFull heightFull dFlex center_center margin_webFive_resTwo zindex_two">
+                    <i class="fa-brands  fa-instagram fa-xl padding_webTen_resFive  text_white"></i>
+                </div>
+                <div class="border_round widthFull heightFull dFlex center_center margin_webFive_resTwo zindex_two">
+                    <i class="fa-brands  fa-tumblr fa-xl padding_webTen_resFive  text_white"></i>
+                </div>
+                <div class="border_round widthFull heightFull dFlex center_center margin_webFive_resTwo zindex_two">
+                    <i class="fa-regular  fa-bell fa-xl padding_webTen_resFive  text_white"></i>
+                </div>
+            </div>
+            <div class="display_flex_none">
+                <h4 class="text_white opacity">very quick res</h4>
+            </div>
+            <div class="snow"></div>
+            <!-- languageINR  -->
+            <div class="languageINR dFlex text_bold flex-col text_white">
+                <div class=" dFlex center_center flex-col margin_webFive_resTwo zindex_two">
+                    <p class="padding_webTen_resFive  ">English</p>
+                    <p class=" rotate">^</p>
+                </div>
+                <div class=" dFlex center_center flex-col margin_webFive_resTwo zindex_two">
+                    <p class="padding_webTen_resFive ">INR</p>
+                    <p class=" rotate">^</p>
+                </div>
+            </div>
+        </div>
+        <!-- nav  -->
+        <nav class="padding_webTen_resBlockTwentyInlineFive  dFlex between_center ">
+            <!-- menu icon  -->
+            <div class="menuIcon display_none_flex"><i class="fa-solid fa-bars fa-xl padding_webTwenty_resTen"></i>
+            </div>
+            <!-- app icon  -->
+            <div class="appIcon heightFull">
+                <img src="Inputs/gecko_logo.png" alt="gecko logo" class="heightFull widthFull">
+            </div>
+            <!-- nav items  -->
+            <ol class="navItems dFlex between_center display_flex_none ">
+                <li>
+                    <span><i class="fa-solid fa-house-chimney"></i><span><a href="#"
+                                class="text_black">DEMO</a></span></span>
+                </li>
+                <li class="dFlex center_center flex-col"><a href="#shop" class="text_black">SHOP<h6
+                            class="text_white bg_blue sticky border_round">NEW</h6></a>
+
+                </li>
+                <li><a href="#product" class="text_black">PRODUCT </a> </li>
+                <li class="dFlex center_center   flex-col"><a href="#pages" class="text_black">PAGES <h6
+                            class="text_white sticky border_round bg_red ">HOT</h6> </a>
+
+                </li>
+                <li><a href="#" class="text_black">PORTFOLIO </a> </li>
+                <li><a href="#" class="text_black">LOOKBOOK </a> </li>
+                <li><a href="#" class="text_black">BLOG </a></li>
+                <li class="dFlex center_center flex-col "><a href="#shop" class=" buy text_red">BUY <h6
+                            class="text_white sticky border_round bg_yellow">SALES</h6></a>
+
+                </li>
+            </ol>
+            <!-- user items  -->
+            <div class="user dFlex center_center">
+                <div>
+                    <i class=" padding_webTwenty_resTen fa-solid fa-magnifying-glass fa-xl"></i>
+                </div>
+                <div class="">
+                    <i class=" padding_webTwenty_resTen fa-regular fa-circle-user fa-xl "></i>
+                </div>
+                <div class="dFlex center_center absolute  flex-col">
+                    <i class=" padding_webTwenty_resTen fa-regular fa-heart fa-xl">
+                    </i>
+                    <div class="stickyZero border_round text_white bg_black">0</div>
+                </div>
+                <div class="dFlex center_center  absolute flex-col">
+                    <i class=" padding_webTwenty_resTen fa-solid fa-cart-shopping fa-xl">
+                    </i>
+                    <div class="stickyZero border_round text_white bg_black">0</div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- main  -->
+    <main class="widthFull_HeightAuto">
+        <div class="demoItems widthFull dFlex ">
+            <div class="demoItem dFlex center_end display_flex_none snow_wrap">
+                <div class="snow"></div>
+                <div class="widthFull itemContent dFlex center_center text_white flex_col  ">
+                    <p class="padding_webTen_resFive   zindex_two text_center"><span>By</span> Happy Customers
+                        <span>in</span> Beauty,
+                        Clothing 0
+                        Comment
+                    </p>
+                    <h4 class="padding_webTen_resFive  zindex_two  dFlex center_center">BEST CLOTH STYLE MOMENT DYING
+                    </h4>
+                    <p class="padding_webTen_resFive  zindex_two  dFlex center_center">March 08, 2018</p>
+                </div>
+            </div>
+            <div class="demoItem dFlex center_end snow_wrap">
+                <div class="snow"></div>
+                <div class="widthFull itemContent dFlex center_center text_white flex_col">
+                    <p class="padding_webTen_resFive  zindex_two  text_center"><span>By</span> Happy Customers
+                        <span>in</span> Beauty,
+                        Travel 0
+                        Comment
+                    </p>
+                    <h4 class="padding_webTen_resFive  zindex_two  text_center">7 THINGS YOU CANT WEAR AFTER LABOR DAY
+                        READ</h4>
+                    <p class="padding_webTen_resFive  zindex_two  text_center">March 08, 2018</p>
+                </div>
+
+            </div>
+            <div class="demoItem dFlex center_end snow_wrap">
+                <div class="snow"></div>
+                <div class="widthFull itemContent dFlex center_center text_white flex_col ">
+                    <p class="padding_webTen_resFive  zindex_two  text_center"><span>By</span> Happy Customers
+                        <span>in</span> Fashion,
+                        Travel,
+                        Trending 0
+                        Comment
+                    </p>
+                    <h4 class="padding_webTen_resFive  zindex_two  text_center">COOL SPRING STREET, STYLE LOOKS</h4>
+                    <p class="padding_webTen_resFive  zindex_two  text_center">March 08, 2018</p>
+                </div>
+
+            </div>
+            <div class="demoItem dFlex center_end snow_wrap">
+                <div class="snow"></div>
+                <div class="widthFull itemContent dFlex center_center text_white flex_col ">
+                    <p class="padding_webTen_resFive  zindex_two  text_center"><span>By</span> Happy Customers
+                        <span>in</span> Beauty,
+                        Food
+                        0
+                        Comment
+                    </p>
+                    <h4 class="padding_webTen_resFive  zindex_two  text_center">BEST STREET STYLE MOMENT</h4>
+                    <p class="padding_webTen_resFive  zindex_two  text_center">March 08, 2018</p>
+                </div>
+            </div>
+        </div>
+        <!-- container -->
+        <div class="container widthFull_HeightAuto dFlex bg_pureWhite ">
+            <!-- main feed  -->
+            <div id="product" class="feed HeightAuto flex_col dFlex ">
+                <div class="bg_white snow_wrap ">
+                    <div class="snow "></div>
+                    <div
+                        class=" feedItem firstFeedItem dFlex center_end   widthFull padding_webFifty_resTwenty bg_white">
+                        <div class="widthFull itemContent dFlex center_center text_white flex_col ">
+                            <p class="padding_webTen_resFive    text_center"><span>By</span> Happy Customers
+                                <span>in</span> Beauty,
+                                Clothing 3
+                                Comment
+                            </p>
+                            <h4 class="padding_webTen_resFive    text_center">BEST CLOTH STYLE MOMENT DYING</h4>
+                            <p class="padding_webTen_resFive    text_center"><span>March 08, 2018</span></p>
+                        </div>
+                    </div>
+                    <div class="padding_webFifty_resTwenty  feedDescription  opacity">
+                        <p class=" text_bold  opacity">Typography is the work of typesetters, the only compositors,
+                            typographers,
+                            graphic
+                            designers, art
+                            directors, manga artists, comic
+                            book artists, graffiti artists, and now-anyone who arranges words, letters, numbers, and
+                            symbols for publication,
+                            display, or distribution-from clerical workers and newsletter writers to anyone
+                            self-publishing materials....</p>
+                        <button class="moreButton text_bold  bg_white padding_webTen_resFive  ">READ
+                            MORE</button>
+                    </div>
+                </div>
+                <div class="bg_white snow_wrap">
+                    <div class="snow "></div>
+                    <div
+                        class="feedItem secondFeedItem dFlex center_end   widthFull padding_webFifty_resTwenty bg_white">
+                        <div class="widthFull itemContent dFlex center_center text_white flex_col ">
+                            <p class="padding_webTen_resFive    text_center"><span>By</span> Happy Customers
+                                <span>in</span> Beauty,
+                                Clothing 0
+                                Comment
+                            </p>
+                            <h4 class="padding_webTen_resFive    text_center">BEST CLOTH STYLE MOMENT DYING</h4>
+                            <p class="padding_webTen_resFive    text_center"><span>March 08, 2018</span></p>
+                        </div>
+                    </div>
+                    <div class="padding_webFifty_resTwenty  feedDescription opacity">
+                        <p class=" text_bold opacity ">Typography is the work of typesetters, the only compositors,
+                            typographers,
+                            graphic
+                            designers, art
+                            directors, manga artists, comic
+                            book artists, graffiti artists, and now-anyone who arranges words, letters, numbers, and
+                            symbols for publication,
+                            display, or distribution-from clerical workers and newsletter writers to anyone
+                            self-publishing materials....</p>
+                        <button class="moreButton text_bold  bg_white padding_webTen_resFive   ">READ
+                            MORE</button>
+                    </div>
+                </div>
+                <div class="bg_white snow_wrap lastFeed">
+                    <div class="snow "></div>
+                    <div
+                        class="feedItem thirdFeedItem dFlex center_end   widthFull padding_webFifty_resTwenty bg_white">
+                        <div class="widthFull itemContent dFlex center_center text_white flex_col ">
+                            <p class="padding_webTen_resFive    text_center"><span>By</span> Happy Customers
+                                <span>in</span>
+                                Beauty,
+                                Clothing 0
+                                Comment
+                            </p>
+                            <h4 class="padding_webTen_resFive    text_center">BEST CLOTH STYLE MOMENT DYING</h4>
+                            <p class="padding_webTen_resFive    text_center"><span>March 08, 2018</span></p>
+                        </div>
+                    </div>
+                    <div class="padding_webFifty_resTwenty  feedDescription opacity">
+                        <p class=" text_bold opacity ">Typography is the work of typesetters, the only compositors,
+                            typographers,
+                            graphic
+                            designers, art
+                            directors, manga artists, comic
+                            book artists, graffiti artists, and now-anyone who arranges words, letters, numbers, and
+                            symbols for publication,
+                            display, or distribution-from clerical workers and newsletter writers to anyone
+                            self-publishing materials....</p>
+                        <button class="moreButton text_bold border_round  bg_white padding_webTen_resFive ">READ
+                            MORE</button>
+                    </div>
+                </div>
+                <hr>
+                <div id="pages" class="dFlex center_center navigation">
+                    <h3 class="padding_webTen_resFive ">1</h3>
+                    <h3 class="padding_webTen_resFive">2</h3>
+                    <h3 class="padding_webTen_resFive">Next</h3>
+                </div>
+            </div>
+            <!-- sidebar -->
+            <div class="sideBar display_flex_none flex_col HeightAuto   ">
+                <div id="shop" class="search opacity padding_webTwenty_resTen">
+                    <h2 class="padding_webTen_resFive ">Search</h2>
+                    <div class="bar"></div>
+                    <div
+                        class="inputWrapper border_round padding_webTen_resFive  margin_webFive_resTwo widthFull dFlex  ">
+                        <input class="text_white border_round text_bold padding_webTwenty_resTen" type="text"
+                            name="email" id="email" placeholder="Search ...">
+                        <button class="bg_black text_white border_round text_bold">
+                            <h3>SEARCH</h3>
+                        </button>
+                    </div>
+                </div>
+                <div class="categories opacity padding_webTwenty_resTen">
+                    <h2 class="padding_webTen_resFive ">Categories</h2>
+                    <div class="bar"></div>
+                    <div class="scrool padding_webTen_resFive ">
+                        <h3 class="opacity">News (8)</h3>
+                        <h3 class="scrollItem opacity">Decorating Guide (5)</h3>
+                        <h3 class="scrollItem opacity">Life Style (8)</h3>
+                        <h3 class="scrollItem opacity">Blog Tags (4)</h3>
+                        <h3 class="scrollItem opacity">Product Items (3)</h3>
+                        <h3 class="scrollItem opacity">Decorating Guide (5)</h3>
+                        <h3 class="scrollItem opacity">Shop items (7)</h3>
+                        <h3 class="scrollItem opacity">News (8)</h3>
+                        <h3 class="scrollItem opacity">Decorating Guide (5)</h3>
+                        <h3 class="scrollItem opacity">Life Style (8)</h3>
+                        <h3 class="scrollItem opacity">Blog Tags (4)</h3>
+                        <h3 class="scrollItem opacity">Product Items (3)</h3>
+                        <h3 class="scrollItem opacity">Decorating Guide (5)</h3>
+                        <h3 class="opacity">Shop items (7)</h3>
+                    </div>
+                </div>
+                <div class="instagram opacity padding_webTwenty_resTen">
+                    <h2 class="padding_webTen_resFive ">Instagram</h2>
+                    <div class="bar"></div>
+                    <div class="dFlex flex_wrap padding_webTen_resFive ">
+                        <div class="grid"><img src="Inputs/grid-1.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/gird-2.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/grid-3.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/grid-4.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/grid-5.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/grid-6.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/grid-7.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/grid-8.jpg" alt="grid-img"></div>
+                        <div class="grid"><img src="Inputs/grid-9.jpg" alt="grid-img"></div>
+                    </div>
+                </div>
+                <div id="blog" class="blogTags opacity padding_webTwenty_resTen">
+                    <h2 class="padding_webTen_resFive ">Blog Tags</h2>
+                    <div class="bar"></div>
+                    <div class="dFlex flex_wrap padding_webTen_resFive  opacity text_bold">
+                        <div class="tags opacity padding_webTen_resFive  ">Beauty</div>
+                        <div class="tags opacity padding_webTen_resFive  ">Fashion</div>
+                        <div class="tags opacity padding_webTen_resFive  ">Food</div>
+                        <div class="tags opacity padding_webTen_resFive  ">Street Style</div>
+                        <div class="tags opacity padding_webTen_resFive  ">Style</div>
+                        <div class="tags opacity padding_webTen_resFive  ">Travel</div>
+                        <div class="tags opacity padding_webTen_resFive  ">Trending</div>
+                    </div>
+                </div>
+                <div class="products opacity padding_webTwenty_resTen">
+                    <h2 class="padding_webTen_resFive ">Sale Products</h2>
+                    <div class="bar"></div>
+                    <div class="padding_webTen_resFive  dFlex">
+                        <img src="Inputs/green1_small.jpg" alt="Green shirt">
+                        <div class="padding_webTen_resFive ">
+                            <h3>Sporty T-shirt</h3>
+                            <h3 class="fontNumber opacity">Rs. 2,159.49</h3>
+                        </div>
+                    </div>
+                    <div class="padding_webTen_resFive  dFlex">
+                        <img src="Inputs/p-46_1a4bbde3-f6bf-47e7-a830-ff8b7616c644_small.jpg" alt="Green shirt">
+                        <div class="padding_webTen_resFive ">
+                            <h3>Blue Cotton leggings</h3>
+                            <h3 class="fontNumber opacity">Rs. 2,159.49</h3>
+                        </div>
+                    </div>
+                    <div class="padding_webTen_resFive  dFlex">
+                        <img src="Inputs/g-01_small.jpg" alt="Green shirt">
+                        <div class="padding_webTen_resFive ">
+                            <h3>Ribbbed Bodycon Dress</h3>
+                            <h3 class="fontNumber opacity">Rs. 2,159.49</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="recentPost opacity padding_webTwenty_resTen pos_rel">
+                    <h2 class="padding_webTen_resFive ">Recent Post</h2>
+                    <div class="bar "></div>
+                    <h3 class="opacity padding_webTen_resFive ">Spring Fahion Trending 2018 <span class="opacity">March
+                            08, 2018</span>
+                    </h3>
+                    <h3 class="opacity padding_webTen_resFive ">The Easiest Way to Break Out On Top <span
+                            class="opacity">March 08,
+                            2018</span>
+                    </h3>
+                    <h3 class="opacity padding_webTen_resFive ">Fresh your room with vase <span class="opacity">March
+                            08, 2018</span>
+                    </h3>
+                    <div class="dFlex ">
+                        <h3 class="opacity padding_webTen_resFive ">How to wear painful heels without dying <span
+                                class="opacity">March
+                                08,
+                                2018</span></h3>
+                        <div class="arrow border_round display_flex_none  text_white"><span
+                                class="widthFull border_round"><i class="fa-solid fa-angle-up fa-2xs"></i></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- footer    -->
+    <footer class="snow_wrap ">
+        <div class="snow"></div>
+        <!-- nav links -->
+        <div class="wrapper widthFull_HeightAuto  ">
+            <div class="links_contact dFlex widthFull_HeightAuto  ">
+                <div class="gecko divBig dFlex start_center flex_col opacity  paddingBottom_webTwenty_resTwenty ">
+                    <h1 class="h1 text_white widthFull padding_webTen_resFive  opacity">GECKO</h1>
+                    <div class="dFlex start_center contactItems text_bold text_white  padding_webTen_resFive  "
+                        style="align-items: start;">
+                        <i class="fa-solid fa-location-dot  margin_webFive_resTwo "></i>
+                        <h4 class="dFlex" style="margin-inline:5px ;">184 Main Rd E, St Albans VIC 3021, Australia</h4>
+                    </div>
+                    <div class="dFlex start_center  contactItems text_bold text_white padding_webTen_resFive ">
+                        <i class="fa-regular fa-envelope margin_webFive_resTwo"></i>
+                        <h4 class=" margin_webFive_resTwo">Contact@company.com</h4>
+                    </div>
+                    <div class="dFlex start_center contactItems text_bold text_white  padding_webTen_resFive ">
+                        <i class="fa-solid fa-phone margin_webFive_resTwo "></i>
+                        <h4 class="margin_webFive_resTwo ">+001 2233 456</h4>
+                    </div>
+                    <div class="socialFooter dFlex start_center  widthFull margin_webFive_resTwo     ">
+                        <div class=" heightFull dFlex start_center contactItems padding_webTen_resFive  zindex_two ">
+                            <i class="fa-brands  fa-xl fa-facebook-f   text_white"></i>
+                        </div>
+                        <div class=" heightFull dFlex start_center contactItems padding_webTen_resFive  zindex_two ">
+                            <i class="fa-brands  fa-xl fa-twitter   text_white"></i>
+                        </div>
+                        <div class=" heightFull dFlex start_center contactItems padding_webTen_resFive   zindex_two">
+                            <i class="fa-brands  fa-xl fa-pinterest   text_white"></i>
+                        </div>
+                        <div class=" heightFull dFlex start_center contactItems padding_webTen_resFive   zindex_two">
+                            <i class="fa-brands  fa-xl fa-instagram   text_white"></i>
+                        </div>
+                        <div class=" heightFull dFlex start_center contactItems padding_webTen_resFive   zindex_two">
+                            <i class="fa-brands  fa-xl fa-tumblr   text_white"></i>
+                        </div>
+                        <div class=" heightFull dFlex start_center contactItems padding_webTen_resFive   zindex_two">
+                            <i class="fa-regular fa-xl  fa-bell   text_white"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="divSmall padding_webTen_resFive  opacity text_white paddingBottom_webTwenty_resTwenty">
+                    <h2
+                        class=" dFlex start_center padding_webTen_resFive  margin_webFive_resTwo contactItems paddingBottom_webTwenty_resTwenty">
+                        Categories
+                        &nbsp;<span class="display_none_flex">
+                            <i class="fa-solid fa-minus"></i></span></h2>
+                    <ol class="widthFull_HeightAuto opacity dFlex flex_col">
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Clothing</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Acessories</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Footwear</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Furniture</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Handmade</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Organic</li>
+                    </ol>
+                </div>
+                <div class="divSmall padding_webTen_resFive  opacity text_white paddingBottom_webTwenty_resTwenty">
+                    <h2
+                        class=" dFlex start_center padding_webTen_resFive  contactItems margin_webFive_resTwo paddingBottom_webTwenty_resTwenty">
+                        Information
+                        &nbsp;<span class="display_none_flex">
+                            <i class="fa-solid fa-plus"></i> </span></h2>
+                    <ol class=" widthFull_HeightAuto opacity display_flex_none flex_col">
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">About Us</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Contact Us</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Terms & Conditions</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Returns & Exchanges</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Shipping & Delivery</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Privacy Policy</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Shortcode Page</li>
+                    </ol>
+                </div>
+                <div class="divSmall padding_webTen_resFive  opacity text_white paddingBottom_webTwenty_resTwenty">
+                    <h2
+                        class=" dFlex start_center padding_webTen_resFive  margin_webFive_resTwo contactItems paddingBottom_webTwenty_resTwenty">
+                        Quick Links
+                        &nbsp;<span class="display_none_flex">
+                            <i class="fa-solid fa-plus"></i> </span></h2>
+                    <ol class="widthFull_HeightAuto opacity display_flex_none flex_col">
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo ">Store Location</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">My Account</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Search</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">Size Guide</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">FAQs</li>
+                        <li class="padding_webTen_resFive  margin_webFive_resTwo">FAQs 2</li>
+                    </ol>
+                </div>
+                <div class="text_white divBig padding_webTen_resFive  opacity paddingBottom_webTwenty_resTwenty">
+                    <h4 class="padding_webTen_resFive  margin_webFive_resTwo paddingBottom_webTwenty_resTwenty ">
+                        Subscribe to our
+                        newsletter and get 10% off your
+                        first purchase
+                    </h4>
+                    <div
+                        class="inputWrapper border_round padding_webTen_resFive  margin_webFive_resTwo widthFull dFlex  ">
+                        <input class="text_white text_bold border_round padding_webTwenty_resTen" type="text"
+                            name="email" id="email" placeholder="Your email address">
+                        <button class="bg_yellow text_white border_round text_bold">SIGN UP</button>
+                    </div>
+                    <div
+                        class="cards padding_webTen_resFive  margin_webFive_resTwo widthFull opacity paddingBottom_webTwenty_resTwenty">
+                        <i class="fa-brands fa-cc-visa fa-2xl opacity"></i>
+                        <i class="fa-brands fa-cc-paypal fa-2xl opacity"></i>
+                        <i class="fa-brands fa-cc-mastercard fa-2xl opacity"></i>
+                        <i class="fa-brands fa-cc-amex fa-2xl opacity"></i>
+                        <i class="fa-brands fa-cc-discover fa-2xl opacity"></i>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer nav  -->
+        <div
+            class="footer widthFull dFlex between_center bg_black opacity padding_webInlineOneforty_resTwenty text_white widthFull  ">
+            <h4 class="text_start_center  widthFull">&copy; Copyright 2018 <span class="gecko">Gecko</span> all
+                rights
+                reserved.
+                Powered
+                by by The4</h4>
+            <ol class="footerNav zindex_two dFlex end_center display_flex_none ">
+                <li class="padding_webTwenty_resTen">Shop</li>
+                <li class="padding_webTwenty_resTen">About US</li>
+                <li class="padding_webTwenty_resTen">Contact</li>
+                <li class="padding_webTwenty_resTen">Blog</li>
+                <div class="arrow border_round display_flex_none text_white"><span class="widthFull border_round"><i
+                            class="fa-solid fa-angle-up fa-2xs"></i></span></div>
+            </ol>
+        </div>
+    </footer>
+</body>
+
+</html>
