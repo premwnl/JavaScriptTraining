@@ -492,10 +492,24 @@ import colors from "colors";
 // console.log(calculate(arr));
 
 
-let username = 'prem kumar london'
-let arr = username.split(' ')
-for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].split('').reverse().join('')
+// let username = 'prem kumar london'
+// let arr = username.split(' ')
+// for (let i = 0; i < arr.length; i++) {
+//     arr[i] = arr[i].split('').reverse().join('')
+// }
+// arr = arr.join(' ')
+// console.log(arr);
+
+
+const s1 = [[4, 2], [2, 4], [1, 2]];
+const s2 = [[6, 2], [4, 2], [1, 1], [1, 1]];
+
+let c = 0;
+
+for (let i = 0; i < Math.min(s1.length, s2.length); i++) {
+    if (s1[i][0] * s1[i][1] === s2[i][0] * s2[i][1]) {
+        c++;
+    }
 }
-arr = arr.join(' ')
-console.log(arr);
+
+console.log(c);
