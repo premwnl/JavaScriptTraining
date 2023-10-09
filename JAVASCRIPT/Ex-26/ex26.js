@@ -94,7 +94,7 @@ function getInput() {
     }
 }
 
-function isFull(array) {
+function isArrayFull(array) {
     for (let index = 0; index < array.length; index++) {
         for (let loop = 0; loop < array[0].length; loop++) {
             if (!array[index][loop]) return true
@@ -113,7 +113,7 @@ function sumDiagonals() {
         alert(ERROR_MESSAGE)
         resetOutputs()
         getSearch.value = ''
-    } else if (isFull(mainArray)) {
+    } else if (isArrayFull(mainArray)) {
         alert(FILL_ERROR)
     } else {
 
@@ -138,7 +138,7 @@ function transpose() {
         alert(ERROR_MESSAGE)
         resetOutputs()
         getSearch.value = ''
-    } else if (isFull(mainArray)) {
+    } else if (isArrayFull(mainArray)) {
         alert(FILL_ERROR)
     } else {
         let transposed = []
@@ -162,7 +162,7 @@ function search() {
         alert(ERROR_MESSAGE)
         resetOutputs()
         getSearch.value = ''
-    } else if (isFull(mainArray)) {
+    } else if (isArrayFull(mainArray)) {
         alert(FILL_ERROR)
     } else if (!search) {
         alert(SEARCH_MESSAGE)
