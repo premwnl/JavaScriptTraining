@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/JAVASCRIPT/images/logo.jpeg">
+    <title>2d Array 26</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex26.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/JAVASCRIPT/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic" style="padding-top: 100px;">
+        <div class="container " id="div">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 26</h4>
+                <div></div>
+                <h2>Sum of Diagonals, Transpose and IndexSearch</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="border_bottom">
+                <div class="d_flex  justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="rowColumn">
+                        Enter the Rows * Column
+                    </label>
+                    <input type="number" value="" min="2" max='9' id="rowColumn" onkeypress="return onlyDigits(event)">
+                </div>
+                <table id="matrix"></table>
+                <div class="d_flex  justifyContent_start alignItems_center padding_ten">
+                    <label class="padding_ten" for="search">
+                        Enter the Number to be Searched
+                    </label>
+                    <input type="number" value="" min="1" max='99' id="search" onkeypress="return onlyDigits(event)">
+                </div>
+            </div>
+            <div class="d_flex  justifyContent_start alignItems_center padding_ten">
+                <label class="padding_ten" for="sumOfDiagonals">
+                    Sum of Diagonals
+                </label>
+                <input type="text" value="" id="sumOfDiagonals" class="output" readonly>
+            </div>
+            <div class="d_flex  " style="padding-inline: 10px;">
+                <div class="d_flex padding_ten">
+                    <label for="transposeMatrix">
+                        Transpose Matrix
+                    </label>
+                    <textarea class="italic padding_ten output " value="" id="transposeMatrix" cols="32" rows="4"
+                        readonly></textarea>
+                </div>
+            </div>
+            <div class="d_flex  " style="padding-inline: 10px;">
+                <div class="d_flex padding_ten">
+                    <label for="index">
+                        Index Position(s) of the Element
+                    </label>
+                    <textarea class="italic padding_ten output " value="" id="index" cols="32" rows="4"
+                        readonly></textarea>
+                </div>
+            </div>
+
+            <div class="d_flex justifyContent_spaceBetween alignItems_center " style="padding-inline: 60px;">
+                <button onclick="sumDiagonals()">
+                    <h3>Sum of Diagonals</h3>
+                </button>
+                <button onclick="transpose()">
+                    <h3>Transpose</h3>
+                </button>
+                <button onclick="search()">
+                    <h3>Search</h3>
+                </button>
+                <button onclick="reset()">
+                    <h3>Reset</h3>
+                </button>
+            </div>
+        </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Two Dimensional Array using DOM </h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/JAVASCRIPT/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex26.js"></script>
+</body>
+
+</html>
