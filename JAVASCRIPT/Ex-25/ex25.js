@@ -44,7 +44,7 @@ const startWatch = () => {
 function start() {
 
 
-    millisecond = millisecond += 1
+    millisecond++
     if (millisecond >= 100) {
         millisecond = 0
         second++
