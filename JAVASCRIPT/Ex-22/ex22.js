@@ -22,7 +22,7 @@ let ALL_INPUT = document.querySelectorAll('.input')
 const RESET_INPUT = document.querySelectorAll("input")
 
 //Constant declaration
-const MIN_VALUE = 1
+const MIN_VALUE = -100
 const MAX_VALUE = 100
 
 //Error declaration
@@ -69,7 +69,7 @@ const findDuplicates = () => {
 //only digits
 function onlyDigits(e) {
     char = e.charCode
-    return (char == 43 || char == 45 || char == 46 || char == 69 || char == 101) ? false : true
+    return (char == 43 || char == 46 || char == 69 || char == 101) ? false : true
 }
 const resetOutputs = () => {
     ALL_OUPUT.forEach(input => input.value = '')
