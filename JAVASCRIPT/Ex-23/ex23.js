@@ -75,8 +75,8 @@ const add = () => {
         resetOutputs()
 
         //only pushes if has both values and length available
-        firstWidth && firstHeight && firstSisterArray.length < 5 ? firstSisterArray.push([firstWidth, firstHeight]) : null
-        secondWidth && secondHeight && secondSisterArray.length < 5 ? secondSisterArray.push([secondWidth, secondHeight]) : null
+        firstWidth && firstHeight && firstSisterArray.length < 5 ? firstSisterArray.push(`[${firstWidth}, ${firstHeight}]`) : null
+        secondWidth && secondHeight && secondSisterArray.length < 5 ? secondSisterArray.push(`[${secondWidth}, ${secondHeight}]`) : null
         setArray.value = `First        ->  ${firstSisterArray.join('    ')}\nSecond  ->  ${secondSisterArray.join('    ')}\n`
         resetAdded()
     }

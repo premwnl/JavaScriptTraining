@@ -66,7 +66,6 @@ const calculate = () => {
         }
 
         setResult.value = flames
-        // flames = ["FRIEND", "LOVE", "AFFECTION", "MARRIGE", "ENEMY", "SISTER"]
     }
 }
 
