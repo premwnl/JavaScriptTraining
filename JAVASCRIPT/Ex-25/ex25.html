@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/JAVASCRIPT/images/logo.jpeg">
+    <title>Countdown Timer 25</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="ex25.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/JAVASCRIPT/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <div class="container " id="div">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 25</h4>
+                <div></div>
+                <h2>Countdown Timer</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="d_flex justifyContent_center alignItems_center " style="padding: 40px   ;">
+                <div class="d_flex  flex_col  circle ">
+                    <div class="semicircle d_flex justifyContent_center alignItems_center flex_col">
+                        <h2 class="padding_ten" id="timer">00 :00 :00 :00 </h2>
+                        <h2 class="padding_ten" id="seconds">0</h2>
+                    </div>
+                    <div class="d_flex" style='width:100%;height: 50%;'>
+                        <div class="quaterLeft d_flex justifyContent_center alignItems_center" onclick="startWatch()"><i
+                                class="fa-solid fa-play fa-2xl" id="icon" style="color: #ffffff;"></i></div>
+                        <div class="quaterRight d_flex justifyContent_center alignItems_center" onclick="reset()">
+                            <i class="fa-solid fa-repeat fa-2xl" style="color: #ffffff;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective :Timer Functions</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/JAVASCRIPT/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex25.js"></script>
+</body>
+
+</html>
