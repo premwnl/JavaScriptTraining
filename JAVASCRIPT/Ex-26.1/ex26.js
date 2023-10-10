@@ -1,0 +1,201 @@
+/*            *
+                                            Name of the challenge      : Sum of Diagonals, Transpose and IndexSearch                     *
+                                            Challenge No               : 26                                                          *
+                                            Developed for              : VHITECH Training Program         *
+                                                Maintenance History                                                    *
+                                            Developer                  : Premkumar T                                                      *
+                                            Creation date              : 09/10/2023     Ticket No:               *
+**/
+
+
+//Screen Declaration
+setInterval(() => {
+    document.getElementById('currentDate').innerText = new Date().toLocaleDateString()
+    document.getElementById('currentTime').innerText = new Date().toLocaleTimeString('en-in')
+}, 1000)
+
+//DOM declaration
+let getRow = document.getElementById('row')
+let getColumn = document.getElementById('column')
+let setRowColumn = document.getElementById('inputs')
+let getSearch = document.getElementById('search')
+let setSumOfDiagonals = document.getElementById('sumOfDiagonals')
+let setTransposeMatrix = document.getElementById('transposeMatrix')
+let setMatrix = document.getElementById('matrix')
+let setSearch = document.getElementById('index')
+let ALL_OUPUT = document.querySelectorAll('.output')
+const RESET_INPUT = document.querySelectorAll("input")
+
+//Constant declaration
+const ROW_MIN_VALUE = 2
+const ROW_MAX_VALUE = 9
+const MIN_VALUE = 1
+const MAX_VALUE = 99
+
+//Error declaration
+const ERROR_MESSAGE = 'Please Enter the value of Rows*Column'
+const SEARCH_MESSAGE = 'Please Enter the value to be Searched'
+const FILL_ERROR = 'Array was Not Full'
+const EMPTY_ERROR = 'Array was Empty'
+const MIN_MAX_ERROR = `Please Enter Value Between ${MIN_VALUE} to ${MAX_VALUE}`
+const ROW_MIN_MAX_ERROR = `Please Enter Row Column Value Between ${ROW_MIN_VALUE} to ${ROW_MAX_VALUE}`
+
+
+//Main functions
+let mainArray = []
+getRow.addEventListener('input', () => { resetOutputs(); resetInput() })
+getColumn.addEventListener('input', () => {
+    resetInput()
+    const row = parseInt(getRow.value);
+    const column = parseInt(getColumn.value)
+    if (!row) {
+        alert(ERROR_MESSAGE)
+    } else if (row < ROW_MIN_VALUE || column < ROW_MIN_VALUE) {
+        return
+    } else if (row > ROW_MAX_VALUE || column > ROW_MAX_VALUE) {
+        alert(ROW_MIN_MAX_ERROR)
+        reset()
+    } else {
+        //creating an empty array
+        for (let index = 0; index < row; index++) {
+            mainArray[index] = []
+            for (let loop = 0; loop < column; loop++) {
+                mainArray[index][loop] = 0
+            }
+        }
+
+        //creating input in table
+        // let matrixHTML = "";
+        for (let index = 0; index < row; index++) {
+            // matrixHTML += "<tr>";
+            let tr = document.createElement('tr')
+            for (let innerIndex = 0; innerIndex < column; innerIndex++) {
+                // matrixHTML += `<td><input type="number" id="input${index}_${innerIndex}"></td>`;
+                let td = document.createElement('td')
+                let input = document.createElement('input')
+                input.type = 'number'
+                input.id = `input${index}_${innerIndex}`
+                td.appendChild(input)
+                tr.appendChild(td)
+            }
+            // matrixHTML += "</tr>";
+            setMatrix.appendChild(tr);
+        }
+    }
+})
+
+//getting array value
+function getInput() {
+
+    for (let index = 0; index < mainArray.length; index++) {
+        for (let innerIndex = 0; innerIndex < mainArray[index].length; innerIndex++) {
+            const input = document.getElementById(`input${index}_${innerIndex}`);
+            mainArray[index][innerIndex] = parseInt(input.value);
+        }
+    }
+}
+
+//checking whether array was full
+function isArrayFull(array) {
+    for (let index = 0; index < array.length; index++) {
+        for (let loop = 0; loop < array[index].length; loop++) {
+            if (!array[index][loop]) return true
+        }
+    }
+    return false
+}
+
+//summing the diagonals
+function sumDiagonals() {
+    getInput();
+    let firstDiagonal = 0
+    let secondDiagonal = 0
+
+    if (!getRow.value || !getColumn.value) {
+        alert(ERROR_MESSAGE)
+        resetOutputs()
+        getSearch.value = ''
+    } else if (isArrayFull(mainArray)) {
+        alert(FILL_ERROR)
+    } else {
+
+        for (let index = 0; index < mainArray.length; index++) {
+            for (let loop = 0; loop < mainArray[index].length; loop++) {
+                if (index == loop) {
+                    firstDiagonal += mainArray[index][loop]
+                }
+                if (loop == mainArray.length - 1 - index) {
+                    secondDiagonal += mainArray[index][loop]
+                }
+            }
+        }
+        setSumOfDiagonals.value = (firstDiagonal ? firstDiagonal : 'NA') + ', ' + (secondDiagonal ? secondDiagonal : 'NA');
+    }
+}
+// transposing the 2d array
+function transpose() {
+    getInput();
+
+    if (!getRow.value || !getColumn.value) {
+        alert(ERROR_MESSAGE)
+        resetOutputs()
+        getSearch.value = ''
+    } else if (isArrayFull(mainArray)) {
+        alert(FILL_ERROR)
+    } else {
+        let transposed = []
+        for (let index = 0; index < getColumn.value; index++) {
+            transposed[index] = []
+        }
+        for (let index = 0; index < mainArray.length; index++) {
+            for (let loop = 0; loop < mainArray[index].length; loop++) {
+                transposed[loop][index] = mainArray[index][loop]
+            }
+        }
+        setTransposeMatrix.value = transposed.join('\n')
+    }
+}
+//searching item in 2d array
+function search() {
+    getInput()
+    const search = parseInt(getSearch.value);
+    if (!getRow.value || !getColumn.value) {
+        alert(ERROR_MESSAGE)
+        resetOutputs()
+        getSearch.value = ''
+    } else if (isArrayFull(mainArray)) {
+        alert(FILL_ERROR)
+    } else if (!search) {
+        alert(SEARCH_MESSAGE)
+        setSearch.value = ''
+    } else {
+        for (let index = 0; index < mainArray.length; index++) {
+            for (let loop = 0; loop < mainArray[index].length; loop++) {
+                if (mainArray[index][loop] == search) {
+                    setSearch.value = ` ${search} is at Index [${index}, ${loop}]`
+                    return
+                }
+            }
+        }
+        setSearch.value = `${search} not found`;
+    }
+}
+
+//only digits
+function onlyDigits(e) {
+    char = e.charCode
+    return (char == 43 || char == 46 || char == 69 || char == 101) ? false : true
+}
+const resetOutputs = () => {
+    ALL_OUPUT.forEach(input => input.value = '')
+}
+const resetInput = () => {
+    setMatrix.innerHTML = ''
+}
+//reset
+const reset = () => {
+    RESET_INPUT.forEach(input => input.value = '')
+    resetOutputs()
+    resetInput()
+    mainArray = []
+}
