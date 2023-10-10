@@ -514,32 +514,32 @@ import colors from "colors";
 
 // console.log(c);
 
-const row = 4
-const column = 5
+// const row = 4
+// const column = 5
 
-//creating an empty array
-for (let index = 0; index < row; index++) {
-    mainArray[index] = []
-    for (let loop = 0; loop < column; loop++) {
-        mainArray[index][loop] = 0
-    }
-}
+// //creating an empty array
+// for (let index = 0; index < row; index++) {
+//     mainArray[index] = []
+//     for (let loop = 0; loop < column; loop++) {
+//         mainArray[index][loop] = 0
+//     }
+// }
 
-//creating input in table
-// let matrixHTML = "";
-for (let index = 0; index < row; index++) {
-    // matrixHTML += "<tr>";
-    let tr = document.createElement('tr')
-    for (let innerIndex = 0; innerIndex < column; innerIndex++) {
-        // matrixHTML += `<td><input type="number" id="input${index}_${innerIndex}"></td>`;
-        let td = document.createElement('td')
-        let input = document.createElement('input')
-        input.type = 'number'
-        input.id = `input${index}_${innerIndex}`
-        td.appendChild(input)
-        tr.appendChild(td)
-    }
-    // matrixHTML += "</tr>";
-    setMatrix.appendChild(tr);
-}
+// //creating input in table
+// // let matrixHTML = "";
+// for (let index = 0; index < row; index++) {
+//     // matrixHTML += "<tr>";
+//     let tr = document.createElement('tr')
+//     for (let innerIndex = 0; innerIndex < column; innerIndex++) {
+//         // matrixHTML += `<td><input type="number" id="input${index}_${innerIndex}"></td>`;
+//         let td = document.createElement('td')
+//         let input = document.createElement('input')
+//         input.type = 'number'
+//         input.id = `input${index}_${innerIndex}`
+//         td.appendChild(input)
+//         tr.appendChild(td)
+//     }
+//     // matrixHTML += "</tr>";
+//     setMatrix.appendChild(tr);
+// }
 
