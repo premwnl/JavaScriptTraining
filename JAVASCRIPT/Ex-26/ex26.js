@@ -51,7 +51,6 @@ getRowColumn.addEventListener('input', () => {
         alert(ERROR_MESSAGE)
         resetOutputs()
         getSearch.value = ''
-        getSearch.value = ''
     } else if (rowColumn < ROW_MIN_VALUE) {
         return
     } else if (rowColumn > ROW_MAX_VALUE) {
@@ -66,6 +65,7 @@ getRowColumn.addEventListener('input', () => {
             }
         }
 
+        //creating input in table
         let matrixHTML = "";
         for (let index = 0; index < rowColumn; index++) {
             matrixHTML += "<tr>";
@@ -78,7 +78,7 @@ getRowColumn.addEventListener('input', () => {
     }
 })
 
-
+//getting array value
 function getInput() {
     if (!getRowColumn.value) {
         alert(ERROR_MESSAGE)
@@ -93,7 +93,7 @@ function getInput() {
         }
     }
 }
-
+//checking whether array was full
 function isArrayFull(array) {
     for (let index = 0; index < array.length; index++) {
         for (let loop = 0; loop < array[0].length; loop++) {
@@ -103,7 +103,7 @@ function isArrayFull(array) {
     return false
 }
 
-
+//summing the diagonals
 function sumDiagonals() {
     getInput();
     let firstDiagonal = 0
@@ -130,7 +130,7 @@ function sumDiagonals() {
         setSumOfDiagonals.value = firstDiagonal + ', ' + secondDiagonal;
     }
 }
-
+// transposing the 2d array
 function transpose() {
     getInput();
 
@@ -154,7 +154,7 @@ function transpose() {
         setTransposeMatrix.value = transposed.join('\n')
     }
 }
-
+//searching item in 2d array
 function search() {
     getInput()
     const search = parseInt(getSearch.value);
