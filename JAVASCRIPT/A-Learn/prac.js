@@ -501,15 +501,45 @@ import colors from "colors";
 // console.log(arr);
 
 
-const s1 = [[4, 2], [2, 4], [1, 2]];
-const s2 = [[6, 2], [4, 2], [1, 1], [1, 1]];
+// const s1 = [[4, 2], [2, 4], [1, 2]];
+// const s2 = [[6, 2], [4, 2], [1, 1], [1, 1]];
 
-let c = 0;
+// let c = 0;
 
-for (let i = 0; i < Math.min(s1.length, s2.length); i++) {
-    if (s1[i][0] * s1[i][1] === s2[i][0] * s2[i][1]) {
-        c++;
+// for (let i = 0; i < Math.min(s1.length, s2.length); i++) {
+//     if (s1[i][0] * s1[i][1] === s2[i][0] * s2[i][1]) {
+//         c++;
+//     }
+// }
+
+// console.log(c);
+
+const row = 4
+const column = 5
+
+//creating an empty array
+for (let index = 0; index < row; index++) {
+    mainArray[index] = []
+    for (let loop = 0; loop < column; loop++) {
+        mainArray[index][loop] = 0
     }
 }
 
-console.log(c);
+//creating input in table
+// let matrixHTML = "";
+for (let index = 0; index < row; index++) {
+    // matrixHTML += "<tr>";
+    let tr = document.createElement('tr')
+    for (let innerIndex = 0; innerIndex < column; innerIndex++) {
+        // matrixHTML += `<td><input type="number" id="input${index}_${innerIndex}"></td>`;
+        let td = document.createElement('td')
+        let input = document.createElement('input')
+        input.type = 'number'
+        input.id = `input${index}_${innerIndex}`
+        td.appendChild(input)
+        tr.appendChild(td)
+    }
+    // matrixHTML += "</tr>";
+    setMatrix.appendChild(tr);
+}
+

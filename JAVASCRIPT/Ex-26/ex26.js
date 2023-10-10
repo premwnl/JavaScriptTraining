@@ -47,11 +47,7 @@ getRowColumn.addEventListener('input', () => {
     resetInput()
     const rowColumn = parseInt(getRowColumn.value);
 
-    if (!getRowColumn.value) {
-        alert(ERROR_MESSAGE)
-        resetOutputs()
-        getSearch.value = ''
-    } else if (rowColumn < ROW_MIN_VALUE) {
+    if (rowColumn < ROW_MIN_VALUE) {
         return
     } else if (rowColumn > ROW_MAX_VALUE) {
         alert(ROW_MIN_MAX_ERROR)
@@ -66,33 +62,36 @@ getRowColumn.addEventListener('input', () => {
         }
 
         //creating input in table
-        let matrixHTML = "";
+        // let matrixHTML = "";
         for (let index = 0; index < rowColumn; index++) {
-            matrixHTML += "<tr>";
+            // matrixHTML += "<tr>";
+            let tr = document.createElement('tr')
             for (let innerIndex = 0; innerIndex < rowColumn; innerIndex++) {
-                matrixHTML += `<td><input type="number" id="input${index}_${innerIndex}"></td>`;
+                // matrixHTML += `<td><input type="number" id="input${index}_${innerIndex}"></td>`;
+                let td = document.createElement('td')
+                let input = document.createElement('input')
+                input.type = 'number'
+                input.id = `input${index}_${innerIndex}`
+                td.appendChild(input)
+                tr.appendChild(td)
             }
-            matrixHTML += "</tr>";
+            // matrixHTML += "</tr>";
+            setMatrix.appendChild(tr);
         }
-        setMatrix.innerHTML = matrixHTML;
     }
 })
 
 //getting array value
 function getInput() {
-    if (!getRowColumn.value) {
-        alert(ERROR_MESSAGE)
-        resetOutputs()
-        getSearch.value = ''
-    } else {
-        for (let index = 0; index < mainArray.length; index++) {
-            for (let innerIndex = 0; innerIndex < mainArray[0].length; innerIndex++) {
-                const input = document.getElementById(`input${index}_${innerIndex}`);
-                mainArray[index][innerIndex] = parseInt(input.value);
-            }
+
+    for (let index = 0; index < mainArray.length; index++) {
+        for (let innerIndex = 0; innerIndex < mainArray[0].length; innerIndex++) {
+            const input = document.getElementById(`input${index}_${innerIndex}`);
+            mainArray[index][innerIndex] = parseInt(input.value);
         }
     }
 }
+
 //checking whether array was full
 function isArrayFull(array) {
     for (let index = 0; index < array.length; index++) {
@@ -167,12 +166,11 @@ function search() {
     } else if (!search) {
         alert(SEARCH_MESSAGE)
         setSearch.value = ''
-        // resetOutputs()
     } else {
         for (let index = 0; index < mainArray.length; index++) {
             for (let loop = 0; loop < mainArray[0].length; loop++) {
                 if (mainArray[index][loop] == search) {
-                    setSearch.value = ` ${search} found at ${index}, ${loop}`
+                    setSearch.value = ` ${search} is at Index [${index}, ${loop}]`
                     return
                 }
             }
