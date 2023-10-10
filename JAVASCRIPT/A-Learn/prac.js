@@ -543,3 +543,7 @@ import colors from "colors";
 //     setMatrix.appendChild(tr);
 // }
 
+
+{/* <i class="fa-solid fa-hand fa-2xl"></i> */ }
+{/* <i class="fa-solid fa-hand-scissors fa-2xl"></i> */ }
+{/* <i class="fa-solid fa-hand-back-fist fa-2xl"></i> */ }
