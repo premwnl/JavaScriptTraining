@@ -1,6 +1,6 @@
 /*            *
                                             Name of the challenge      : Sum of Diagonals, Transpose and IndexSearch                     *
-                                            Challenge No               : 26                                                          *
+                                            Challenge No               : 26.1                                                          *
                                             Developed for              : VHITECH Training Program         *
                                                 Maintenance History                                                    *
                                             Developer                  : Premkumar T                                                      *
