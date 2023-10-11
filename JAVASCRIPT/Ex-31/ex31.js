@@ -87,11 +87,17 @@ const closeModal = () => {
 }
 
 //event listers for all input elements
-getName.addEventListener('input', () => getName.value.length >= 3 ? removeHelper(getName) : addHelper(getName))
-getEmail.addEventListener('input', () => regexEmail.test(getEmail.value) ? removeHelper(getEmail) : addHelper(getEmail))
-getCredit.addEventListener('input', () => (getCredit.value.length >= 16 && getCredit.value.length <= 20) ? removeHelper(getCredit) : addHelper(getCredit))
-getPan.addEventListener('input', () => (regexPan.test(getPan.value) && getPan.value.length == 10) ? removeHelper(getPan) : addHelper(getPan))
-getGst.addEventListener('input', () => (regexGst.test(getGst.value) && checkGST(getPan.value, getGst.value) && getGst.value.length == 15) ? removeHelper(getGst) : addHelper(getGst))
+// getName.addEventListener('input', () => getName.value.length >= 3 ? removeHelper(getName) : addHelper(getName))
+// getEmail.addEventListener('input', () => regexEmail.test(getEmail.value) ? removeHelper(getEmail) : addHelper(getEmail))
+// getCredit.addEventListener('input', () => (getCredit.value.length >= 16 && getCredit.value.length <= 20) ? removeHelper(getCredit) : addHelper(getCredit))
+// getPan.addEventListener('input', () => (regexPan.test(getPan.value) && getPan.value.length == 10) ? removeHelper(getPan) : addHelper(getPan))
+// getGst.addEventListener('input', () => (regexGst.test(getGst.value) && checkGST(getPan.value, getGst.value) && getGst.value.length == 15) ? removeHelper(getGst) : addHelper(getGst))
+
+getName.addEventListener('input', () => removeHelper(getName))
+getEmail.addEventListener('input', () => removeHelper(getEmail))
+getCredit.addEventListener('input', () => removeHelper(getCredit))
+getPan.addEventListener('input', () => removeHelper(getPan))
+getGst.addEventListener('input', () => removeHelper(getGst))
 
 function checkGST(pan, gst) {//checking gst and pan values
     return pan == gst.split('').slice(2, 12).join('')
@@ -102,7 +108,7 @@ function addHelper(element) {//add helper test and border
     element.nextElementSibling.classList.add('display_block')
 }
 function removeHelper(element) {//remove helper test and border
-    element.classList.add('border_green')
+    // element.classList.add('border_green')
     element.classList.remove('border_red')
     element.nextElementSibling.classList.remove('display_block')
 }

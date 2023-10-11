@@ -95,9 +95,13 @@ footer > h3, .italic {
 }
 .container {
     width: 50%;
+    /* height: 700px; */
     margin: auto;
     background: #f3f3cb;
     padding-block: 20px;
+}
+.result {
+    height: 30px
 }
 .size, .size-2 {
     width: 200px;
@@ -106,6 +110,7 @@ footer > h3, .italic {
 }
 .size-2 {
     background: #fff;
+    border-radius: 50%;
     /* display: flex; */
     justify-self: start;
 }
@@ -115,8 +120,8 @@ i {
     font-size: 100px;
     transition: 0.5s;
 }
-i:hover {
-    transform: scale(1.1);
+.i:hover {
+    transform: scale(1.25);
 }
 .modal {
     /* visibility: hidden; */
@@ -136,4 +141,22 @@ i:hover {
 .popUpModal {
     top: 50%;
     transform: translate(50%, -50%)scale(1);
+}
+.moveRight {
+    transform: translateX(120px)scale(1.25);
+}
+.moveLeft {
+    transform: translateX(-120px)scale(1.25);
+}
+.colorGreen {
+    color: green;
+}
+.colorRed {
+    color: red;
+}
+.colorOrange {
+    color: orange;
+}
+.drop {
+    transform: translateY(520px)scale(0.5)rotate(900deg);
 }

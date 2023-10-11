@@ -43,40 +43,16 @@
                 <div></div>
             </div>
             <div class="d_flex flex_col justifyContent_center alignItems_center padding_ten">
-                <h3 class="">MOVES LEFT: <span id="moves">10</span></h3>
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
-                    <div class="d_flex flex_col size-2  alignItems_center padding_ten">
-                        <h3 class="padding_ten">MY SCORE: <span id="myScore">0</span></h3>
-                        <i class="fa-solid  fa-7x" id="user"></i>
-                    </div>
-                    <div class="d_flex flex_col size-2  alignItems_center padding_ten">
-                        <h3 class="padding_ten">CPU SCORE: <span id="cpuScore">0</span></h3>
-                        <i class="fa-solid  fa-7x" id="cpu"></i>
-                    </div>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten" style="width: 100%;">
+                    <h3>Countries List</h3>
                 </div>
-                <div class="">
-                    <h1 id="result" style="visibility: hidden;"></h1>
-                </div>
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten" id="allIcons">
-                    <div class="size padding_ten d_flex justifyContent_center alignItems_center" id="rock">
-                        <i class="fa-solid fa-hand-back-fist fa-7x"></i>
-                    </div>
-                    <div class="size padding_ten d_flex justifyContent_center alignItems_center" id="paper">
-                        <i class=" fa-solid fa-hand fa-7x"></i>
-                    </div>
-                    <div class="size padding_ten d_flex justifyContent_center alignItems_center" id="scissor">
-                        <i class=" fa-solid fa-hand-scissors fa-7x "></i>
-                    </div>
-                </div>
-                <div class="modal d_flex justifyContent_center alignItems_center flex_col padding_ten" id="modal">
-                    <h1 class="padding_ten"><span id="modalResult" style="font-size: 5rem;"></span></h1>
-                    <h1 class="padding_ten">Your Score : <span id="modalYour"></span></h1>
-                    <h1 class="padding_ten">CPU Score : <span id="modalCpu"></span></h1>
-                    <button class="padding_ten"
-                        style="background-color: rgb(43, 122, 7); width: 100px; border: 2px solid green;"
-                        onclick="closeModal()">
-                        <h3>OK</h3>
-                    </button>
+                <div class="d_flex justifyContent_start alignItems_center padding_ten " style="width: 100%;">
+                    <select name="select" id="country" style="width: 40%;">
+                        <option value="">Select</option>
+                    </select>
+                    <select name="select" id="capital" style="width: 15%;">
+                        <option value=""></option>
+                    </select>
                 </div>
             </div>
         </div>

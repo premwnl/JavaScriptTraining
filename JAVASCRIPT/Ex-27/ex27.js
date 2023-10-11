@@ -25,6 +25,7 @@ const setMoves = document.getElementById('moves')
 const user = document.getElementById('user')
 const cpu = document.getElementById('cpu')
 const icons = document.getElementById('allIcons')
+const allOptions = document.querySelectorAll('.icon')
 const setResult = document.getElementById('result')
 let setYourModal = document.getElementById('modalYour')
 let setCpuModal = document.getElementById('modalCpu')
@@ -36,14 +37,10 @@ const gameArray = ['rock', 'paper', 'scissor']
 //Error declaration
 
 //Main functions
-rock.addEventListener('click', () => {
-    checkWinner('rock')
-})
-paper.addEventListener('click', () => {
-    checkWinner('paper')
-})
-scissor.addEventListener('click', () => {
-    checkWinner('scissor')
+allOptions.forEach((value) => {
+    value.addEventListener('click', () => {
+        checkWinner(value.id)
+    })
 })
 let moves = 10
 let yourScore = 0
@@ -52,66 +49,118 @@ let cpuScore = 0
 function checkWinner(choice) {
     const userChoice = choice
     const cpuChoice = gameArray[Math.floor(Math.random() * 3)]
-
-    icons.style.visibility = 'hidden'
-    setResult.style.visibility = 'visible';
+    setResult.textContent = ''
+    setResult.style.opacity = 100;
     setTimeout(() => {
-        icons.style.visibility = 'visible';
-        setResult.style.visibility = 'hidden'
+        setResult.style.opacity = 0
         removeClass()
-    }, 1000);
+    }, 3000);
 
     //addding icons in output
     if (userChoice == 'rock') {
         user.classList.add('fa-hand-back-fist')
+        setTimeout(() => {
+            user.classList.add('moveRight')
+        }, 1000)
     } else if (userChoice == 'paper') {
         user.classList.add('fa-hand')
+        setTimeout(() => {
+            user.classList.add('moveRight')
+        }, 1000)
     } else {
         user.classList.add('fa-hand-scissors')
+        setTimeout(() => {
+            user.classList.add('moveRight')
+        }, 1000)
     }
     if (cpuChoice == 'rock') {
         cpu.classList.add('fa-hand-back-fist')
+        setTimeout(() => {
+            cpu.classList.add('moveLeft')
+        }, 1000)
     } else if (cpuChoice == 'paper') {
         cpu.classList.add('fa-hand')
+        setTimeout(() => {
+            cpu.classList.add('moveLeft')
+        }, 1000)
     } else {
         cpu.classList.add('fa-hand-scissors')
+        setTimeout(() => {
+            cpu.classList.add('moveLeft')
+        }, 1000)
     }
 
     //checking winner
     if (userChoice == 'rock') {
         if (cpuChoice == 'paper') {
-            setResult.textContent = `🙁 You Lose 🙁`
+            setTimeout(() => {
+                cpu.classList.add('colorGreen')
+                user.classList.add('colorRed')
+                setResult.textContent = `🙁 You Lose 🙁`
+                user.classList.add('drop')
+            }, 1200)
             cpuScore++
         } else if (cpuChoice == 'scissor') {
-            setResult.textContent = `🥳 You Win 🥳`
+            setTimeout(() => {
+                user.classList.add('colorGreen')
+                cpu.classList.add('colorRed')
+                setResult.textContent = `🥳 You Win 🥳`
+                cpu.classList.add('drop')
+            }, 1200)
             yourScore++
         } else {
-            setResult.textContent = `🤯 Its a Tie 🤯`
-            yourScore++
-            cpuScore++
+            setTimeout(() => {
+                cpu.classList.add('colorOrange')
+                user.classList.add('colorOrange')
+                setResult.textContent = `🤯 Its a Tie 🤯`
+            }, 1200)
         }
     } else if (userChoice == 'paper') {
         if (cpuChoice == 'paper') {
-            setResult.textContent = `🤯 Its a Tie 🤯`
-            yourScore++
-            cpuScore++
+            setTimeout(() => {
+                cpu.classList.add('colorOrange')
+                user.classList.add('colorOrange')
+                setResult.textContent = `🤯 Its a Tie 🤯`
+            }, 1200)
         } else if (cpuChoice == 'scissor') {
-            setResult.textContent = `🙁 You Lose 🙁`
+            setTimeout(() => {
+                cpu.classList.add('colorGreen')
+                user.classList.add('colorRed')
+                setResult.textContent = `🙁 You Lose 🙁`
+                user.classList.add('drop')
+            }, 1200)
             cpuScore++
         } else {
-            setResult.textContent = `🥳 You Win 🥳`;
+            setTimeout(() => {
+                setResult.textContent = `🥳 You Win 🥳`;
+                user.classList.add('colorGreen')
+                cpu.classList.add('colorRed')
+                cpu.classList.add('drop')
+            }, 1200)
             yourScore++
         }
     } else {
         if (cpuChoice == 'paper') {
-            setResult.textContent = `🥳 You Win 🥳`
+            setTimeout(() => {
+                setResult.textContent = `🥳 You Win 🥳`
+                user.classList.add('colorGreen')
+                cpu.classList.add('colorRed')
+                cpu.classList.add('drop')
+            }, 1200)
             yourScore++
         } else if (cpuChoice == 'scissor') {
-            setResult.textContent = `🤯 Its a Tie 🤯`
-            yourScore++
-            cpuScore++
+            setTimeout(() => {
+                cpu.classList.add('colorOrange')
+                user.classList.add('colorOrange')
+                setResult.textContent = `🤯 Its a Tie 🤯`
+            }, 1200)
         } else {
-            setResult.textContent = `🙁 You Lose 🙁`
+            setTimeout(() => {
+                cpu.classList.add('colorGreen')
+                user.classList.add('colorRed')
+                setResult.textContent = `🙁 You Lose 🙁`
+                user.classList.add('drop')
+            }, 1200)
             cpuScore++
         }
     }
@@ -124,7 +173,7 @@ function checkWinner(choice) {
         setTimeout(() => {
             openModal(yourScore, cpuScore)
 
-        }, 1000)
+        }, 3000)
     }
 }
 //open modal
@@ -146,10 +195,30 @@ const closeModal = () => {
 }
 //remove classes
 function removeClass() {
+    removeUserClass()
+    removeCpuClass()
+    user.classList.remove('moveRight')
+    cpu.classList.remove('moveLeft')
+}
+function removeUserClass() {
     user.classList.remove('fa-hand-back-fist')
     user.classList.remove('fa-hand')
     user.classList.remove('fa-hand-scissors')
+    removeAnimate()
+}
+function removeCpuClass() {
     cpu.classList.remove('fa-hand-back-fist')
     cpu.classList.remove('fa-hand')
     cpu.classList.remove('fa-hand-scissors')
+    removeAnimate()
 }
+function removeAnimate() {
+    cpu.classList.remove('colorGreen')
+    user.classList.remove('colorGreen')
+    cpu.classList.remove('drop')
+    user.classList.remove('drop')
+    cpu.classList.remove('colorRed')
+    user.classList.remove('colorRed')
+    cpu.classList.remove('colorOrange')
+    user.classList.remove('colorOrange')
+} 
