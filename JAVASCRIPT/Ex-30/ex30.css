@@ -100,3 +100,16 @@ footer > h3, .italic {
     background: #f3f3cb;
     padding-block: 20px;
 }
+table {
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid #000;
+}
+td, th {
+    height: 60px;
+    padding: 5px;
+}
+table th, td {
+    text-align: center;
+}

@@ -16,8 +16,7 @@ setInterval(() => {
 }, 1000)
 
 //DOM declaration
-const click = document.getElementById('click')
-const container = document.getElementById('dropDown_container')
+const container = document.getElementById('tableBodyContainer')
 
 //Constant declaration
 let supplierSales = [
@@ -301,3 +300,59 @@ let supplierJson = [
 //Error declaration
 
 //Main functions
+let supplierIDArray = supplierJson.map((value) => value.SupplierID)
+let [productNameArray,
+    unitsInStockArray,
+    unitsInOrderArray,
+    unitsPriceArray,
+    subProductNameArray,
+    subUnitsInStockArray,
+    subUnitsInOrderArray,
+    subunitsPriceArray] = [[], [], [], [], [], [], [], []]
+
+for (const index in supplierIDArray) {//filtering items setting to particular array
+    let filtered = supplierSales.filter((item) => item.SupplierID == supplierIDArray[index]);
+    for (const index of filtered) {
+        subProductNameArray.push(index.ProductName)
+        subUnitsInStockArray.push(index.UnitsInStock)
+        subUnitsInOrderArray.push(index.UnitsOnOrder)
+        subunitsPriceArray.push(index.UnitPrice)
+    }
+    productNameArray.push([subProductNameArray])
+    unitsInStockArray.push([subUnitsInStockArray])
+    unitsInOrderArray.push([subUnitsInOrderArray])
+    unitsPriceArray.push([subunitsPriceArray])
+    subProductNameArray = []
+    subUnitsInStockArray = []
+    subUnitsInOrderArray = []
+    subunitsPriceArray = []
+}
+
+for (let index in unitsInStockArray) {//iterating for array length
+    for (let loop in unitsInStockArray[index]) {//iterating again to add nested values
+        unitsInStockArray[index] = unitsInStockArray[index][loop].reduce((accumulator, value) => accumulator + value, 0)
+        unitsInOrderArray[index] = unitsInOrderArray[index][loop].reduce((accumulator, value) => accumulator + value, 0)
+        unitsPriceArray[index] = unitsPriceArray[index][loop].reduce((accumulator, value) => accumulator + value, 0)
+    }
+}
+
+let mainArray = [//setting main array for all values
+    supplierIDArray,
+    supplierJson.map((value) => value.CompanyName),
+    supplierJson.map((value) => value.ContactName),
+    supplierJson.map((value) => `${value.Address}, ${value.City}, ${value.Country}`),
+    productNameArray,
+    unitsInStockArray,
+    unitsInOrderArray,
+    unitsPriceArray];
+
+for (const loop in supplierIDArray) {//looping to asssign table values
+    const rowElement = document.createElement('tr')
+    for (const index in mainArray) {
+        const dataElement = document.createElement('td')
+        dataElement.textContent = mainArray[index][loop]
+        rowElement.append(dataElement)
+    }
+    container.append(rowElement)
+}
+
