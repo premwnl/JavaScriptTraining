@@ -20,7 +20,7 @@ const click = document.getElementById('click')
 const container = document.getElementById('dropDown_container')
 
 //Constant declaration
-const DATA = [
+const ITEMS = [
     { id: 1, name: 'Vhitech', data: [{ id: 1, name: 'vhitech1' }, { id: 2, name: 'vhitech2' }, { id: 3, name: 'vhitech3' }] },
     { id: 2, name: 'Google', data: [{ id: 1, name: 'google1' }] },
     { id: 3, name: 'Yahoo', },
@@ -33,17 +33,17 @@ const DATA = [
 //Main functions
 click.addEventListener('click', () => {
     container.innerHTML = ''
-    showDropDown(DATA, 0)
+    showDropDown(ITEMS, 0)
 })
 
-function showDropDown(data, id, element) {
+function showDropDown(item, index, element) {
     if (element) while (element.nextElementSibling) element.nextElementSibling?.remove(); //Remove if it has next element sibling 
 
     const selectElement = document.createElement('select')
 
-    if (id) data = data[id - 1].data ? data[id - 1].data : null;// filtering data by id
-    if (data) {
-        for (const index of data) {//creating option and appending to container
+    if (index) item = item[index - 1].data ? item[index - 1].data : null;// filtering item by id
+    if (item) {
+        for (const index of item) {//creating option and appending to container
             const optionElement = document.createElement('option')
             optionElement.value = index.id
             optionElement.textContent = index.name
@@ -52,7 +52,7 @@ function showDropDown(data, id, element) {
         container.append(selectElement)
     }
     selectElement.addEventListener('click', () => {//event listerner and recursion for creating elements
-        showDropDown(data, selectElement.selectedIndex + 1, selectElement)
+        showDropDown(item, selectElement.selectedIndex + 1, selectElement)
     })
 }
 
