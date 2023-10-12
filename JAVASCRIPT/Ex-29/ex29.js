@@ -37,25 +37,20 @@ click.addEventListener('click', () => {
 })
 
 function showDropDown(data, id, element) {
-
     if (element) while (element.nextElementSibling) element.nextElementSibling?.remove(); //Remove if it has next element sibling 
 
     const selectElement = document.createElement('select')
 
     if (id) data = data[id - 1].data ? data[id - 1].data : null;// filtering data by id
-
     if (data) {
-
         for (const index of data) {//creating option and appending to container
             const optionElement = document.createElement('option')
             optionElement.value = index.id
             optionElement.textContent = index.name
             selectElement.append(optionElement)
         }
-
         container.append(selectElement)
     }
-
     selectElement.addEventListener('click', () => {//event listerner and recursion for creating elements
         showDropDown(data, selectElement.selectedIndex + 1, selectElement)
     })
