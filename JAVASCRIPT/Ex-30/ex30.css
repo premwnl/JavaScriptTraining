@@ -95,13 +95,14 @@ footer > h3, .italic {
 }
 .container {
     width: 90%;
-    height: 82%;
+    height: 80%;
     margin: auto;
     background: #f3f3cb;
     padding-block: 20px;
 }
 table {
     width: 100%;
+    border-collapse: collapse;
 }
 table, th, td {
     border: 1px solid #000;

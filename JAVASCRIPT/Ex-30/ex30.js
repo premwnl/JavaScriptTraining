@@ -19,340 +19,43 @@ setInterval(() => {
 const container = document.getElementById('tableBodyContainer')
 
 //Constant declaration
-let supplierSales = [
-    {
-        "ProductID": 1,
-        "ProductName": "Chai",
-        "UnitsInStock": 39,
-        "UnitsOnOrder": 10,
-        "UnitPrice": 8,
-        "SupplierID": 1,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(1)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 2,
-        "ProductName": "Chang",
-        "UnitsInStock": 0,
-        "UnitsOnOrder": 7,
-        "UnitPrice": 6,
-        "SupplierID": 1,
-        "Discontinued": true,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(2)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 3,
-        "ProductName": "Aniseed Syrup",
-        "UnitsInStock": 100,
-        "UnitsOnOrder": 6,
-        "UnitPrice": 3,
-        "SupplierID": 3,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(3)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 4,
-        "ProductName": "Schwarzwälder Kirschtorte",
-        "UnitsInStock": 2,
-        "UnitsOnOrder": 3,
-        "UnitPrice": 19,
-        "SupplierID": 3,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(4)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 5,
-        "ProductName": "Chef Anton's Cajun Seasoning",
-        "UnitsInStock": 0,
-        "UnitsOnOrder": 9,
-        "UnitPrice": 108,
-        "SupplierID": 3,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(5)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 6,
-        "ProductName": "Chef Anton's Gumbo Mix",
-        "UnitsInStock": 21,
-        "UnitsOnOrder": 0,
-        "UnitPrice": 18,
-        "SupplierID": 4,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(6)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 7,
-        "ProductName": "Grandma's Boysenberry Spread",
-        "UnitsInStock": 25,
-        "UnitsOnOrder": 25,
-        "UnitPrice": 18,
-        "SupplierID": 5,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(7)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 8,
-        "ProductName": "Uncle Bob's Organic Dried Pears",
-        "UnitsInStock": 29,
-        "UnitsOnOrder": 7,
-        "UnitPrice": 0,
-        "SupplierID": 6,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(8)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 9,
-        "ProductName": "Northwoods Cranberry Sauce",
-        "UnitsInStock": 4,
-        "UnitsOnOrder": 32,
-        "UnitPrice": 35,
-        "SupplierID": 6,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(9)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 10,
-        "ProductName": "Mishi Kobe Niku",
-        "UnitsInStock": 40,
-        "UnitsOnOrder": 0,
-        "UnitPrice": 130,
-        "SupplierID": 5,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(10)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 11,
-        "ProductName": "Ikura",
-        "UnitsInStock": 4,
-        "UnitsOnOrder": 10,
-        "UnitPrice": 13,
-        "SupplierID": 4,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(11)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 13,
-        "ProductName": "Carnarvon Tigers",
-        "UnitsInStock": 36,
-        "UnitsOnOrder": 40,
-        "UnitPrice": 56,
-        "SupplierID": 3,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(13)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 14,
-        "ProductName": "Teatime Chocolate Biscuits",
-        "UnitsInStock": 10,
-        "UnitsOnOrder": 40,
-        "UnitPrice": 7,
-        "SupplierID": 2,
-        "Discontinued": false,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(14)/Supplier"
-            }
-        }
-    },
-    {
-        "ProductID": 15,
-        "ProductName": "Alice Mutton",
-        "UnitsInStock": 90,
-        "UnitsOnOrder": 20,
-        "UnitPrice": 75,
-        "SupplierID": 2,
-        "Discontinued": true,
-        "Supplier": {
-            "__deferred": {
-                "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/Products(15)/Supplier"
-            }
-        }
-    }
-];
-let supplierJson = [
-    {
-        "SupplierID": 1,
-        "CompanyName": "New Orleans Cajun Delights",
-        "ContactName": "Shelley Burke",
-        "ContactTitle": "Order Administrator",
-        "Address": "P.O. Box 78934",
-        "City": "New Orleans",
-        "Region": "LA",
-        "PostalCode": "70117",
-        "Country": "USA"
-    },
-    {
-        "SupplierID": 2,
-        "CompanyName": "Exotic Liquids",
-        "ContactName": "Charlotte Cooper",
-        "ContactTitle": "Purchasing Manager",
-        "Address": "49 Gilbert St.",
-        "City": "London",
-        "Region": "UK",
-        "PostalCode": "EC1 4SD",
-        "Country": "UK"
-    },
-    {
-        "SupplierID": 3,
-        "CompanyName": "Grandma Kelly's Homestead",
-        "ContactName": "Regina Murphy",
-        "ContactTitle": "Sales Representative",
-        "Address": "707 Oxford Rd.",
-        "City": "Ann Arbor",
-        "Region": "MI",
-        "PostalCode": "48104",
-        "Country": "USA"
-    },
-    {
-        "SupplierID": 4,
-        "CompanyName": "Forêts d'érables",
-        "ContactName": "Chantal Goulet",
-        "ContactTitle": "Accounting Manager",
-        "Address": "148 rue Chasseur",
-        "City": "Ste-Hyacinthe",
-        "Region": "Québec",
-        "PostalCode": "J2S 7S8",
-        "Country": "Canada"
-    },
-    {
-        "SupplierID": 5,
-        "CompanyName": "Plutzer Lebensmittelgroßmärkte AG",
-        "ContactName": "Martin Bein",
-        "ContactTitle": "International Marketing Mgr.",
-        "Address": "Bogenallee 51",
-        "City": "Frankfurt",
-        "Region": "DE",
-        "PostalCode": "60439",
-        "Country": "Germany"
-    },
-    {
-        "SupplierID": 6,
-        "CompanyName": "Lyngbysild",
-        "ContactName": "Niels Petersen",
-        "ContactTitle": "Sales Manager",
-        "Address": "Lyngbysild Fiskebakken 10",
-        "City": "Lyngby",
-        "Region": "NL",
-        "PostalCode": "2800",
-        "Country": "Denmark"
-    },
-    {
-        "SupplierID": 7,
-        "CompanyName": "Formaggi Fortini s.r.l.",
-        "ContactName": "Elio Rossi",
-        "ContactTitle": "Sales Representative",
-        "Address": "Viale Dante, 75",
-        "City": "Ravenna",
-        "Region": "IL",
-        "PostalCode": "48100",
-        "Country": "Italy"
-    }
-];
 
 //Error declaration
 
-//Main functions
-let supplierIDArray = supplierJson.map((value) => value.SupplierID)
-let [productNameArray,
-    unitsInStockArray,
-    unitsInOrderArray,
-    unitsPriceArray,
-    subProductNameArray,
-    subUnitsInStockArray,
-    subUnitsInOrderArray,
-    subunitsPriceArray] = [[], [], [], [], [], [], [], []]
-
-for (const index in supplierIDArray) {//filtering items setting to particular array
-    let filtered = supplierSales.filter((item) => item.SupplierID == supplierIDArray[index]);
-    for (const index of filtered) {
-        subProductNameArray.push(index.ProductName)
-        subUnitsInStockArray.push(index.UnitsInStock)
-        subUnitsInOrderArray.push(index.UnitsOnOrder)
-        subunitsPriceArray.push(index.UnitPrice)
+//Main function
+let fetchData = (async () => {
+    try {
+        let supplierResponse = await fetch('supplierJson.js')
+        let salesResponse = await fetch('supplierSales.js')
+        setData(await supplierResponse.json(), await salesResponse.json())
+    } catch (error) {
+        console.log(error);
     }
-    productNameArray.push([subProductNameArray])
-    unitsInStockArray.push([subUnitsInStockArray])
-    unitsInOrderArray.push([subUnitsInOrderArray])
-    unitsPriceArray.push([subunitsPriceArray])
-    subProductNameArray = []
-    subUnitsInStockArray = []
-    subUnitsInOrderArray = []
-    subunitsPriceArray = []
-}
+})()
+function setData(supplier, sales) {
+    let filter = supplier.map((value) => sales.filter((item) => value.SupplierID == item.SupplierID))
+    let mainArray = [
+        supplier.map((value) => value.SupplierID),
+        supplier.map((value) => value.CompanyName),
+        supplier.map((value) => value.ContactName),
+        supplier.map((value) => `${value.Address}, ${value.City}, ${value.Country}`),
+        filter.map((item) => item.reduce((store, value) => (store ? store + ", " : store) + value.ProductName, '')),
+        filter.map((item) => item.reduce((store, value) => store + value.UnitsInStock, 0)),
+        filter.map((item) => item.reduce((store, value) => store + value.UnitsOnOrder, 0)),
+        filter.map((item) => item.reduce((store, value) => store + value.UnitPrice, 0))];
 
-for (let index in unitsInStockArray) {//iterating for array length
-    for (let loop in unitsInStockArray[index]) {//iterating again to add nested values
-        unitsInStockArray[index] = unitsInStockArray[index][loop].reduce((accumulator, value) => accumulator + value, 0)
-        unitsInOrderArray[index] = unitsInOrderArray[index][loop].reduce((accumulator, value) => accumulator + value, 0)
-        unitsPriceArray[index] = unitsPriceArray[index][loop].reduce((accumulator, value) => accumulator + value, 0)
+    for (const loop in supplier) {//looping to asssign table values
+        const rowElement = document.createElement('tr')
+        for (const index of mainArray) {
+            const dataElement = document.createElement('td')
+            dataElement.textContent = index[loop]
+            rowElement.append(dataElement)
+        }
+        container.append(rowElement)
     }
 }
 
-let mainArray = [//setting main array for all values
-    supplierIDArray,
-    supplierJson.map((value) => value.CompanyName),
-    supplierJson.map((value) => value.ContactName),
-    supplierJson.map((value) => `${value.Address}, ${value.City}, ${value.Country}`),
-    productNameArray,
-    unitsInStockArray,
-    unitsInOrderArray,
-    unitsPriceArray];
 
-for (const loop in supplierIDArray) {//looping to asssign table values
-    const rowElement = document.createElement('tr')
-    for (const index in mainArray) {
-        const dataElement = document.createElement('td')
-        dataElement.textContent = mainArray[index][loop]
-        rowElement.append(dataElement)
-    }
-    container.append(rowElement)
-}
-
+// let supplierJson = await supplierResponse.json()
+// let supplierSales = await salesResponse.json()
+// setData(supplierJson, supplierSales)
