@@ -547,3 +547,65 @@ import colors from "colors";
 {/* <i class="fa-solid fa-hand fa-2xl"></i> */ }
 {/* <i class="fa-solid fa-hand-scissors fa-2xl"></i> */ }
 {/* <i class="fa-solid fa-hand-back-fist fa-2xl"></i> */ }
+
+
+// function add(a) {
+//     return (b) => {
+//         return a + b
+//     }
+// }
+
+// console.log(add(1)(2))
+
+
+let cards = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'drawTwo', 'skip', 'reverse']
+let colorss = ['red', 'green', 'blue', 'yellow']
+let wildCards = ['wild', 'wildDrawFour']
+let deck = []
+let playerCards = []
+let cpuCards = []
+for (const value of cards) {
+    for (const color of colorss) {
+        deck.push({ color, value })
+        if (value != 0) deck.push({ color, value })
+    }
+}
+for (const wildCard of wildCards) {
+    for (let index = 0; index < 4; index++) {
+        deck.push({ color: 'wild', value: wildCard })
+    }
+}
+
+for (let index = 0; index < deck.length; index++) {
+    let loop = Math.floor(Math.random() * deck.length)
+    if (loop) [deck[index], deck[loop]] = [deck[loop], deck[index]]
+}
+console.log(deck);
+
+for (let index = 0; index < 14; index++) {
+    index % 2 == 0 ? playerCards.push(deck.pop()) : cpuCards.push(deck.pop())
+}
+
+// console.log(playerCards);
+// console.log(cpuCards);
+// console.log(deck.pop());
+// console.log(deck.length);
+(function drawFirstCard() {
+    let card = deck.pop()
+    if (card.color !== 'wild' && card.value !== 'skip' && card.value !== 'drawTwo' && card.value !== 'reverse') {
+        console.log(' first '.bgMagenta, card);
+    } else { drawFirstCard() }
+})()
+
+function pickCard(array) {
+    let card = deck.pop()
+    array.push(card)
+}
+pickCard(playerCards)
+pickCard(cpuCards)
+function dropCard(array, index) {
+    let card = array.slice(index, 1)
+}
+function openCard(index) {
+    let card = array.slice(index, 1)
+}

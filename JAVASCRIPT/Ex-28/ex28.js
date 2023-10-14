@@ -36,6 +36,20 @@ const fetchdata = (async () => {
             option.value = key
             option.textContent = sortedData[key].name.common
             setCountries.appendChild(option)
+            setCountries.addEventListener('change', async () => {
+                setCapital.innerHTML = '';
+                for (const key in sortedData) {
+                    if (setCountries.value == key) {
+                        const capitals = data[key].capital
+                        for (const index of capitals) {
+                            const option = document.createElement('option')
+                            option.value = index
+                            option.textContent = index
+                            setCapital.appendChild(option)
+                        }
+                    }
+                }
+            })
         }
     } catch (error) {
         console.log(error);
@@ -43,25 +57,4 @@ const fetchdata = (async () => {
 })()
 
 
-setCountries.addEventListener('change', async () => {
-    setCapital.innerHTML = '';
-    try {
-        const response = await fetch(API)
-        const data = await response.json()
-        let sortedData = data.sort((a, b) => a.name.common.localeCompare(b.name.common))
-        for (const key in sortedData) {
-            if (setCountries.value == key) {
-                const capitals = data[key].capital
-                for (const index of capitals) {
-                    const option = document.createElement('option')
-                    option.value = index
-                    option.textContent = index
-                    setCapital.appendChild(option)
-                }
-            }
-        }
-    } catch (error) {
-        console.log(error);
-    }
 
-})
