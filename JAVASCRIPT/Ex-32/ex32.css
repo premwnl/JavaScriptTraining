@@ -218,8 +218,10 @@ html, body, main, .container, .modal, .innerContainer {
 #playButton {
     opacity: 0;
     margin-left: 100px;
+}
+#playButton, #keep, #deploy {
     transition: 0.5s;
 }
-#playButton:hover {
-    transform: scale(0.9);
+#keep:hover, #deploy:hover {
+    transform: scale(0.95);
 }

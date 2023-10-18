@@ -5,6 +5,8 @@ const playerCardElement = document.getElementById('playerCards');
 const getColor = document.getElementById('color');
 const deckCards = document.getElementById('deck');
 const pause = document.getElementById('playButton');
+const keepCard = document.getElementById('keep');
+const deployCard = document.getElementById('deploy');
 //Constant declaration
 const cards = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'drawTwo', 'skip', 'reverse']
 const colorss = ['red', 'green', 'blue', 'yellow']
@@ -77,15 +79,14 @@ const updateCards = (array, element, player, turns) => {//distribute cards seper
         createAndUpdate(array, element, index, player)
     }
     if (player == 0) {
-        playerTurn = !playerTurn;
-        cpuTurn = !cpuTurn
-        console.log('cp');
+        playerTurn = true;
+        cpuTurn = false
     } else {
-        console.log('pl');
-        !turns ? playerTurn = !playerTurn : null;
-        !turns ? cpuTurn = !cpuTurn : null;
+        !turns ? playerTurn = false : null;
+        !turns ? cpuTurn = true : null;
     }
     checkTurn()
+    cpuTurn && player ? computerPlay() : null;
     console.log(...cpuCards);
     console.log('-----');
 }
@@ -136,6 +137,25 @@ const setOpenCard = (item) => {//setting open card
     }
     setColor(item)
 }
+const setDrawPossibleCard = (item) => {//merge later-------
+    let card = openCardElement.id.split('_');
+    deck.unshift({ color: card[0], value: card[1] })
+    deployCard.innerHTML = '';
+    deployCard.classList.remove('wild', 'wildDrawFour')
+    deployCard.id = `${item.color}_${item.value}`
+    if (item.color == 'wild') {
+        if (item.value == 'wild') deployCard.classList.add('wild');
+        else deployCard.classList.add('wildDrawFour');
+    } else if (item.value == 'skip' || item.value == 'reverse' || item.value == 'drawTwo') {
+        deployCard.style.backgroundColor = item.color
+        powerCardCreation(deployCard, item)
+    }
+    else {
+        deployCard.style.backgroundColor = item.color
+        cardCreation(deployCard, item)
+    }
+    setColor(item)
+}
 const dropCard = (array, index, element, player) => {//drop card to deck
     if (playerTurn || player == 0) {
         if (array[index].color == 'wild') {
@@ -164,24 +184,44 @@ const checkmatch = (array, position, element) => {//check whether he has card
 const drawDeckCard = (array, element, player) => {//draw card from deck-----
     if (playerTurn || (player == 0 && cpuTurn)) {
         let card = deck.length ? deck.pop() : null
-        array.push(card)
-        let possibleDraw = checkPossibleDraw(card)
-        updateCards(array, element, player, possibleDraw)
-        setTimeout(() => {
-            if (possibleDraw && !player) {
-                playerTurn = !playerTurn;
-                cpuTurn = !cpuTurn;
-                let item = array.pop()
-                setOpenCard(item)
-                updateCards(array, element, 0)
-            }
-        }, 1000);
-        (possibleDraw && player) ? (pause.style.opacity = 100, pause.addEventListener('click', () => {
+        let possibleDraw = checkPossibleDraw(card);
+        function addEvent() {
+            pausePlay(array, element, player, card, possibleDraw)
+            keepCard.removeEventListener('click', addEvent)
+            deployCard.removeEventListener('click', addOpenCard)
+        }
+        function addOpenCard() {
+            setOpenCard(card)
             cpuTurn = true;
-            playerTurn = false;
             checkTurn()
-        })) : null;
+            updateCards(array, element, player, possibleDraw);
+            keepCard.removeEventListener('click', addEvent)
+            deployCard.removeEventListener('click', addOpenCard)
+        }
+        (possibleDraw && player && playerTurn) ? (pause.style.opacity = 100, playerTurn = false, setDrawPossibleCard(card), keepCard.addEventListener('click', addEvent), deployCard.addEventListener('click', addOpenCard)) :
+            ((!possibleDraw && player && playerTurn) ? (array.push(card), updateCards(array, element, player)) : null);
+        if (possibleDraw && !player && cpuTurn) {
+            array.push(card);
+            let item = array.pop()
+            setTimeout(() => {
+                setOpenCard(item)
+                updateCards(array, element, 0, possibleDraw)
+            }, 1000);
+        } else if (!possibleDraw && !player && cpuTurn) {
+            array.push(card)
+            setTimeout(() => {
+                updateCards(array, element, 0)
+            }, 1000);
+        }
+
     }
+}
+const pausePlay = (array, element, player, card, possibleDraw) => {
+    array.push(card);
+    cpuTurn = true;
+    checkTurn()
+    updateCards(array, element, player, possibleDraw);
+
 }
 const checkPossibleDraw = (lastCard) => {//check whether he has possible draws
     let item = openCardElement.id.split('_')
@@ -196,10 +236,10 @@ const checkTurn = () => {//changing turn indicator
     playerName.style.textDecoration = playerTurn ? `underline` : 'none';
     cpuName.style.opacity = cpuTurn ? '100%' : '40%';
     cpuName.style.textDecoration = cpuTurn ? `underline` : 'none';
-    cpuTurn ? computerPlay() : null;
 }
 const computerPlay = () => {// computer play
-    pause.style.opacity = 0
+    pause.style.opacity = 0;
+
     setTimeout(() => {
         let drop = false
         let card = openCardElement.id.split('_');
