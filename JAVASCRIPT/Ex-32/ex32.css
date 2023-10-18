@@ -218,13 +218,14 @@ html, body, main, .container, .modal, .innerContainer {
 #playButton {
     opacity: 0;
     margin-left: 200px;
+    transform: translateY(80px);
 }
 #playButton, #keep, #deploy {
     transition: 0.5s;
 }
-#keep:hover, #deploy:hover {
+#deploy:hover {
     transform: scale(0.95);
 }
 #keep:hover {
-    transform: rotate(90deg);
+    transform: scale(0.95)rotate(90deg);
 }

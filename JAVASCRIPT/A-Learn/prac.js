@@ -244,24 +244,18 @@ import colors from "colors";
 //     let snailArray = []
 //     if (array.length != row * col) return false
 //     else {
-//         for (let index = 0; index < row; index++) {
-//             snailArray.push([]) 
-//         }
+//         for (let index = 0; index < row; index++)  snailArray.push([]);
 //         for (let index = 0; index < array.length; index++) {
-
 //             let loop = (index % (row * 2)) > (row - 1) ? Math.abs(((row * 2) - 1) - index % (row * 2)) : index % (row * 2)
-//             //0,1,2,3,4,4,
 //             snailArray[loop].push(array[index])
-//         }
-//         return snailArray
+//         } return snailArray
 //     }
 // }
 
 // let nums = [19, 10, 3, 7, 9, 8, 5, 2, 1, 17, 16, 14, 12, 18, 6, 13, 11, 20, 4, 15]
 // // let nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-// let rowsCount = 4
-// let colsCount = 5
-
+// let rowsCount = 5
+// let colsCount = 4
 // console.log(snailTraversal(rowsCount, colsCount, nums));
 
 
