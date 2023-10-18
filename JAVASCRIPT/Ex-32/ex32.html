@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/JAVASCRIPT/images/logo.jpeg">
+    <title>UNO 32</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="ex32.css">
+</head>
+
+<body>
+    <main>
+        <div class="container  ">
+            <div id="innerContainer"
+                class="d_flex flex_col justifyContent_spaceBetween alignItems_center innerContainer opacity padding_ten">
+                <div class="widthFull padding_ten d_flex justifyContent_center alignItems_center overflow"
+                    style="height:30%;" id="cpuCards">
+                </div>
+                <div class="widthFull padding_ten" style="height: 5%;padding-left: 300px;">
+                    <h2 class="colorWhite " id="cpuName"></h2>
+                </div>
+                <div class="widthFull padding_ten d_flex justifyContent_center alignItems_center" style="height:30%;"
+                    id="allCards">
+                    <div id="color"></div>
+                    <div class="card_deck decks"></div>
+                    <div class="card_deck decks"></div>
+                    <div class="card_deck decks"></div>
+                    <div class="card_deck decks"></div>
+                    <div class="card_deck decks"></div>
+                    <div class="card_deck decks"></div>
+                    <div class="card_deck decks"></div>
+                    <div class="card_deck decks"></div>
+                    <div id="deck" class="card_deck decks"></div>
+                    <div id="openCard" class="card" style="margin-left: 20px;display: none;">
+                    </div>
+                    <div id="playButton"><i style="color: aqua;" class="fa-solid fa-forward fa-5x"></i></div>
+                </div>
+                <div class="widthFull padding_ten" style="height: 5%;padding-left: 300px;">
+                    <h2 class="colorWhite " id="playerName"></h2>
+                </div>
+                <div class="widthFull padding_ten d_flex justifyContent_center alignItems_center overflow"
+                    style="height:30%;" id="playerCards">
+                </div>
+            </div>
+            <!-- modal  -->
+            <div id="modal" class="modal d_flex justifyContent_center alignItems_center">
+                <div class="d_flex justifyContent_center alignItems_center modalContainer flex_col">
+                    <h1 class=" padding_twenty colorAqua" style="font-size: 3rem;">U N O</h1>
+                    <div class="modalInput  d_flex padding_ten">
+                        <label for="username" class="colorWhite  padding_ten_top ">
+                            <h2 class="colorAqua">PLAYER 1</h2>
+                        </label>
+                        <input type="text" class="colorAqua margin_inline_ten" id="username" autofocus
+                            onkeypress="return onlyAlphabets(event)">
+                    </div>
+                    <h5 id="helper" style="opacity: 0;color: red;margin-left: 33%;letter-spacing: 1px;">Please Enter
+                        Valid Name</h5>
+                    <div class="modalInput  d_flex padding_ten">
+                        <label for="" class="colorWhite  padding_ten_top">
+                            <h2 class="colorAqua">PLAYER 2</h2>
+                        </label>
+                        <input type="text" class="colorAqua margin_inline_ten" value="COMPUTER" disabled>
+                    </div>
+                    <div class="modalInput  d_flex padding_ten">
+                        <button class=" play_button colorAqua" onclick="getUserName()">PLAY</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="ex32.1.js"></script>
+    <script src="ex32.js"></script>
+
+</body>
+
+</html>
