@@ -88,3 +88,48 @@ printDiamondStarPattern(5);
 
 //     })
 // })
+
+
+
+
+// const computerPlay = () => {// computer play
+//     let drop = false
+//     let previousCard = openCardElement.id;
+//     let card = previousCard.split('_');
+//     for (const index in cpuCards) {
+//         if (cpuCards[index].color == card[0] && (cpuCards[index].value == 'skip' || cpuCards[index].value == 'reverse' || cpuCards[index].value == 'drawTwo')) {
+//             let item = cpuCards.splice(index, 1)
+//             setOpenCard(...item)
+//             updateCards(cpuCards, cpuCardElement, 0)
+//             drop = true
+//             break
+//         } else if (cpuCards[index].color == card[0]) {
+//             console.log('color');
+//             let item = cpuCards.splice(index, 1)
+//             setOpenCard(...item)
+//             updateCards(cpuCards, cpuCardElement, 0)
+//             drop = true
+//             break
+//         } else if (cpuCards[index].value == card[1]) {
+//             console.log('value');
+//             let item = cpuCards.splice(index, 1)
+//             setOpenCard(...item)
+//             updateCards(cpuCards, cpuCardElement, 0)
+//             drop = true
+//             break
+//         } else if (cpuCards[index].value == 'wild') {
+//             let item = cpuCards.splice(index, 1)
+//             setOpenCard(...item)
+//             updateCards(cpuCards, cpuCardElement, 0)
+//             drop = true
+//             break
+//         }
+//         console.log(cpuCards);
+//         if (index == cpuCards.length - 1) {
+//             if (!drop) {
+//                 drawDeckCard(cpuCards, cpuCardElement, 0);
+//             }
+//         }
+//         drop = false
+//     }
+// }
