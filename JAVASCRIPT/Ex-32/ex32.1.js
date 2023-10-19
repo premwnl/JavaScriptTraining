@@ -5,14 +5,17 @@ const playerCardElement = document.getElementById('playerCards');
 const getColor = document.getElementById('color');
 const deckCards = document.getElementById('deck');
 const pause = document.getElementById('playButton');
+const unoIconCpu = document.getElementById('unoCpu');
+const unoIconPlayer = document.getElementById('unoPlayer');
+const chooseColors = document.querySelectorAll('.wildColors'); chooseColor
+const colorModal = document.getElementById('chooseColor');
 //Constant declaration
 const skipIcon = '<i class="fa-solid fa-ban"></i><i class="fa-solid fa-ban"></i><i class="fa-solid fa-ban"></i>'
 const reverseIcon = '<i class="fa-solid fa-rotate"></i><i class="fa-solid fa-rotate"></i><i class="fa-solid fa-rotate"></i>'
 const drawTwoIcon = '<i class="fa-solid fa-plus">2</i><i class="fa-solid fa-plus">2</i><i class="fa-solid fa-plus">2</i>';
 const [cards, colors, wildCards] = [['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'drawTwo', 'skip', 'reverse'], ['red', 'green', 'blue', 'yellow'], ['wild', 'wildDrawFour']]
-let [mainDeck, playerCards, cpuCards] = [[], [], []]
-let playerTurn = false
-let cpuTurn = false
+let [mainDeck, playerCards, cpuCards, openCards] = [[], [], [], []]
+let playerTurn = cpuTurn = false;
 for (const value of cards) {//creating number cards
     for (const color of colors) {
         mainDeck.push({ color, value })
@@ -36,7 +39,7 @@ const distributeCards = () => {//distribute cards
 const drawFirstCard = () => {//setting open card
     let card = deck.pop()
     openCardElement.style.opacity = '100'
-    openCardElement.id = `${card.color}_${card.value}`;
+    openCards.unshift(card);
     (card.color !== 'wild' && card.value !== 'skip' && card.value !== 'drawTwo' && card.value !== 'reverse') ? (openCardElement.style.backgroundColor = card.color, cardCreation(openCardElement, card), setColor(card)) : drawFirstCard();
 }
 const cardCreation = (element, card) => {//card creation
@@ -48,11 +51,12 @@ const cardCreation = (element, card) => {//card creation
     }
 }
 const powerCardCreation = (element, card) => { element.innerHTML = card.value == 'skip' ? skipIcon : (card.value == 'reverse' ? reverseIcon : drawTwoIcon); }//card creation
-const updateCards = (array, element, player, took) => {//distribute cards seperate with timeout
+const updateCards = (array, element, player, took, drop) => {//distribute cards seperate with timeout
     element.innerHTML = ''
     for (let index = 0; index < array.length; index++) { createAndUpdate(array, element, index, player); }
-    nextPlayer(array, player, took)
+    nextPlayer(array, player, took, drop)
     console.log(...[...[...cpuCards]]);
+    array.length == 1 ? (player ? unoIconPlayer.style.opacity = 100 : unoIconCpu.style.opacity = 100) : (player ? unoIconPlayer.style.opacity = 0 : unoIconCpu.style.opacity = 0);
 }
 const createAndUpdate = (array, element, index, player) => {//common function for handling cards
     let card = array[index]
@@ -60,11 +64,9 @@ const createAndUpdate = (array, element, index, player) => {//common function fo
         const container = document.createElement('div')
         container.classList.add('card')
         container.style.zIndex = index
-        container.id = `${card.color}_${card.value}`
-        if (card.color == 'wild') {
-            if (card.value == 'wild') container.classList.add('wild');
-            else container.classList.add('wildDrawFour');
-        } else if (card.value == 'skip' || card.value == 'reverse' || card.value == 'drawTwo') {
+        // container.id = `${card.color}_${card.value}`
+        if (card.color == 'wild') (card.value == 'wild') ? container.classList.add('wild') : container.classList.add('wildDrawFour');
+        else if (card.value == 'skip' || card.value == 'reverse' || card.value == 'drawTwo') {
             container.style.backgroundColor = card.color
             powerCardCreation(container, card)
         } else {
@@ -82,10 +84,15 @@ const createAndUpdate = (array, element, index, player) => {//common function fo
         element.append(item)
     }
 }
-const nextPlayer = (array, player, took) => {//switching turns
+const nextPlayer = (array, player, took, drop) => {//switching turns
+    let item = openCardElement.id.split('_');
     !took ? (playerTurn = !playerTurn, cpuTurn = !cpuTurn) : null;
     took && player && !checkmatch(array) ? (playerTurn = false, cpuTurn = true) : (took && player && checkmatch(array) ? (pause.style.opacity = 100, pause.addEventListener('click', () => { playerTurn = false; cpuTurn = true; checkTurn(); computerPlay() })) : null);
-    console.log(cpuTurn);
+    drop && !player && (item[1] == 'wildDrawFour' || item[1] == 'drawTwo') ? (cpuTurn = true, playerTurn = false) : null;
+    drop && !player && item[0] == 'wild' ? getColor.style.background = colors[randomColor()] : null;
+    drop && (item[1] == 'reverse' || item[1] == 'skip' || item[1] == 'wildDrawFour' || item[1] == 'drawTwo') ? ((player ? (cpuTurn = false, playerTurn = true) : (cpuTurn = true, playerTurn = false))) : null;
+    player && (item[1] == 'wildDrawFour' || item[1] == 'drawTwo') ? (cpuTurn = false, playerTurn = true) : null;
+    drop && player && item[0] == 'wild' ? (colorModal.classList.add('showColor'), cpuTurn = false, playerTurn = false) : player && item[1] == 'dropTwo' ? (cpuTurn = false, playerTurn = true) : null;
     checkTurn();
     cpuTurn ? computerPlay() : null;
 }
@@ -103,7 +110,9 @@ const setOpenCard = (item, player) => {//setting open card and possible draw car
         openCardElement.style.backgroundColor = item.color
         cardCreation(openCardElement, item)
     }
-    item.value == 'skip' || item.value == 'reverse' ? skipReverseF(player) : (item.value == 'drawTwo' ? addCardF(player) : (item.color == 'wild' ? wildCardF(player, item.value) : null))
+    chooseColors.forEach((val) => val.addEventListener('click', (e) => { getColor.style.background = (e.target.style.backgroundColor); colorModal.classList.remove('showColor'), pause.style.opacity = 0, item.value == 'wild' ? (cpuTurn = true, computerPlay()) : item.value == 'wildDrawFour' ? playerTurn = true : null, checkTurn() }));
+    item.color == 'wild' ? getColor.style.opacity = 100 : getColor.style.opacity = 0;
+    (item.value == 'drawTwo' ? addCardsOnSet(player, 2) : (item.value == 'wildDrawFour' ? addCardsOnSet(player, 4) : null));
     setColor(item)
 }
 const checkmatch = (array) => {//check whether he has card
@@ -116,26 +125,23 @@ const dropCard = (array, index, element, player) => {//drop card to deck
     if (getColor.style.background == array[index].color || array[index].color == item[0] || array[index].value == item[1] || array[index].color == 'wild') {
         let card = array.splice(index, 1)
         setOpenCard(card[0], player)
-        updateCards(array, element, player)
+        updateCards(array, element, player, false, true)
     }
 }
 const drawDeckCard = (array, element, player) => {//draw card from deck-----
     if (playerTurn) {
-        let card = deck.pop();
-        array.push(card)
+        array.push(deck.pop())
         updateCards(array, element, player, true)
     } else {
-        let card = deck.pop();
-        array.push(card)
-        updateCards(array, element, player)
+        array.push(deck.pop())
+        updateCards(array, element, 0)
         if (checkmatch(array)) {
-            setTimeout(() => {
-                let item = array.pop()
-                cpuTurn = true
-                playerTurn = false
-                updateCards(array, element, 0)
-                setOpenCard(item, player)
-            }, 1000);
+            let item = array.pop()
+            cpuTurn = true
+            playerTurn = false
+            setOpenCard(item, player)
+            if (item.value == 'wildDrawFour' || item.value == 'reverse' || item.value == 'skip' || item.value == 'drawTwo') updateCards(array, element, 0, false, true);
+            else updateCards(array, element, 0);
         }
     }
 }
@@ -178,30 +184,19 @@ const computerPlay = () => {// computer play
 const computerChoice = (array, index) => {//updating the computer array
     let item = array.splice(index, 1)
     setOpenCard(item[0], 0)
-    updateCards(array, cpuCardElement, 0)
+    if (item[0].value == 'wildDrawFour' || item[0].value == 'reverse' || item[0].value == 'skip' || item[0].value == 'drawTwo') updateCards(array, cpuCardElement, 0, false, true);
+    else updateCards(array, cpuCardElement, 0);
 }
-// const skipReverseF = (turn) => turn ? (playerTurn = true, cpuTurn = false, updateCards(playerCards, playerCardElement, 1,)) : (playerTurn = false, cpuTurn = true, updateCards(cpuCards, cpuCardElement, 0))
-// const addCardF = (turn) => turn ? (playerTurn = true, cpuTurn = false, addCardsOnSet(turn, 2)) : (playerTurn = false, cpuTurn = true, addCardsOnSet(turn, 2));
-// const wildCardF = (turn, value) => {
-//     turn ? (playerTurn = true, cpuTurn = false, updateCards(playerCards, playerCardElement, 1), value == 'wildDrawFour' ? addCardsOnSet(turn, 4) : null) : (playerTurn = false, cpuTurn = true, updateCards(cpuCards, cpuCardElement, 0), value == 'wildDrawFour' ? addCardsOnSet(turn, 4) : null);
-// }
-// const addCardsOnSet = (player, repeat) => {
-//     for (let index = 0; index < repeat; index++) {
-//         setTimeout(() => {
-//             (player ? cpuCards : playerCards).push(deck.pop())
-//             updateCards(player ? cpuCards : playerCards, player ? cpuCardElement : playerCardElement, player ? 0 : 1)
-//         }, `${index == 0 ? 3 : (index * 4) - 1}00`)
-//     }
-// }
-
-
-
-const skipReverseF = (turn) => { }
-const addCardF = (turn) => { }
-const wildCardF = (turn, value) => { }
-const addCardsOnSet = (player, repeat) => { }
-
-
+const addCardsOnSet = (player, repeat) => {
+    console.log('call');
+    for (let index = 0; index < repeat; index++) {
+        setTimeout(() => {
+            player ? cpuCards.push(deck.pop()) : playerCards.push(deck.pop());
+            updateCards(player ? cpuCards : playerCards, player ? cpuCardElement : playerCardElement, player ? 0 : 1)
+        }, `${index * 2}00`);
+    }
+}
+const randomColor = () => Math.floor(Math.random() * colors.length);
 
 
 

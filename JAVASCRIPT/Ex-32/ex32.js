@@ -6,8 +6,6 @@
                                             Developer                  : Premkumar T                                                      *
                                             Creation date              : 14/10/2023     Ticket No:               *
 **/
-
-
 //DOM declaration
 const getUser = document.getElementById('username');
 const setHelper = document.getElementById('helper');
@@ -16,33 +14,20 @@ const playerName = document.getElementById('playerName');
 const cpuName = document.getElementById('cpuName');
 const innerContainer = document.getElementById('innerContainer')
 const setTime = document.getElementById('time');
-
 //Constant declaration
 let [minute, second] = [10, 0];
-
-//Error declaration
-
 //Main functions
-//popup
-(function getInput() {
-    setTimeout(() => { modal.classList.add('popUpModal') }, 500)
-})()
-//get user name and validations
-function getUserName() {
+(function getInput() { setTimeout(() => { modal.classList.add('popUpModal') }, 500) })()//popup
+function getUserName() {//get user name and validations
     let userName = getUser.value;
     user = userName.replaceAll(' ', '')
     !user || !(user.length >= 3) || user.length >= 16 ? helper() : (playerName.textContent = userName.toUpperCase(), startgame());
 }
-//start game
-function startgame() {
+function startgame() {//start game
     modal.classList.remove('popUpModal');
     cpuName.textContent = 'COMPUTER';
-    setTimeout(() => {
-        innerContainer.classList.remove('opacity')
-    }, 1000)
-    setTimeout(() => {
-        distributeCards()
-    }, 2000)
+    setTimeout(() => { innerContainer.classList.remove('opacity') }, 1000)
+    setTimeout(() => { distributeCards() }, 2000)
     setTimeout(() => {
         drawFirstCard();
         playerTurn = !playerTurn
@@ -50,23 +35,14 @@ function startgame() {
         setInterval(start, 1000)
     }, 3600)
 }
-
-//set helper
-function helper() {
+function helper() {//set helper
     setHelper.style.opacity = 100;
-    setTimeout(() => {
-        setHelper.style.opacity = 0
-    }, 3000)
+    setTimeout(() => { setHelper.style.opacity = 0 }, 3000)
 }
 function start() {
     second--
-    if (second <= 0) {
-        second = 59
-        minute--
-    }
-    let minutes = minute < 10 ? '0' + minute : minute
-    let seconds = second < 10 ? '0' + second : second
-    setTime.textContent = `${minutes} : ${seconds}`
+    (second <= 0) ? (second = 59, minute--) : null;
+    setTime.textContent = `${minute < 10 ? '0' + minute : minute} : ${second < 10 ? '0' + second : second}`
 }
 //restrict numbers and symbols
 function onlyAlphabets(e) {

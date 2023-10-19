@@ -208,12 +208,15 @@ html, body, main, .container, .modal, .innerContainer {
     transform: rotate(180deg);
 }
 #color {
-    width: 70px;
-    aspect-ratio: 1/1;
     background-color: #fff;
-    margin-right: 200px;
     transform: rotate(45deg);
     border-radius: 10px;
+}
+#unoPlayer, #unoCpu, #color {
+    width: 70px;
+    aspect-ratio: 1/1;
+    margin-right: 200px;
+    border-radius: 50%;
     border: 2px double gray;
 }
 #playButton {
@@ -223,4 +226,24 @@ html, body, main, .container, .modal, .innerContainer {
 }
 #playButton:hover {
     transform: scale(0.95);
+}
+#chooseColor {
+    position: absolute;
+    z-index: 9 !important;
+    background-color: rgba(128, 128, 128, 0.882);
+    width: 99%;
+    height: 98%;
+    margin: auto;
+    transition: 0.5s;
+    transform: scale(0.0000000000001);
+}
+.wildColors {
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    padding: 40px;
+    border: 2px double gray;
+}
+.showColor {
+    transform: scale(1) !important;
 }
