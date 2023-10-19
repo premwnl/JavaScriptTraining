@@ -5,9 +5,10 @@ const playerCardElement = document.getElementById('playerCards');
 const getColor = document.getElementById('color');
 const deckCards = document.getElementById('deck');
 const pause = document.getElementById('playButton');
-const keepCard = document.getElementById('keep');
-const deployCard = document.getElementById('deploy');
 //Constant declaration
+const skipIcon = '<i class="fa-solid fa-ban"></i><i class="fa-solid fa-ban"></i><i class="fa-solid fa-ban"></i>'
+const reverseIcon = '<i class="fa-solid fa-rotate"></i><i class="fa-solid fa-rotate"></i><i class="fa-solid fa-rotate"></i>'
+const drawTwoIcon = '<i class="fa-solid fa-plus">2</i><i class="fa-solid fa-plus">2</i><i class="fa-solid fa-plus">2</i>';
 const [cards, colors, wildCards] = [['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'drawTwo', 'skip', 'reverse'], ['red', 'green', 'blue', 'yellow'], ['wild', 'wildDrawFour']]
 let [mainDeck, playerCards, cpuCards] = [[], [], []]
 let playerTurn = false
@@ -26,7 +27,7 @@ for (let index = 0; index < mainDeck.length; index++) {//shuffling mainDeck
     if (loop) [mainDeck[index], mainDeck[loop]] = [mainDeck[loop], mainDeck[index]]
 }
 let deck = [...mainDeck]//copying main deck of cards
-deckCards.addEventListener('click', () => { drawDeckCard(playerCards, playerCardElement, 1) })
+deckCards.addEventListener('click', () => !checkmatch(playerCards) ? drawDeckCard(playerCards, playerCardElement, 1) : null)
 const distributeCards = () => {//distribute cards
     for (let index = 0; index < 14; index++)index % 2 == 0 ? playerCards.push(deck.pop()) : cpuCards.push(deck.pop());//7 cards each
     distributeCard(playerCards, playerCardElement, 1)
@@ -34,13 +35,9 @@ const distributeCards = () => {//distribute cards
 }
 const drawFirstCard = () => {//setting open card
     let card = deck.pop()
-    openCardElement.style.display = 'block'
-    openCardElement.id = `${card.color}_${card.value}`
-    if (card.color !== 'wild' && card.value !== 'skip' && card.value !== 'drawTwo' && card.value !== 'reverse') {
-        openCardElement.style.backgroundColor = card.color
-        cardCreation(openCardElement, card)
-        setColor(card)
-    } else drawFirstCard();
+    openCardElement.style.opacity = '100'
+    openCardElement.id = `${card.color}_${card.value}`;
+    (card.color !== 'wild' && card.value !== 'skip' && card.value !== 'drawTwo' && card.value !== 'reverse') ? (openCardElement.style.backgroundColor = card.color, cardCreation(openCardElement, card), setColor(card)) : drawFirstCard();
 }
 const cardCreation = (element, card) => {//card creation
     for (let index = 0; index < 3; index++) {
@@ -50,34 +47,12 @@ const cardCreation = (element, card) => {//card creation
         element.append(item)
     }
 }
-const powerCardCreation = (element, card) => {//card creation
-    for (let index = 0; index < 3; index++) {
-        const item = document.createElement('i')
-        item.classList.add('fa-solid')
-        item.classList.add(card.value == 'skip' ? 'fa-ban' : (card.value == 'reverse' ? 'fa-rotate' : 'fa-plus'))
-        card.value == 'drawTwo' ? item.textContent = '2' : null;
-        index == 1 ? item.style.color = card.color : null;
-        element.append(item)
-    }
-}
-const distributeCard = (array, element, player) => {//distribute cards seperate with timeout
-    for (let index = 0; index < array.length; index++)setTimeout(() => { createAndUpdate(array, element, index, player) }, `${index == 0 ? 0 + player : (index * 2) - player}00`);
-}
-const updateCards = (array, element, player, turns) => {//distribute cards seperate with timeout
+const powerCardCreation = (element, card) => { element.innerHTML = card.value == 'skip' ? skipIcon : (card.value == 'reverse' ? reverseIcon : drawTwoIcon); }//card creation
+const updateCards = (array, element, player, took) => {//distribute cards seperate with timeout
     element.innerHTML = ''
-    for (let index = 0; index < array.length; index++) {
-        createAndUpdate(array, element, index, player)
-    } if (player == 0) {
-        playerTurn = true;
-        cpuTurn = false
-    } else {
-        !turns ? playerTurn = false : null;
-        !turns ? cpuTurn = true : null;
-    }
-    checkTurn()
-    cpuTurn && player ? computerPlay() : null;
-    // console.log(...[...[...cpuCards]]);
-    // console.log('-----');
+    for (let index = 0; index < array.length; index++) { createAndUpdate(array, element, index, player); }
+    nextPlayer(array, player, took)
+    console.log(...[...[...cpuCards]]);
 }
 const createAndUpdate = (array, element, index, player) => {//common function for handling cards
     let card = array[index]
@@ -107,100 +82,62 @@ const createAndUpdate = (array, element, index, player) => {//common function fo
         element.append(item)
     }
 }
-const setOpenCard = (item, element, player) => {//setting open card and possible draw card
-    let card = element.id.split('_');
+const nextPlayer = (array, player, took) => {//switching turns
+    !took ? (playerTurn = !playerTurn, cpuTurn = !cpuTurn) : null;
+    took && player && !checkmatch(array) ? (playerTurn = false, cpuTurn = true) : (took && player && checkmatch(array) ? (pause.style.opacity = 100, pause.addEventListener('click', () => { playerTurn = false; cpuTurn = true; checkTurn(); computerPlay() })) : null);
+    console.log(cpuTurn);
+    checkTurn();
+    cpuTurn ? computerPlay() : null;
+}
+const setOpenCard = (item, player) => {//setting open card and possible draw card
+    let card = openCardElement.id.split('_');
     deck.unshift({ color: card[0], value: card[1] })//unsfilting the previous open card to deck itself
-    element.innerHTML = '';//emptying the open deck card and setting 
-    element.classList.remove('wild', 'wildDrawFour')
-    element.id = `${item.color}_${item.value}`
-    if (item.color == 'wild') {
-        if (item.value == 'wild') element.classList.add('wild');
-        else element.classList.add('wildDrawFour');
-    } else if (item.value == 'skip' || item.value == 'reverse' || item.value == 'drawTwo') {
-        element.style.backgroundColor = item.color
-        powerCardCreation(element, item)
+    openCardElement.innerHTML = '';//emptying the open deck card and setting 
+    openCardElement.classList.remove('wild', 'wildDrawFour')
+    openCardElement.id = `${item.color}_${item.value}`
+    if (item.color == 'wild') (item.value == 'wild') ? openCardElement.classList.add('wild') : openCardElement.classList.add('wildDrawFour');
+    else if (item.value == 'skip' || item.value == 'reverse' || item.value == 'drawTwo') {
+        openCardElement.style.backgroundColor = item.color
+        powerCardCreation(openCardElement, item)
+    } else {
+        openCardElement.style.backgroundColor = item.color
+        cardCreation(openCardElement, item)
     }
-    else {
-        element.style.backgroundColor = item.color
-        cardCreation(element, item)
-    }
-
+    item.value == 'skip' || item.value == 'reverse' ? skipReverseF(player) : (item.value == 'drawTwo' ? addCardF(player) : (item.color == 'wild' ? wildCardF(player, item.value) : null))
     setColor(item)
 }
+const checkmatch = (array) => {//check whether he has card
+    let item = openCardElement.id.split('_')
+    for (const index of array) if (getColor.style.background == index.color || index.color == item[0] || index.value == item[1] || index.color == 'wild') return true;
+    return false;
+}
 const dropCard = (array, index, element, player) => {//drop card to deck
-    if (playerTurn || player == 0) {
-        if (array[index].color == 'wild') {
-            let card = array.splice(index, 1)
-            setOpenCard(card[0], openCardElement, player)
-            updateCards(array, element, player)
-        } else {
-            if (checkmatch(array, index, openCardElement)) {
-                let card = array.splice(index, 1)
-                setOpenCard(card[0], openCardElement, player)
-                updateCards(array, element, player)
-            }
-        }
+    let item = openCardElement.id.split('_')
+    if (getColor.style.background == array[index].color || array[index].color == item[0] || array[index].value == item[1] || array[index].color == 'wild') {
+        let card = array.splice(index, 1)
+        setOpenCard(card[0], player)
+        updateCards(array, element, player)
     }
 }
-const checkmatch = (array, position, element) => {//check whether he has card
-    let item = element.id.split('_')
-    for (const index in array) {
-        if (item[0] == 'wild') { if (getColor.style.background == array[index].color) { if (index == position) { return true } } }
-        else if ((array[index].color == item[0] && array[index].color == openCardElement.style.backgroundColor) || array[index].value == item[1]) { if (index == position) { return true } }
-    } return false
-}
 const drawDeckCard = (array, element, player) => {//draw card from deck-----
-    if (playerTurn || (player == 0 && cpuTurn)) {
-        let card = deck.length ? deck.pop() : null
-        let possibleDraw = checkPossibleDraw(card);
-        function addEvent() {
-            pausePlay(array, element, player, card, possibleDraw)
-            keepCard.removeEventListener('click', addEvent)
-            deployCard.removeEventListener('click', addOpenCard)
-        }
-        function addOpenCard() {
-            setOpenCard(card, openCardElement)
-            cpuTurn = true;
-            checkTurn()
-            updateCards(array, element, player, possibleDraw);
-            keepCard.removeEventListener('click', addEvent)
-            deployCard.removeEventListener('click', addOpenCard)
-        }
-        (possibleDraw && player && playerTurn) ? (pause.style.opacity = 100, playerTurn = false, setOpenCard(card, deployCard, player), keepCard.addEventListener('click', addEvent), deployCard.addEventListener('click', addOpenCard)) :
-            ((!possibleDraw && player && playerTurn) ? (array.push(card), updateCards(array, element, player)) : null);
-        if (possibleDraw && !player && cpuTurn) {
-            array.push(card);
-            cpuTurn = false
-            updateCards(array, element, 0, possibleDraw)
+    if (playerTurn) {
+        let card = deck.pop();
+        array.push(card)
+        updateCards(array, element, player, true)
+    } else {
+        let card = deck.pop();
+        array.push(card)
+        updateCards(array, element, player)
+        if (checkmatch(array)) {
             setTimeout(() => {
                 let item = array.pop()
                 cpuTurn = true
-                updateCards(array, element, 0, possibleDraw)
-                setOpenCard(item, openCardElement, player)
+                playerTurn = false
+                updateCards(array, element, 0)
+                setOpenCard(item, player)
             }, 1000);
-        } else if (!possibleDraw && !player && cpuTurn) {
-            array.push(card)
-            setTimeout(() => { updateCards(array, element, 0) }, 1000);
         }
     }
-}
-const pausePlay = (array, element, player, card, possibleDraw) => {
-    array.push(card);
-    cpuTurn = true;
-    checkTurn()
-    updateCards(array, element, player, possibleDraw);
-}
-const checkPossibleDraw = (lastCard) => {//check whether he has possible draws
-    let item = openCardElement.id.split('_')
-    if (lastCard.color == 'wild' || (item[0] == 'wild' && getColor.style.background == lastCard.color) || lastCard.color == item[0] || lastCard.value == item[1]) return true;
-    return false
-}
-const setColor = (item) => getColor.style.background = item.color ? item.color : 'white'//setting color for play
-const checkTurn = () => {//changing turn indicator
-    playerName.style.opacity = playerTurn ? '100% ' : '40%';
-    playerName.style.textDecoration = playerTurn ? `underline` : 'none';
-    cpuName.style.opacity = cpuTurn ? '100%' : '40%';
-    cpuName.style.textDecoration = cpuTurn ? `underline` : 'none';
 }
 const computerPlay = () => {// computer play
     pause.style.opacity = 0;
@@ -240,15 +177,43 @@ const computerPlay = () => {// computer play
 }
 const computerChoice = (array, index) => {//updating the computer array
     let item = array.splice(index, 1)
-    setOpenCard(item[0], openCardElement, 0)
+    setOpenCard(item[0], 0)
     updateCards(array, cpuCardElement, 0)
 }
-const skipReverseF = () => {
-    console.log('sr');
+// const skipReverseF = (turn) => turn ? (playerTurn = true, cpuTurn = false, updateCards(playerCards, playerCardElement, 1,)) : (playerTurn = false, cpuTurn = true, updateCards(cpuCards, cpuCardElement, 0))
+// const addCardF = (turn) => turn ? (playerTurn = true, cpuTurn = false, addCardsOnSet(turn, 2)) : (playerTurn = false, cpuTurn = true, addCardsOnSet(turn, 2));
+// const wildCardF = (turn, value) => {
+//     turn ? (playerTurn = true, cpuTurn = false, updateCards(playerCards, playerCardElement, 1), value == 'wildDrawFour' ? addCardsOnSet(turn, 4) : null) : (playerTurn = false, cpuTurn = true, updateCards(cpuCards, cpuCardElement, 0), value == 'wildDrawFour' ? addCardsOnSet(turn, 4) : null);
+// }
+// const addCardsOnSet = (player, repeat) => {
+//     for (let index = 0; index < repeat; index++) {
+//         setTimeout(() => {
+//             (player ? cpuCards : playerCards).push(deck.pop())
+//             updateCards(player ? cpuCards : playerCards, player ? cpuCardElement : playerCardElement, player ? 0 : 1)
+//         }, `${index == 0 ? 3 : (index * 4) - 1}00`)
+//     }
+// }
+
+
+
+const skipReverseF = (turn) => { }
+const addCardF = (turn) => { }
+const wildCardF = (turn, value) => { }
+const addCardsOnSet = (player, repeat) => { }
+
+
+
+
+
+
+
+const distributeCard = (array, element, player) => {//distribute cards seperate with timeout
+    for (let index = 0; index < array.length; index++)setTimeout(() => { createAndUpdate(array, element, index, player) }, `${index == 0 ? 0 + player : (index * 2) - player}00`);
 }
-const addCardF = () => {
-    console.log('++');
-}
-const wildCardF = () => {
-    console.log('w');
+const setColor = (item) => getColor.style.background = item.color ? item.color : 'white'//setting color for play
+const checkTurn = () => {//changing turn indicator
+    playerName.style.opacity = playerTurn ? '100% ' : '40%';
+    playerName.style.textDecoration = playerTurn ? `underline` : 'none';
+    cpuName.style.opacity = cpuTurn ? '100%' : '40%';
+    cpuName.style.textDecoration = cpuTurn ? `underline` : 'none';
 }

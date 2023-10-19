@@ -14,9 +14,11 @@ const setHelper = document.getElementById('helper');
 const modal = document.getElementById('modal');
 const playerName = document.getElementById('playerName');
 const cpuName = document.getElementById('cpuName');
-const innerContainer = document.getElementById('innerContainer');
+const innerContainer = document.getElementById('innerContainer')
+const setTime = document.getElementById('time');
 
 //Constant declaration
+let [minute, second] = [10, 0];
 
 //Error declaration
 
@@ -45,6 +47,7 @@ function startgame() {
         drawFirstCard();
         playerTurn = !playerTurn
         checkTurn()
+        setInterval(start, 1000)
     }, 3600)
 }
 
@@ -54,6 +57,16 @@ function helper() {
     setTimeout(() => {
         setHelper.style.opacity = 0
     }, 3000)
+}
+function start() {
+    second--
+    if (second <= 0) {
+        second = 59
+        minute--
+    }
+    let minutes = minute < 10 ? '0' + minute : minute
+    let seconds = second < 10 ? '0' + second : second
+    setTime.textContent = `${minutes} : ${seconds}`
 }
 //restrict numbers and symbols
 function onlyAlphabets(e) {

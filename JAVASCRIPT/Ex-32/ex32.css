@@ -196,7 +196,8 @@ html, body, main, .container, .modal, .innerContainer {
     font-size: 5rem;
     font-weight: bolder;
     text-shadow: none;
-    background-color: white;
+    color: white !important;
+    border: 5px solid antiquewhite;
     border-top-right-radius: 160px;
     border-bottom-left-radius: 160px;
     border-top-left-radius: 360px;
@@ -218,14 +219,8 @@ html, body, main, .container, .modal, .innerContainer {
 #playButton {
     opacity: 0;
     margin-left: 200px;
-    transform: translateY(80px);
-}
-#playButton, #keep, #deploy {
     transition: 0.5s;
 }
-#deploy:hover {
+#playButton:hover {
     transform: scale(0.95);
-}
-#keep:hover {
-    transform: scale(0.95)rotate(90deg);
 }
