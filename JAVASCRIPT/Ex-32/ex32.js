@@ -18,7 +18,7 @@ const resultModal = document.getElementById('resultModal');
 const winner = document.getElementById('winner');
 const points = document.getElementById('points');
 //Constant declaration
-let [minute, second] = [10, 0];
+let [minute, second] = [9, 60];
 //Main functions
 (function getInput() { setTimeout(() => { modal.classList.add('popUpModal') }, 500) })()//popup
 function getUserName() {//get user name and validations
@@ -44,15 +44,15 @@ function helper() {//set helper
 }
 function start() {
     second--
-    (second <= 0) ? (second = 59, minute--) : null;
-    setTime.textContent = `${minute < 10 ? '0' + minute : minute} : ${second < 10 ? '0' + second : second}`
     if (playerCards.length <= 0) {
         showResult('player')
     } else if (cpuCards.length <= 0) {
         showResult('cpu')
     } else if (minute == 0 && second == 0) (
         showResult('time')
-    )
+    );
+    (second <= 0) ? (second = 59, minute--) : null;
+    setTime.textContent = `${minute < 10 ? '0' + minute : minute} : ${second < 10 ? '0' + second : second}`
 }
 //restrict numbers and symbols
 function onlyAlphabets(e) {
@@ -66,13 +66,13 @@ const showResult = (player) => {
     if (player == 'player') {
         winner.textContent = userName.toUpperCase()
         points.textContent = calculatePoints(cpuCards)
-        updateCards(cpuCards, cpuCardElement, 1)
     } else if (player == 'cpu') {
         winner.textContent = 'COMPUTER'
         points.textContent = calculatePoints(playerCards)
     } else if (player == 'time') {
         winner.textContent = 'BOTH'
         points.textContent = 0
+        resultModal.classList.add('showResult')
     }
 }
 const calculatePoints = (array) => {
