@@ -42,6 +42,11 @@ function helper() {//set helper
 function start() {
     second--
     (second <= 0) ? (second = 59, minute--) : null;
+    if (deckCards.length == 0) {
+        for (let index = 0; index < openCards.length; index++) {
+            index !== 0 ? deckCards.push(openCards.pop()) : null
+        }
+    }
     setTime.textContent = `${minute < 10 ? '0' + minute : minute} : ${second < 10 ? '0' + second : second}`
 }
 //restrict numbers and symbols
