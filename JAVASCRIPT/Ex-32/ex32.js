@@ -14,6 +14,9 @@ const playerName = document.getElementById('playerName');
 const cpuName = document.getElementById('cpuName');
 const innerContainer = document.getElementById('innerContainer')
 const setTime = document.getElementById('time');
+const resultModal = document.getElementById('resultModal');
+const winner = document.getElementById('winner');
+const points = document.getElementById('points');
 //Constant declaration
 let [minute, second] = [10, 0];
 //Main functions
@@ -42,12 +45,14 @@ function helper() {//set helper
 function start() {
     second--
     (second <= 0) ? (second = 59, minute--) : null;
-    if (deckCards.length == 0) {
-        for (let index = 0; index < openCards.length; index++) {
-            index !== 0 ? deckCards.push(openCards.pop()) : null
-        }
-    }
     setTime.textContent = `${minute < 10 ? '0' + minute : minute} : ${second < 10 ? '0' + second : second}`
+    if (playerCards.length <= 0) {
+        showResult('player')
+    } else if (cpuCards.length <= 0) {
+        showResult('cpu')
+    } else if (minute == 0 && second == 0) (
+        showResult('time')
+    )
 }
 //restrict numbers and symbols
 function onlyAlphabets(e) {
@@ -55,4 +60,26 @@ function onlyAlphabets(e) {
     return ((char >= 33 && char <= 64) ||
         (char >= 91 && char <= 96) ||
         (char >= 123 && char <= 126)) ? false : true
+}
+const showResult = (player) => {
+    let userName = getUser.value;
+    if (player == 'player') {
+        winner.textContent = userName.toUpperCase()
+        points.textContent = calculatePoints(cpuCards)
+        updateCards(cpuCards, cpuCardElement, 1)
+    } else if (player == 'cpu') {
+        winner.textContent = 'COMPUTER'
+        points.textContent = calculatePoints(playerCards)
+    } else if (player == 'time') {
+        winner.textContent = 'BOTH'
+        points.textContent = 0
+    }
+}
+const calculatePoints = (array) => {
+    let sum = 0;
+    for (const index of array) {
+        index.color == 'wild' ? sum += 50 : (index.value == 'skip' || index.value == 'reverse' || index.value == 'drawTwo' ? sum += 20 : sum += parseInt(index.value))
+    }
+    resultModal.classList.add('showResult')
+    return sum;
 }

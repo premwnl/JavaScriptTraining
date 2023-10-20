@@ -58,12 +58,25 @@
                 <div class="widthFull padding_ten d_flex justifyContent_center alignItems_center overflow"
                     style="height:30%;" id="playerCards">
                 </div>
-                <div id="chooseColor" class="d_flex justifyContent_center alignItems_center padding_twenty">
-                    <div class="wildColors margin_ten" style="background-color: red ;"></div>
-                    <div class="wildColors margin_ten" style="background-color: green;"></div>
-                    <div class="wildColors margin_ten" style="background-color: blue;"></div>
-                    <div class="wildColors margin_ten" style="background-color: yellow;"></div>
-                    <div style="margin-left: 80px;"></div>
+                <!-- modal  -->
+                <div id="chooseColor" class="d_flex flex_col justifyContent_center alignItems_center padding_twenty">
+                    <h1 class="colorWhite" style="margin-right: 80px;">Choose a Color</h1>
+                    <div class="d_flex">
+                        <div class="wildColors margin_ten" style="background-color: red ;"></div>
+                        <div class="wildColors margin_ten" style="background-color: green;"></div>
+                        <div class="wildColors margin_ten" style="background-color: blue;"></div>
+                        <div class="wildColors margin_ten" style="background-color: yellow;"></div>
+                        <div style="margin-left: 80px;"></div>
+                    </div>
+                </div>
+                <div id="resultModal"
+                    class="d_flex flex_col justifyContent_center colorWhite alignItems_center padding_twenty "
+                    style="font-size: 5rem;">
+                    <h1 class="">R E S U L T</h1>
+                    <h2><span id="winner"></span>&nbsp;&nbsp;&nbsp; WIN</h2>
+                    <h3>TOTAL POINTS : <span id="points"></span></h3>
+                    <button class="colorAqua playAgain modalInput" onclick="window.location.reload()">PLAY
+                        AGAIN</button>
                 </div>
             </div>
             <!-- modal  -->
