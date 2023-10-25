@@ -234,8 +234,8 @@ html, body, main, .container, .modal, .innerContainer {
     transition: 0.5s;
 }
 #chooseColor {
-    width: 100%;
-    height: 100%;
+    width: 99%;
+    height: 98%;
     background-color: rgba(128, 128, 128, 0.882);
     transform: scale(0.0000000000001);
 }
