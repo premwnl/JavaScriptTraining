@@ -32,7 +32,8 @@ for (let index = 0; index < mainDeck.length; index++) {//shuffling mainDeck
 let deck = [...mainDeck]//copying main deck of cards
 deckCards.addEventListener('click', () => playerTurn && !checkmatch(playerCards) ? drawDeckCard(playerCards, playerCardElement, 1) : null)
 const distributeCards = () => {//distribute cards
-    for (let index = 0; index < 14; index++)index % 2 == 0 ? playerCards.push(deck.pop()) : cpuCards.push(deck.pop());//7 cards each
+    for (let index = 0; index < 14; index++)
+        index % 2 == 0 ? playerCards.push(deck.pop()) : cpuCards.push(deck.pop());//7 cards each
     distributeCard(playerCards, playerCardElement, 1)
     distributeCard(cpuCards, cpuCardElement, 0)
 }
@@ -43,23 +44,31 @@ const drawFirstCard = () => {//setting open card
     (card.color !== 'wild' && card.value !== 'skip' && card.value !== 'drawTwo' && card.value !== 'reverse') ? (openCardElement.style.backgroundColor = card.color, cardCreation(openCardElement, card), setColor(card)) : drawFirstCard();
 }
 const cardCreation = (element, card) => {//card creation
-    for (let index = 0; index < 3; index++) {
-        const item = document.createElement('div')
-        item.textContent = card.value
-        index == 1 ? item.style.color = card.color : null;
-        element.append(item)
+    if (card.color == 'wild') {
+        (card.value == 'wild') ? element.classList.add('wild') : element.classList.add('wildDrawFour');
+    } else if (card.value == 'skip' || card.value == 'reverse' || card.value == 'drawTwo') {
+        element.innerHTML = card.value == 'skip' ? skipIcon : (card.value == 'reverse' ? reverseIcon : drawTwoIcon);
+    } else {
+        for (let index = 0; index < 3; index++) {
+            const item = document.createElement('div')
+            item.textContent = card.value
+            index == 1 ? item.style.color = card.color : null;
+            element.append(item)
+        }
     }
 }
-const powerCardCreation = (element, card) => { element.innerHTML = card.value == 'skip' ? skipIcon : (card.value == 'reverse' ? reverseIcon : drawTwoIcon); }//card creation
 const updateCards = (array, element, player, took, drop) => {//distribute cards seperate with timeout
     let item = openCards[0];
+    let clicked = false;
     element.innerHTML = ''
     for (let index = 0; index < array.length; index++) { createAndUpdate(array, element, index, player); }
-    let clicked = false;
     if (array.length == 1) {
         if (player) {
             unoIconPlayer.style.opacity = 100;
-            setTimeout(() => { !clicked ? (addCardsOnSet(0, 2), !(item.value == 'reverse' || item.value == 'skip' || item.value == 'wildDrawFour' || item.value == 'drawTwo') ? (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) : null, unoIconPlayer.style.opacity = 0) : null }, 5000);
+            setTimeout(() => {
+                !clicked ? (addCardsOnSet(0, 2),
+                    !(item.value == 'reverse' || item.value == 'skip' || item.value == 'wildDrawFour' || item.value == 'drawTwo') ? (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) : (playerTurn = true, cpuTurn = false), unoIconPlayer.style.opacity = 0) : null
+            }, 5000);
             unoIconPlayer.addEventListener('click', () => {
                 clicked = true
                 unoIconPlayer.style.opacity = 0;
@@ -80,10 +89,8 @@ const createAndUpdate = (array, element, index, player) => {//common function fo
         const container = document.createElement('div')
         container.classList.add('card')
         container.style.zIndex = index
-        if (card.color == 'wild') (card.value == 'wild') ? container.classList.add('wild') : container.classList.add('wildDrawFour');
-        else if (card.value == 'skip' || card.value == 'reverse' || card.value == 'drawTwo') {
-            container.style.backgroundColor = card.color
-            powerCardCreation(container, card)
+        if (card.color == 'wild') {
+            cardCreation(container, card)
         } else {
             container.style.backgroundColor = card.color
             cardCreation(container, card)
@@ -102,12 +109,12 @@ const createAndUpdate = (array, element, index, player) => {//common function fo
 const nextPlayer = (array, player, took, drop) => {//switching turns
     let item = openCards[0];
     !took ? (playerTurn = !playerTurn, cpuTurn = !cpuTurn) : null;//swapping turn
+    item.color == 'wild' ? getColor.style.opacity = 100 : getColor.style.opacity = 0;//show color while open card is wild
 
     drop && !player && item.color == 'wild' ? (getColor.style.background = `${colors[Math.floor(Math.random() * 4)]}`) : null;//setting random color on wils cards 
-    drop && item.color == 'wild' ? getColor.style.opacity = 100 : getColor.style.opacity = 0;//show color while open card is wild
     drop && (item.value == 'reverse' || item.value == 'skip' || item.value == 'wildDrawFour' || item.value == 'drawTwo') ?
         ((player ? (cpuTurn = false, playerTurn = true) :
-            (!player ? (cpuTurn = true, playerTurn = false, (!took && !drop) && cpuTurn ? (checkTurn() /*computerPlay()*/) : null) : null))) : null;//waiting for power card turns
+            (!player ? (cpuTurn = true, playerTurn = false, (!took && !drop) && cpuTurn ? (checkTurn()) : null) : null))) : null;//waiting for power card turns
 
     took && player && !checkmatch(array) ? (playerTurn = false, cpuTurn = true) :
         (took && player && array == playerCards && checkmatch(array) ? (pause.style.opacity = 100,
@@ -132,7 +139,7 @@ const setOpenCard = (item, player, drop) => {//setting open card and possible dr
     if (item.color == 'wild') (item.value == 'wild') ? openCardElement.classList.add('wild') : openCardElement.classList.add('wildDrawFour');
     else if (item.value == 'skip' || item.value == 'reverse' || item.value == 'drawTwo') {
         openCardElement.style.backgroundColor = item.color
-        powerCardCreation(openCardElement, item)
+        cardCreation(openCardElement, item)
     } else {
         openCardElement.style.backgroundColor = item.color
         cardCreation(openCardElement, item)
@@ -162,17 +169,17 @@ const dropCard = (array, index, element, player) => {//drop card to deck
 }
 const drawDeckCard = (array, element, player) => {//draw card from deck-----
     pause.style.opacity = 0;
-    if (playerTurn) {
+    if (playerTurn && player) {
         deck.length ? array.push(deck.pop()) : null;
         updateCards(array, element, 1, true)
-    } else if (cpuTurn) {
+    } else if (cpuTurn || !player) {
         array.push(deck.pop())
         updateCards(array, element, 0)
         if (checkmatch(array)) {
             let item = array.pop()
             cpuTurn = true
             playerTurn = false
-            if (item.value == 'wildDrawFour' || item.value == 'reverse' || item.value == 'skip' || item.value == 'drawTwo') {
+            if (item.value == 'wildDrawFour' || item.value == 'wild' || item.value == 'reverse' || item.value == 'skip' || item.value == 'drawTwo') {
                 setOpenCard(item, player, true)
                 updateCards(array, element, 0, false, true);
             }
@@ -228,8 +235,8 @@ const computerChoice = (array, index) => {//updating the computer array
         updateCards(array, cpuCardElement, 0, false, true);
     }
     else {
-        updateCards(array, cpuCardElement, 0);
         setOpenCard(item[0], 0)
+        updateCards(array, cpuCardElement, 0);
     }
 }
 const addCardsOnSet = (player, repeat) => {
@@ -242,16 +249,6 @@ const addCardsOnSet = (player, repeat) => {
 
 
 
-
-// const colorChange = () => {
-//     let color = getColor.style.backgroundColor;
-//     let newColor = colors[Math.floor(Math.random() * colors.length)];
-//     if (color == newColor) { colorChange() }
-//     else {
-//         console.log(newColor);
-//         return newColor
-//     }
-// }
 const distributeCard = (array, element, player) => {//distribute cards seperate with timeout
     for (let index = 0; index < array.length; index++)setTimeout(() => { createAndUpdate(array, element, index, player) }, `${index == 0 ? 0 + player : (index * 2) - player}00`);
 }
