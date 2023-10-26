@@ -59,31 +59,12 @@ const cardCreation = (element, card) => {//card creation
 
 }
 const updateCards = (array, player, play) => {//distribute cards seperate with timeout
-    let item = openCards[0];
+    // let item = openCards[0];
     player ? playerCardElement.innerHTML = '' : cpuCardElement.innerHTML = '';
     console.log(...cpuCards, 'cpu');
     console.log(...playerCards, 'player');
     for (let index = 0; index < array.length; index++) { createAndUpdate(array[index], player); }
-    if (array.length == 1) {
-        if (player) {
-            unoIconPlayer.style.opacity = 100;
-            setTimeout(() => {
-                !clicked ? (saidUNO = false, addCardsOnSet(0, 2, 1), unoIconPlayer.style.opacity = 0) :
-                    (checkTurn(), clicked = false);
-            }, 4000);
-            unoIconPlayer.addEventListener('click', () => {
-                playerCards.length > 0 ? (clicked = true, saidUNO = true) : (clicked = false, saidUNO = false);
-                unoIconPlayer.style.opacity = 0;
-                nextPlayer(array, player, play);
-            })
-        } else {
-            unoIconCpu.style.opacity = 100;
-            nextPlayer(array, player, play);
-        }
-    } else {
-        nextPlayer(array, player, play);
-        !player ? unoIconCpu.style.opacity = 0 : saidUNO = false;
-    }
+    nextPlayer(array, player, play);
 }
 const createAndUpdate = (card, player) => {//common function for handling cards
     if (player) {
@@ -121,13 +102,30 @@ const nextPlayer = (array, player, play) => {//switching turns
                 playerTurn = false; cpuTurn = true;
                 checkTurn(); computerPlay(); pause.style.opacity = 0;
             })) : null);
+    if (array.length == 1) {//uno button
+        if (player) {
+            unoIconPlayer.style.opacity = 100;
+            playerTurn = false;
+            cpuTurn = false;
+            setTimeout(() => {
+                !clicked ? (saidUNO = false, addCardsOnSet(0, 2, 1), unoIconPlayer.style.opacity = 0) :
+                    (checkTurn(), clicked = false);
+            }, 4000);
+            unoIconPlayer.addEventListener('click', () => {
+                playerCards.length > 0 ? (clicked = true, saidUNO = true) : (clicked = false, saidUNO = false);
+                (item.value == 'reverse' || item.value == 'skip' || item.value == 'wildDrawFour' || item.value == 'drawTwo') ?
+                    (playerTurn = true, cpuTurn = false) : (playerTurn = false, cpuTurn = true, computerPlay())
+                unoIconPlayer.style.opacity = 0;
+            })
+        } else { unoIconCpu.style.opacity = 100; }
+    } else { !player ? unoIconCpu.style.opacity = 0 : saidUNO = false; }
 
     if (play.drop && player && item.color == 'wild') {// show choose color
         colorModal.classList.add('showColor');
         cpuTurn = false; playerTurn = false;
     }
     play.took || play.drop || playerTurn ? checkTurn() : null;//turn checking css
-    (play.took || play.drop) && cpuTurn ? computerPlay() : null;//computer play if its turn
+    (play.took || play.drop) && cpuTurn ? computerPlay() : null;//computer play if its turn testing
 }
 const setOpenCard = (item, player) => {//setting open card and possible draw card
     openCardElement.innerHTML = '';//emptying the open deck card and setting 
