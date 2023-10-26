@@ -24,7 +24,7 @@ let [minute, second] = [9, 60];
 function getUserName() {//get user name and validations
     let userName = getUser.value;
     user = userName.replaceAll(' ', '')
-    !user || !(user.length >= 3) || user.length >= 16 ? helper() : (playerName.textContent = userName.toUpperCase(), startgame());
+    !user || !(user.length >= 3) || user.length >= 24 ? helper() : (playerName.textContent = userName.toUpperCase(), startgame());
 }
 function startgame() {//start game
     modal.classList.remove('popUpModal');
@@ -44,11 +44,7 @@ function helper() {//set helper
 }
 function start() {
     second--
-    if (playerCards.length <= 0) {
-        showResult('player')
-    } else if (cpuCards.length <= 0) {
-        showResult('cpu')
-    } else if (minute == 0 && second == 0) (
+    if (minute == 0 && second == 0) (
         showResult('time')
     );
     (second <= 0) ? (second = 59, minute--) : null;

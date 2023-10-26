@@ -278,6 +278,7 @@ html, body, main, .container, .modal, .innerContainer {
 #resultModal h1, #resultModal h2, #resultModal h3, #resultModal span, #resultModal button {
     text-shadow: 3px 3px 20px black,
         -2px 1px 30px black !important;
+    text-align: center;
 }
 #unoPlayer {
     transition: 0.5s;
