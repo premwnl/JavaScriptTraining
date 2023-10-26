@@ -227,6 +227,9 @@ html, body, main, .container, .modal, .innerContainer {
 #playButton:hover {
     transform: scale(0.95);
 }
+#openCard {
+    pointer-events: none;
+}
 #chooseColor, #resultModal {
     position: absolute;
     z-index: 9999 !important;
