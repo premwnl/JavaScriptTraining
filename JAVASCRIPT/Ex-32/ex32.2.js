@@ -68,17 +68,12 @@ const updateCards = (array, player, play) => {//distribute cards seperate with t
         if (player) {
             unoIconPlayer.style.opacity = 100;
             setTimeout(() => {
-                !clicked ? (saidUNO = false,
-                    (item.value !== 'reverse' && item.value !== 'skip' && item.value !== 'wildDrawFour' && item.value !== 'drawTwo') ?
-                        (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) :
-                        (playerTurn = true, cpuTurn = false, checkTurn()), addCardsOnSet(0, 2, 1), unoIconPlayer.style.opacity = 0) :
+                !clicked ? (saidUNO = false, addCardsOnSet(0, 2, 1), unoIconPlayer.style.opacity = 0) :
                     (checkTurn(), clicked = false);
             }, 4000);
             unoIconPlayer.addEventListener('click', () => {
                 playerCards.length > 0 ? (clicked = true, saidUNO = true) : (clicked = false, saidUNO = false);
                 unoIconPlayer.style.opacity = 0;
-                (item.value !== 'reverse' && item.value !== 'skip' && item.value !== 'wildDrawFour' && item.value !== 'drawTwo') ?
-                    (cpuTurn = true, playerTurn = false, checkTurn()) : (playerTurn = true, cpuTurn = false, checkTurn());
                 nextPlayer(array, player, play);
             })
         } else {
@@ -251,8 +246,8 @@ const addCardsOnSet = (player, repeat, penalty) => {
     for (let index = 0; index < repeat; index++) {
         player ? cpuCards.push(deck.pop()) : playerCards.push(deck.pop());
     }
-    penalty ? (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) : null;
     updateCards(player ? cpuCards : playerCards, player ? 0 : 1, { took: false, drop: false });
+    penalty ? (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) : null;
 }
 
 

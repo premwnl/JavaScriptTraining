@@ -229,7 +229,7 @@ html, body, main, .container, .modal, .innerContainer {
 }
 #chooseColor, #resultModal {
     position: absolute;
-    z-index: 9 !important;
+    z-index: 9999 !important;
     margin: auto;
     transition: 0.5s;
 }
