@@ -256,6 +256,8 @@ const setColor = (item) => getColor.style.background = item.color ? item.color :
 const checkTurn = () => {//changing turn indicator
     playerName.style.opacity = playerTurn ? '100% ' : '40%';
     playerName.style.textDecoration = playerTurn ? `underline` : 'none';
+    playerName.style.color = playerTurn ? 'lightgreen' : 'white'
     cpuName.style.opacity = cpuTurn ? '100%' : '40%';
     cpuName.style.textDecoration = cpuTurn ? `underline` : 'none';
+    cpuName.style.color = cpuTurn ? 'lightgreen' : 'white'
 }
