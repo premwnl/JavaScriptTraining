@@ -107,7 +107,7 @@ const switchPlay = (array, player, play) => {//switching turns
     const unoButton = () => {//uno button event listerner
         let item = openCards[0];
         playerCards.length > 0 ? (clicked = true, saidUNO = true) : (clicked = false, saidUNO = false);
-        (item.value == 'reverse' || item.value == 'skip' || item.value == 'wildDrawFour' || item.value == 'drawTwo') ?
+        (item.value == 'reverse' || item.value == 'skip' || item.color == 'wild' || item.value == 'drawTwo') ?
             (playerTurn = true, cpuTurn = false, checkTurn()) : (playerTurn = false, cpuTurn = true, computerPlay())
         unoIconPlayer.style.opacity = 0;
         if (play.drop && playerCards.length <= 1 && item.color == 'wild') {
