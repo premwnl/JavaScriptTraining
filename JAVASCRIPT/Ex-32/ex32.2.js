@@ -137,22 +137,24 @@ const switchPlay = (array, player, play) => {//switching turns
     play.took || play.drop || playerTurn ? checkTurn() : null;//turn checking css
     (play.took || play.drop) && cpuTurn ? computerPlay() : null;//computer play if its turn 
 }
-const setOpenCard = (item, player) => {//setting open card and possible draw card
+const setOpenCard = (item, player, play) => {//setting open card and possible draw card
     openCardElement.innerHTML = '';//emptying the open deck card and setting 
     openCardElement.classList.remove('wild', 'wildDrawFour')
     openCards.unshift(item);
     pause.style.opacity = 0;
+    const showColorModal = (e) => {//event listerner for color modal
+        colorModal.classList.remove('showColor');
+        getColor.style.background = (e.target.style.backgroundColor);
+        item.value == 'wild' ? (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) :
+            (item.value == 'wildDrawFour' ? (playerTurn = true, cpuTurn = false, checkTurn()) : null)
+        chooseColors.forEach((val) => val.removeEventListener('click', showColorModal))
+    }
     if (item.color == 'wild') cardCreation(openCardElement, item)
     else {
         openCardElement.style.backgroundColor = item.color
         cardCreation(openCardElement, item)
     }
-    player ? chooseColors.forEach((val) => val.addEventListener('click', (e) => {
-        getColor.style.background = (e.target.style.backgroundColor);
-        colorModal.classList.remove('showColor');
-        item.value == 'wild' ? (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) :
-            (item.value == 'wildDrawFour' ? (playerTurn = true, cpuTurn = false, checkTurn()) : null)
-    })) : null;
+    player && item.color == 'wild' && play.drop ? chooseColors.forEach((val) => val.addEventListener('click', showColorModal)) : null;
     item.value == 'drawTwo' ? addCardsOnSet(player, 2) : (item.value == 'wildDrawFour' ? addCardsOnSet(player, 4) : null);
     setColor(item);
 }
@@ -168,7 +170,7 @@ const dropCard = (card) => {//drop card to deck
         if (getColor.style.background == card.color || card.color == item.color || card.value == item.value || card.color == 'wild') {
             let item = playerCards.splice(playerCards.indexOf(card), 1)
             pause.style.opacity = 0;
-            setOpenCard(item[0], 1)
+            setOpenCard(item[0], 1, { took: false, drop: true })
             updateCards(playerCards, 1, { took: false, drop: true })
         }
     }
@@ -189,7 +191,7 @@ const drawDeckCard = (array, player) => {//draw card from deck-----
             let item = array.pop()
             cpuTurn = true;
             playerTurn = false;
-            setOpenCard(item, 0);
+            setOpenCard(item, 0, { took: false, drop: true });
             updateCards(cpuCards, 0, { took: false, drop: true });
         }
     }
@@ -234,7 +236,7 @@ const computerPlay = () => {// computer play
 }
 const computerChoice = (card) => {//updating the computer array
     let item = cpuCards.splice(cpuCards.indexOf(card), 1)
-    setOpenCard(item[0], 0);
+    setOpenCard(item[0], 0, { took: false, drop: true });
     updateCards(cpuCards, 0, { took: false, drop: true });
 }
 const addCardsOnSet = (player, repeat, penalty) => {//add cards +2 +4 and penalty
@@ -244,6 +246,7 @@ const addCardsOnSet = (player, repeat, penalty) => {//add cards +2 +4 and penalt
     updateCards(player ? cpuCards : playerCards, player ? 0 : 1, { took: false, drop: false });
     penalty ? (cpuTurn = true, playerTurn = false, checkTurn(), computerPlay()) : null;
 }
+
 
 
 
