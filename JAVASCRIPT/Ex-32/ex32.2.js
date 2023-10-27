@@ -13,8 +13,7 @@ const colorModal = document.getElementById('chooseColor');
 const skipIcon = '<i class="fa-solid fa-ban"></i><i class="fa-solid fa-ban"></i><i class="fa-solid fa-ban"></i>'
 const reverseIcon = '<i class="fa-solid fa-rotate"></i><i class="fa-solid fa-rotate"></i><i class="fa-solid fa-rotate"></i>'
 const drawTwoIcon = '<i class="fa-solid fa-plus">2</i><i class="fa-solid fa-plus">2</i><i class="fa-solid fa-plus">2</i>';
-const [cards, colors, wildCards] = [['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'drawTwo', 'skip', 'reverse'], ['red', 'green', 'blue', 'yellow'], ['wild', 'wildDrawFour']]
-let [mainDeck, playerCards, cpuCards, openCards] = [[], [], [], []]
+let [cards, colors, wildCards, mainDeck, playerCards, cpuCards, openCards] = [['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'drawTwo', 'skip', 'reverse'], ['red', 'green', 'blue', 'yellow'], ['wild', 'wildDrawFour'], [], [], [], []]
 let playerTurn = cpuTurn = clicked = saidUNO = false;
 for (const value of cards) {//creating number cards
     for (const color of colors) {
@@ -188,19 +187,10 @@ const drawDeckCard = (array, player) => {//draw card from deck-----
             let item = array.pop()
             cpuTurn = true;
             playerTurn = false;
-            // if (item.value == 'wildDrawFour' || item.value == 'wild' || item.value == 'reverse' || item.value == 'skip' || item.value == 'drawTwo') {
-            //     setOpenCard(item, 0)
-            //     updateCards(array, 0, { took: false, drop: true });
-            // }
-            // else {
-            //     setOpenCard(item, 0)
-            //     updateCards(array, 0, { took: false, drop: true });
-            // }
-            setOpenCard(item[0], 0);
+            setOpenCard(item, 0);
             updateCards(cpuCards, 0, { took: false, drop: true });
         }
     }
-
 }
 const computerPlay = () => {// computer play
     if (playerCards.length <= 0) { return }
@@ -242,14 +232,6 @@ const computerPlay = () => {// computer play
 }
 const computerChoice = (card) => {//updating the computer array
     let item = cpuCards.splice(cpuCards.indexOf(card), 1)
-    // if (item[0].value == 'wildDrawFour' || item[0].value == 'reverse' || item[0].value == 'skip' || item[0].value == 'drawTwo' || item[0].value == 'wild') {
-    //     setOpenCard(item[0], 0)
-    //     updateCards(cpuCards, 0, { took: false, drop: true });
-    // }
-    // else {
-    //     setOpenCard(item[0], 0)
-    //     updateCards(cpuCards, 0, { took: false, drop: false });//test
-    // }
     setOpenCard(item[0], 0);
     updateCards(cpuCards, 0, { took: false, drop: true });
 }
