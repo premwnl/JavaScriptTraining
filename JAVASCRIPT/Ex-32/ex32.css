@@ -60,7 +60,7 @@ html, body, main, .container, .modal, .innerContainer {
     color: aqua;
 }
 .container, .modal {
-    background-image: url(/JAVASCRIPT/Ex-32/images/bg-2.gif);
+    background-image: url(/JAVASCRIPT/Ex-32/images/bg-4.gif);
     background-repeat: no-repeat;
     background-size: cover;
 }
