@@ -248,9 +248,6 @@ const addCardsOnSet = (player, repeat, penalty) => {//add cards +2 +4 and penalt
 }
 
 
-
-
-
 const distributeCard = (array, player) => {//distribute cards seperate with timeout
     for (let index = 0; index < array.length; index++)
         setTimeout(() => { createAndUpdate(array[index], player) }, `${index == 0 ? 0 + player : (index * 2) - player}00`);
