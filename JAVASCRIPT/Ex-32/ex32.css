@@ -274,7 +274,7 @@ html, body, main, .container, .modal, .innerContainer {
     margin-top: 100px;
 }
 .playAgain:hover {
-    background: rgb(255, 255, 255);
+    background: hsla(0, 0%, 100%, 0.17);
     color: black;
     border: 3px solid black;
 }
