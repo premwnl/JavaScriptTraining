@@ -20,7 +20,7 @@ const points = document.getElementById('points');
 //Constant declaration
 let [minute, second] = [9, 60];
 //Main functions
-(function getInput() { setTimeout(() => { modal.classList.add('popUpModal') }, 500) })()//popup
+(function getInput() { setTimeout(() => { modal.classList.add('popUpModal') }, 500) })()//getting user name
 function getUserName() {//get user name and validations
     let userName = getUser.value;
     user = userName.replaceAll(' ', '')
@@ -50,12 +50,9 @@ function start() {
     (second <= 0) ? (second = 59, minute--) : null;
     setTime.textContent = `${minute < 10 ? '0' + minute : minute} : ${second < 10 ? '0' + second : second}`
 }
-//restrict numbers and symbols
-function onlyAlphabets(e) {
+function onlyAlphabets(e) {//restrict numbers and symbols
     let char = e.charCode
-    return ((char >= 33 && char <= 64) ||
-        (char >= 91 && char <= 96) ||
-        (char >= 123 && char <= 126)) ? false : true
+    return ((char >= 33 && char <= 64) || (char >= 91 && char <= 96) || (char >= 123 && char <= 126)) ? false : true
 }
 const showResult = (player) => {
     let userName = getUser.value;
@@ -76,6 +73,7 @@ const calculatePoints = (array) => {
     for (const index of array) {
         index.color == 'wild' ? sum += 50 : (index.value == 'skip' || index.value == 'reverse' || index.value == 'drawTwo' ? sum += 20 : sum += parseInt(index.value))
     }
-    resultModal.classList.add('showResult')
+    // resultModal.classList.add('showResult')
+    setTimeout(() => { resultModal.classList.add('showResult') }, 1000);
     return sum;
 }

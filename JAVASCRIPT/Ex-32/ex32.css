@@ -268,13 +268,13 @@ html, body, main, .container, .modal, .innerContainer {
     outline: none;
     border: 3px solid aqua;
     border-radius: 5px;
-    font-size: 1.4xrem;
+    font-size: 1.4rem;
     font-weight: bolder;
     transition: 0.5s;
     margin-top: 100px;
 }
 .playAgain:hover {
-    background: aqua;
+    background: rgb(255, 255, 255);
     color: black;
     border: 3px solid black;
 }
