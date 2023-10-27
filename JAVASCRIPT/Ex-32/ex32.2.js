@@ -30,6 +30,7 @@ for (let index = 0; index < mainDeck.length; index++) {//shuffling mainDeck
 }
 let deck = [...mainDeck]//copying main deck of cards
 deckCards.addEventListener('click', () => playerTurn && !checkmatch(playerCards) ? drawDeckCard(playerCards, 1) : null)
+
 const distributeCards = () => {//distribute cards
     for (let index = 0; index < 14; index++)
         index % 2 == 0 ? playerCards.push(deck.pop()) : cpuCards.push(deck.pop());//7 cards each
@@ -83,7 +84,7 @@ const createAndUpdate = (card, player) => {//common function for handling cards
 }
 const switchPlay = (array, player, play) => {//switching turns
     let item = openCards[0];
-    if (saidUNO && playerCards.length <= 0) { playerTurn = false; cpuTurn = true; showResult('player'); }
+    if (saidUNO && playerCards.length <= 0) { playerTurn = false; cpuTurn = true; showResult('player'); }//checking winner
     else if (cpuCards.length <= 0) { playerTurn = false; cpuTurn = true; showResult('cpu'); }
 
     ((!play.took == play.drop) || cpuTurn) && playerCards.length > 0 ? (playerTurn = !playerTurn, cpuTurn = !cpuTurn) : null;//swapping turn
@@ -102,7 +103,8 @@ const switchPlay = (array, player, play) => {//switching turns
                 playerTurn = false; cpuTurn = true;
                 checkTurn(); computerPlay(); pause.style.opacity = 0;
             })) : null);
-    const unoButton = () => {
+
+    const unoButton = () => {//uno button event listerner
         let item = openCards[0];
         playerCards.length > 0 ? (clicked = true, saidUNO = true) : (clicked = false, saidUNO = false);
         (item.value == 'reverse' || item.value == 'skip' || item.value == 'wildDrawFour' || item.value == 'drawTwo') ?
@@ -114,7 +116,7 @@ const switchPlay = (array, player, play) => {//switching turns
         }
         unoIconPlayer.removeEventListener('click', unoButton);
     }
-    if (play.drop && array.length == 1) {//uno button
+    if (play.drop && array.length == 1) {//show uno button
         if (player) {
             unoIconPlayer.style.opacity = 100;
             playerTurn = false;
@@ -133,7 +135,7 @@ const switchPlay = (array, player, play) => {//switching turns
     }
 
     play.took || play.drop || playerTurn ? checkTurn() : null;//turn checking css
-    (play.took || play.drop) && cpuTurn ? computerPlay() : null;//computer play if its turn testing
+    (play.took || play.drop) && cpuTurn ? computerPlay() : null;//computer play if its turn 
 }
 const setOpenCard = (item, player) => {//setting open card and possible draw card
     openCardElement.innerHTML = '';//emptying the open deck card and setting 
@@ -235,7 +237,7 @@ const computerChoice = (card) => {//updating the computer array
     setOpenCard(item[0], 0);
     updateCards(cpuCards, 0, { took: false, drop: true });
 }
-const addCardsOnSet = (player, repeat, penalty) => {
+const addCardsOnSet = (player, repeat, penalty) => {//add cards +2 +4 and penalty
     for (let index = 0; index < repeat; index++) {
         player ? cpuCards.push(deck.pop()) : playerCards.push(deck.pop());
     }
