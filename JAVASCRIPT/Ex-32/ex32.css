@@ -285,3 +285,8 @@ html, body, main, .container, .modal, .innerContainer {
 #unoPlayer:hover {
     transform: scale(0.95);
 }
+#time {
+    border: 2px dotted aqua;
+    text-align: center;
+    transform: translateX(-100px);
+}
