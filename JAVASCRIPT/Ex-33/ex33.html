@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/JAVASCRIPT/images/logo.jpeg">
+    <title>CRUD 33</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ex33.css">
+</head>
+
+<body>
+    <header class="d_flex justifyContent_spaceBetween alignItems_center ">
+        <div class="d_flex italic">
+            <img src="/JAVASCRIPT/images/infologo.png" alt="logo" class="padding_ten">
+
+            <div class="padding_ten">
+                <h2>INFOTECH</h2>
+                <h2>ASHRAM</h2>
+            </div>
+        </div>
+        <div class="italic">
+            <h1>JavaScript Training Program</h1>
+        </div>
+        <div class="padding_ten">
+            <h3>Date : <span id="currentDate"></span></h3>
+            <h3>Time : <span id="currentTime"></span></h3>
+        </div>
+    </header>
+    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
+        <div class="container ">
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+                <h4 class="padding_ten">Exercise no: 33</h4>
+                <div></div>
+                <h2>CRUD</h2>
+                <div></div>
+                <div></div>
+                <div></div>
+
+            </div>
+            <div class="">
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="userName">
+                        <h3>Enter the Name </h3>
+                    </label>
+                    <div class="">
+                        <input type="text" value="" id="userName" onkeypress="return onlyAlphabets(event)">
+                        <h6 class="display_none">Enter Valid Name</h6>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="email">
+                        <h3>Enter Email</h3>
+                    </label>
+                    <div class="">
+                        <input type="email" value="" id="email">
+                        <h6 class="display_none">Enter Valid Email</h6>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="credit">
+                        <h3>Enter Credit Card Number</h3>
+                    </label>
+                    <div class="">
+                        <input type="number" min="0" value="" id="credit" onkeypress="return onlyDigits(event)">
+                        <h6 class="display_none">Enter Valid Credit Card Number</h6>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="pan">
+                        <h3>Enter PAN Number</h3>
+                    </label>
+                    <div class="">
+                        <input type="text" min="0" placeholder="Enter 10 Digits" value="" id="pan"
+                            onkeypress="return onlyAlphabetsDigits(event)">
+                        <h6 class="display_none">Enter Valid Pan Digit</h6>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <label class="padding_ten" for="gst">
+                        <h3>Enter GST Number</h3>
+                    </label>
+                    <div class="">
+                        <input type="text" min="0" placeholder="Enter 15 Digits" value="" id="gst"
+                            onkeypress="return onlyAlphabetsDigits(event)">
+                        <h6 class="display_none">Enter Valid GST</h6>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                    <button onclick="validate()">
+                        <h3>validate</h3>
+                    </button>
+                    <button onclick="reset()">
+                        <h3>Reset</h3>
+                    </button>
+                </div>
+                <div class="modal d_flex justifyContent_center alignItems_center flex_col padding_ten" id="modal">
+                    <h1 class="padding_twenty" style="font-size: 3rem;">🥳VALIDATED🥳</h1>
+                    <h1 class="padding_ten">Name : <span id="modalName"></span></h1>
+                    <h1 class="padding_ten">Email : <span id="modalEmail"></span></h1>
+                    <h1 class="padding_ten">Credit Card Number : <span id="modalCredit"></span></h1>
+                    <h1 class="padding_ten">Pan Card Number : <span id="modalPan"></span></h1>
+                    <h1 class="padding_ten">Gst Number : <span id="modalGst"></span></h1>
+                    <button class="padding_ten"
+                        style="background-color: rgb(43, 122, 7); width: 100px; border: 2px solid green;"
+                        onclick="closeModal()">
+                        <h3>OK</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
+        <h3 class=" padding_twenty">Learning Objective : Regex Validations</h3>
+        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
+            <h3 class="padding_ten">Powered By :</h3>
+
+            <img src="/JAVASCRIPT/images/logo.jpeg" alt="logo">
+        </div>
+    </footer>
+    <script src="ex33.js"></script>
+</body>
+
+</html>
