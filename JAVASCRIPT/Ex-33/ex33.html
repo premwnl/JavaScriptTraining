@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="ex33.css">
 </head>
 
@@ -31,7 +32,7 @@
             <h3>Time : <span id="currentTime"></span></h3>
         </div>
     </header>
-    <main class="d_flex justifyContent_center  textColor_blue italic">
+    <main class="d_flex flex_col justifyContent_center  textColor_blue italic">
         <form class="container padding_ten">
             <!-- title  -->
             <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom">
@@ -58,7 +59,8 @@
                         <div class="d_flex flex_col">
                             <label for="file" id="fileLabel"
                                 class="d_flex justifyContent_center alignItems_center">UPLOAD</label>
-                            <input class="width_100" id="file" type="file" accept="image/jpg,image/jpeg,image/png">
+                            <input class="width_100 input" id="file" type="file"
+                                accept="image/jpg,image/jpeg,image/png">
                             <h6 class="display_none">Please Upload Valid Image</h6>
                         </div>
                     </div>
@@ -86,16 +88,16 @@
                     <div class="d_flex flex_col padding_ten width_100">
                         <label class="star" for="firstName">First Name</label>
                         <input class="input" type="text" id="firstName" onkeypress="return onlyAlphabets(event)">
-                        <h6 class="display_none">Please enter First Name</h6>
+                        <h6 class="display_none">Please enter Valid First Name</h6>
                     </div>
                     <div class="padding_ten width_100">
                         <div class="">
                             <label class="star" for="">Gender</label>
                         </div>
                         <div class="">
-                            <input type="radio" name="gender" id="male" checked>
+                            <input type="radio" name="gender" id="male" value="male" checked>
                             <label for="male" style="margin-right:20px">Male</label>
-                            <input type="radio" name="gender" id="female">
+                            <input type="radio" name="gender" id="female" value="female">
                             <label for="female">Female</label>
                             <h5 style="opacity: 0;margin-block:5px ;">.</h5>
                         </div>
@@ -126,7 +128,7 @@
                 <div class=" d_flex justifyContent_center alignItems_center flex_col width_33">
                     <div class="d_flex flex_col padding_ten width_100">
                         <label class="star" for="mobile">Mobile No</label>
-                        <input class="input" type="number" id="mobile" onkeypress="return onlyDigits(event)">
+                        <input class="input" type="text" id="mobile" onkeypress="return onlyMobile(event)">
                         <h6 class="display_none">Please enter Valid Mobile Number</h6>
                     </div>
                     <div class="d_flex flex_col padding_ten width_100">
@@ -195,79 +197,29 @@
                 </div>
             </div>
         </form>
+        <div class="d_flex justifyContent_start alignItems_center padding_ten width_100" id="tableContainer">
+            <table class="display-none">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Organization</th>
+                        <th>Gender</th>
+                        <th>Date of Birth</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>City</th>
+                        <th>Pincode</th>
+                        <th>Handle</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBodyContainer"></tbody>
+            </table>
+        </div>
     </main>
     <script src="ex33.js"></script>
 </body>
 
 </html>
-
-<!-- <div class="">
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
-                    <label class="padding_ten" for="userName">
-                        <h3>Enter the Name </h3>
-                    </label>
-                    <div class="">
-                        <input type="text" value="" id="userName" onkeypress="return onlyAlphabets(event)">
-                        <h6 class="display_none">Enter Valid Name</h6>
-                    </div>
-                </div>
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
-                    <label class="padding_ten" for="email">
-                        <h3>Enter Email</h3>
-                    </label>
-                    <div class="">
-                        <input type="email" value="" id="email">
-                        <h6 class="display_none">Enter Valid Email</h6>
-                    </div>
-                </div>
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
-                    <label class="padding_ten" for="credit">
-                        <h3>Enter Credit Card Number</h3>
-                    </label>
-                    <div class="">
-                        <input type="number" min="0" value="" id="credit" onkeypress="return onlyDigits(event)">
-                        <h6 class="display_none">Enter Valid Credit Card Number</h6>
-                    </div>
-                </div>
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
-                    <label class="padding_ten" for="pan">
-                        <h3>Enter PAN Number</h3>
-                    </label>
-                    <div class="">
-                        <input type="text" min="0" placeholder="Enter 10 Digits" value="" id="pan"
-                            onkeypress="return onlyAlphabetsDigits(event)">
-                        <h6 class="display_none">Enter Valid Pan Digit</h6>
-                    </div>
-                </div>
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
-                    <label class="padding_ten" for="gst">
-                        <h3>Enter GST Number</h3>
-                    </label>
-                    <div class="">
-                        <input type="text" min="0" placeholder="Enter 15 Digits" value="" id="gst"
-                            onkeypress="return onlyAlphabetsDigits(event)">
-                        <h6 class="display_none">Enter Valid GST</h6>
-                    </div>
-                </div>
-                <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
-                    <button onclick="validate()">
-                        <h3>validate</h3>
-                    </button>
-                    <button onclick="reset()">
-                        <h3>Reset</h3>
-                    </button>
-                </div>
-                <div class="modal d_flex justifyContent_center alignItems_center flex_col padding_ten" id="modal">
-                    <h1 class="padding_twenty" style="font-size: 3rem;">🥳VALIDATED🥳</h1>
-                    <h1 class="padding_ten">Name : <span id="modalName"></span></h1>
-                    <h1 class="padding_ten">Email : <span id="modalEmail"></span></h1>
-                    <h1 class="padding_ten">Credit Card Number : <span id="modalCredit"></span></h1>
-                    <h1 class="padding_ten">Pan Card Number : <span id="modalPan"></span></h1>
-                    <h1 class="padding_ten">Gst Number : <span id="modalGst"></span></h1>
-                    <button class="padding_ten"
-                        style="background-color: rgb(43, 122, 7); width: 100px; border: 2px solid green;"
-                        onclick="closeModal()">
-                        <h3>OK</h3>
-                    </button>
-                </div>
-            </div> -->
