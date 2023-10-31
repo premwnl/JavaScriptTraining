@@ -18,7 +18,6 @@
     <header class="d_flex justifyContent_spaceBetween alignItems_center ">
         <div class="d_flex italic">
             <img src="/JAVASCRIPT/images/infologo.png" alt="logo" class="padding_ten">
-
             <div class="padding_ten">
                 <h2>INFOTECH</h2>
                 <h2>ASHRAM</h2>
@@ -32,18 +31,177 @@
             <h3>Time : <span id="currentTime"></span></h3>
         </div>
     </header>
-    <main class="d_flex justifyContent_center alignItems_center textColor_blue italic">
-        <div class="container ">
-            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom padding_ten">
+    <main class="d_flex justifyContent_center  textColor_blue italic">
+        <form class="container padding_ten">
+            <!-- title  -->
+            <div class="d_flex justifyContent_spaceBetween alignItems_center border_bottom">
                 <h4 class="padding_ten">Exercise no: 33</h4>
+                <div></div>
+                <div></div>
                 <div></div>
                 <h2>CRUD</h2>
                 <div></div>
                 <div></div>
                 <div></div>
-
+                <div></div>
+                <div></div>
             </div>
-            <div class="">
+            <!-- main  -->
+            <!-- image and names  -->
+            <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
+                <div class=" d_flex justifyContent_center alignItems_center width_33">
+                    <div class="d_flex justifyContent_center alignItems_center border_green"
+                        style="width: 114px;aspect-ratio: 1/1;border-radius: 50%;">
+                        <img id="image" src="images/whiteBG.png" alt="Profile Picture">
+                    </div>
+                    <div class="width_50 d_flex  alignItems_center star" style="justify-content: flex-end;">
+                        <div class="d_flex flex_col">
+                            <label for="file" id="fileLabel"
+                                class="d_flex justifyContent_center alignItems_center">UPLOAD</label>
+                            <input class="width_100" id="file" type="file" accept="image/jpg,image/jpeg,image/png">
+                            <h6 class="display_none">Please Upload Valid Image</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class=" d_flex justifyContent_center alignItems_center flex_col width_33">
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="organization">Select Organization</label>
+                        <select name="" id="organization">
+                            <option value="">----Select Organization----</option>
+                            <option value="who">World Health Organization</option>
+                            <option value="w3">W3 Schools</option>
+                            <option value="mozzila">Mozilla</option>
+                            <option value="vhi">Vhi Tech</option>
+                            <option value="git">Git Hub</option>
+                        </select>
+                        <h6 class="display_none">Please Select Organization</h6>
+                    </div>
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="lastName">Last Name</label>
+                        <input class="input" type="text" id="lastName" onkeypress="return onlyAlphabets(event)">
+                        <h6 class="display_none">Please enter Last Name</h6>
+                    </div>
+                </div>
+                <div class=" d_flex justifyContent_center alignItems_center flex_col width_33">
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="firstName">First Name</label>
+                        <input class="input" type="text" id="firstName" onkeypress="return onlyAlphabets(event)">
+                        <h6 class="display_none">Please enter First Name</h6>
+                    </div>
+                    <div class="padding_ten width_100">
+                        <div class="">
+                            <label class="star" for="">Gender</label>
+                        </div>
+                        <div class="">
+                            <input type="radio" name="gender" id="male" checked>
+                            <label for="male" style="margin-right:20px">Male</label>
+                            <input type="radio" name="gender" id="female">
+                            <label for="female">Female</label>
+                            <h5 style="opacity: 0;margin-block:5px ;">.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- bio  -->
+            <div class="d_flex justifyContent_spaceBetween alignItems_center">
+                <div class=" d_flex justifyContent_center alignItems_center flex_col width_33">
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="dateOfBirth">Date Of Birth</label>
+                        <input class="input" type="date" id="dateOfBirth">
+                        <h6 class="display_none">Please enter Valid Date</h6>
+                    </div>
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="country">Select Country</label>
+                        <select name="" id="country">
+                            <option value="">----Select Organization----</option>
+                            <option value="who">World Health Organization</option>
+                            <option value="w3">W3 Schools</option>
+                            <option value="mozzila">Mozilla</option>
+                            <option value="vhi">Vhi Tech</option>
+                            <option value="git">Git Hub</option>
+                        </select>
+                        <h6 class="display_none">Please Select Country</h6>
+                    </div>
+                </div>
+                <div class=" d_flex justifyContent_center alignItems_center flex_col width_33">
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="mobile">Mobile No</label>
+                        <input class="input" type="number" id="mobile" onkeypress="return onlyDigits(event)">
+                        <h6 class="display_none">Please enter Valid Mobile Number</h6>
+                    </div>
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="state">Select State</label>
+                        <select name="" id="state">
+                            <option value="">----Select Organization----</option>
+                            <option value="who">World Health Organization</option>
+                            <option value="w3">W3 Schools</option>
+                            <option value="mozzila">Mozilla</option>
+                            <option value="vhi">Vhi Tech</option>
+                            <option value="git">Git Hub</option>
+                        </select>
+                        <h6 class="display_none">Please Select State </h6>
+                    </div>
+                </div>
+                <div class=" d_flex justifyContent_center alignItems_center flex_col width_33">
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="email">Email Id</label>
+                        <input class="input" type="text" id="email">
+                        <h6 class="display_none">Please enter Valid Email Id</h6>
+                    </div>
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="city">City</label>
+                        <input class="input" type="text" id="city" onkeypress="return onlyAlphabets(event)">
+                        <h6 class="display_none">Please enter City Name</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- address  -->
+            <div class="d_flex justifyContent_center " style="align-items: flex-start;">
+                <div class="d_flex justifyContent_center alignItems_center width_50">
+                    <div class="d_flex width_100 flex_col padding_ten">
+                        <label class="star" for="communicationaddress">Communication Address</label>
+                        <textarea class="input" value="" id="communicationaddress"></textarea>
+                        <h6 class="display_none">Please enter Communication Address</h6>
+                    </div>
+                </div>
+                <div class="d_flex justifyContent_center alignItems_center width_50">
+                    <div class="d_flex width_100 flex_col padding_ten">
+                        <label class="star" for="permanentaddress">Permanent Address</label>
+                        <textarea class="input" value="" id="permanentaddress"></textarea>
+                        <h6 class="display_none">Please enter Permanent Address</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- checkbox  -->
+            <div class="padding_ten">
+                <input type="checkbox" name="" id="addressCopy">
+                <label for="addressCopy"> Communication Address as same as Permanent Address</label>
+            </div>
+            <!-- pincode  -->
+            <div class="d_flex justifyContent_spaceBetween alignItems_center">
+                <div class=" d_flex justifyContent_center alignItems_center flex_col width_33">
+                    <div class="d_flex flex_col padding_ten width_100">
+                        <label class="star" for="pincode">Pincode</label>
+                        <input class="input" type="number" id="pincode" onkeypress="return onlyDigits(event)">
+                        <h6 class="display_none">Please enter valid Pincode</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- buttons -->
+            <div>
+                <div class="d_flex alignItems_center width_100" style="justify-content: flex-end;">
+                    <input type="submit" id="register" value="REGISTER">
+                    <input type="reset" id="reset" value='RESET'>
+                </div>
+            </div>
+        </form>
+    </main>
+    <script src="ex33.js"></script>
+</body>
+
+</html>
+
+<!-- <div class="">
                 <div class="d_flex justifyContent_spaceBetween alignItems_center padding_ten">
                     <label class="padding_ten" for="userName">
                         <h3>Enter the Name </h3>
@@ -112,18 +270,4 @@
                         <h3>OK</h3>
                     </button>
                 </div>
-            </div>
-        </div>
-    </main>
-    <footer class="d_flex justifyContent_spaceBetween alignItems_center textColor_blue ">
-        <h3 class=" padding_twenty">Learning Objective : Regex Validations</h3>
-        <div class="d_flex justifyContent_center alignItems_center padding_twenty">
-            <h3 class="padding_ten">Powered By :</h3>
-
-            <img src="/JAVASCRIPT/images/logo.jpeg" alt="logo">
-        </div>
-    </footer>
-    <script src="ex33.js"></script>
-</body>
-
-</html>
+            </div> -->
