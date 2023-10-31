@@ -60,7 +60,11 @@ const register = () => {//validations
     const permanentaddress = getPermanentAddress.value
     const pincode = getPincode.value
 
-
+    let elementObj = {
+        organization: getOrganization, firstName: getFirstName,
+        lastName: getLastName, dateOfBirth: getDob, mobile: getMobile, email: getEmail, country: getCountry, state: getState, city: getCity, communicationaddress: getCommunicationAddress, permanentaddress: getPermanentAddress, pincode: getPincode,
+    }
+    // console.log(elementObj);
 
     if (setImage.src.includes('images/whiteBG.png') || !organization || !firstName || !lastName || !dateOfBirth || !mobile || !email || !country || !state || !city || !communicationaddress || !permanentaddress || !pincode) {
         if (setImage.src.includes('images/whiteBG.png')) { addHelper(getImage) }
