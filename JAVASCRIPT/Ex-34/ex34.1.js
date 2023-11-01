@@ -18,23 +18,21 @@ const x = '<i class="fa-solid fa-xmark fa-9x"></i>'
 const o = '<i class="fa-solid fa-o fa-7x"></i>'
 let youTurn = true
 let cpuTurn = false
-let you_Score = 0
-let cpu_Score = 0
-let ticTacToe = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+let game = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 //Main functions
 boxes.forEach((box) => { box.addEventListener('click', () => { playerMove(box.id) }) })
 const playerMove = (id) => {
     let index = id.split('_')[1]
-    ticTacToe[index] = '1'
+    game[index] = '1'
     document.getElementById(id).innerHTML = x;
     document.getElementById(id).style.pointerEvents = 'none'
     swapTurn()
 }
 const cpuMove = () => {
-    if (ticTacToe.includes(0)) {
-        let index = (ticTacToe.includes(0)) ? getRandomNumber() : null;
+    if (game.includes(0)) {
+        let index = (game.includes(0)) ? getRandomNumber() : null;
         if (index >= 0) {
-            ticTacToe[index] = '2'
+            game[index] = '2'
             document.getElementById(`box_${index}`).innerHTML = o;
             document.getElementById(`box_${index}`).style.pointerEvents = 'none'
             swapTurn()
@@ -43,7 +41,7 @@ const cpuMove = () => {
 }
 const getRandomNumber = () => {
     let index = Math.floor(Math.random() * 9)
-    if (ticTacToe[index]) getRandomNumber()
+    if (game[index]) getRandomNumber()
     else return index
 }
 const swapTurn = () => {
@@ -56,44 +54,32 @@ const swapTurn = () => {
     }
 }
 const noPossibleWin = () => {
-    if ((ticTacToe[0] == ticTacToe[1] == ticTacToe[2]) && ticTacToe[0] != 0 && ticTacToe[1] != 0 && ticTacToe[2] != 0) {
-        showWinner(ticTacToe[1])
+    if (((game[0] == 2 && game[1] == 2 && game[2] == 2) || (game[0] == 1 && game[1] == 1 && game[2] == 1)) && game[0] != 0 && game[1] != 0 && game[2] != 0) {
+        showWinner(game[1])
         return false
-    } else if ((ticTacToe[3] == ticTacToe[4] == ticTacToe[5]) && ticTacToe[3] != 0 && ticTacToe[4] != 0 && ticTacToe[5] != 0) {
-        showWinner(ticTacToe[4])
+    } else if (((game[3] == 2 && game[4] == 2 && game[5] == 2) || (game[3] == 1 && game[4] == 1 && game[5] == 1)) && game[3] != 0 && game[4] != 0 && game[5] != 0) {
+        showWinner(game[4])
         return false
-    } else if ((ticTacToe[6] == ticTacToe[7] == ticTacToe[8]) && ticTacToe[6] != 0 && ticTacToe[7] != 0 && ticTacToe[8] != 0) {
-        showWinner(ticTacToe[7])
+    } else if (((game[6] == 2 && game[7] == 2 && game[8] == 2) || (game[6] == 1 && game[7] == 1 && game[8] == 1)) && game[6] != 0 && game[7] != 0 && game[8] != 0) {
+        showWinner(game[7])
         return false
-    } else if ((ticTacToe[0] == ticTacToe[3] == ticTacToe[6]) && ticTacToe[0] != 0 && ticTacToe[3] != 0 && ticTacToe[6] != 0) {
-        showWinner(ticTacToe[3])
+    } else if (((game[0] == 2 && game[3] == 2 && game[6] == 2) || (game[0] == 1 && game[3] == 1 && game[6] == 1)) && game[0] != 0 && game[3] != 0 && game[6] != 0) {
+        showWinner(game[3])
         return false
-    } else if ((ticTacToe[1] == ticTacToe[4] == ticTacToe[7]) && ticTacToe[1] != 0 && ticTacToe[4] != 0 && ticTacToe[7] != 0) {
-        showWinner(ticTacToe[4])
+    } else if (((game[1] == 2 && game[4] == 2 && game[7] == 2) || (game[1] == 1 && game[4] == 1 && game[7] == 1)) && game[1] != 0 && game[4] != 0 && game[7] != 0) {
+        showWinner(game[4])
         return false
-    } else if ((ticTacToe[2] == ticTacToe[5] == ticTacToe[8]) && ticTacToe[2] != 0 && ticTacToe[5] != 0 && ticTacToe[8] != 0) {
-        showWinner(ticTacToe[5])
+    } else if (((game[2] == 2 && game[5] == 2 && game[8] == 2) || (game[2] == 1 && game[5] == 1 && game[8] == 1)) && game[2] != 0 && game[5] != 0 && game[8] != 0) {
+        showWinner(game[5])
         return false
-    } else if ((ticTacToe[0] == ticTacToe[4] == ticTacToe[8]) && ticTacToe[0] != 0 && ticTacToe[4] != 0 && ticTacToe[8] != 0) {
-        showWinner(ticTacToe[4])
+    } else if (((game[0] == 2 && game[4] == 2 && game[8] == 2) || (game[0] == 1 && game[4] == 1 && game[8] == 1)) && game[0] != 0 && game[4] != 0 && game[8] != 0) {
+        showWinner(game[4])
         return false
-    } else if ((ticTacToe[2] == ticTacToe[4] == ticTacToe[6]) && ticTacToe[2] != 0 && ticTacToe[4] != 0 && ticTacToe[6] != 0) {
-        showWinner(ticTacToe[4])
+    } else if (((game[2] == 2 && game[4] == 2 && game[6] == 2) || (game[2] == 1 && game[4] == 1 && game[6] == 1)) && game[2] != 0 && game[4] != 0 && game[6] != 0) {
+        showWinner(game[4])
         return false
     }
     return true
 }
-const showWinner = (val) => {
-    val == '1' ? you_Score++ : val == '2' ? cpu_Score++ : null;
-    val == '1' || val === '2' ? (container.style.pointerEvents = 'none', setTimeout(() => {
-        youScore.textContent = you_Score;
-        cpuScore.textContent = cpu_Score;
-        reset()
-    }, 1000)) : null
-}
-const reset = () => {
-    boxes.forEach((box) => { box.innerHTML = ''; box.style.pointerEvents = 'all' })
-    ticTacToe = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    youTurn = true;
-    cpuTurn = false
-}
+const showWinner = (val) => { setTimeout(() => { reset() }, 1000) }
+const reset = () => { window.location.reload() }
