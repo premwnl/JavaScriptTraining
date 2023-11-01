@@ -31,11 +31,11 @@ const getPermanentAddress = document.getElementById('permanentaddress')
 const getCopyAddress = document.getElementById('addressCopy')
 const getPincode = document.getElementById('pincode')
 const registerBTN = document.getElementById('register')
-const resetBTN = document.getElementById('reset')
 const form = document.querySelector('form')
 const container = document.getElementById('tableBodyContainer')
 const RESET_SELECT = document.querySelectorAll("select")
 const RESET_INPUTS = document.querySelectorAll('.input')
+
 //Constant declaration
 const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const regexMobile = /^\+?\d.\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}?/;
@@ -43,7 +43,7 @@ const regexPincode = /[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}/;
 const API = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries%2Bstates%2Bcities.json'
 const API_URL = 'https://restcountries.com/v3.1/all'
 let editing = -1;
-//Error declaration
+
 //Main functions
 const fetchdata = async () => {
     try {
@@ -51,9 +51,7 @@ const fetchdata = async () => {
         let data = await response.json()
         let sortedData = data.sort((a, b) => a.name.common.localeCompare(b.name.common))
         return sortedData;
-    } catch (error) {
-        console.log(error);
-    }
+    } catch (error) { console.log(error); }
 }
 const fetchIIFE = (async () => {
     const apiData = await fetchdata()
@@ -78,7 +76,6 @@ const setData = (data, key) => {
         option.textContent = index
         getState.appendChild(option)
     }
-
 }
 const register = () => {//validations
     const organization = getOrganization.value
@@ -96,7 +93,6 @@ const register = () => {//validations
     const permanentaddress = getPermanentAddress.value
     const pincode = getPincode.value
     const inputObj = { organization, firstName, lastName, dateOfBirth, mobile, email, country, state, city, communicationaddress, permanentaddress, pincode }
-
     if (setImage.src.includes('images/whiteBG.png') || !organization || !firstName || !lastName || !dateOfBirth || !mobile || !email || !country || !state || !city || !communicationaddress || !permanentaddress || !pincode) {
         if (setImage.src.includes('images/whiteBG.png')) { addHelper(getImage) }
         for (const input in inputObj) {
@@ -108,9 +104,7 @@ const register = () => {//validations
     else if (!regexEmail.test(email)) { addHelper(getEmail) }
     else if (!regexPincode.test(pincode) || pincode.length > 6) { addHelper(getPincode) }
     else {
-        let items = {
-            image: setImage.src, organization, firstName, lastName, gender, dateOfBirth, mobile, email, addressCopy, country, state, city, communicationaddress, permanentaddress, pincode
-        }
+        let items = { image: setImage.src, organization, firstName, lastName, gender, dateOfBirth, mobile, email, addressCopy, country, state, city, communicationaddress, permanentaddress, pincode }
         createData(items)
         resetInputs()
     }
@@ -191,6 +185,7 @@ const deleteData = (index) => {//deleting data using index
     }
 }
 
+//event listerners
 getImage.addEventListener('change', () => {//event listerner for image
     let extension = getImage.files[0] ? getImage.files[0].name.split('.').pop().toLowerCase() : null;
     if (getImage.files[0] && (extension == 'jpg' || extension == 'jpeg' || extension == 'png') && getImage.files[0].size < 1000000) {
@@ -220,8 +215,7 @@ getCopyAddress.addEventListener('change', () => {//radio button for copy address
 })
 function copyaddress() { getPermanentAddress.value = getCommunicationAddress.value }//function for event handler
 
-
-
+//css 
 let elements = [getImage, getOrganization, getFirstName, getLastName, getDob, getMobile, getEmail, getCountry, getState, getCity, getCommunicationAddress, getPermanentAddress, getPincode]
 elements.forEach(element => element.addEventListener('input', () => { removeHelper(element) }))
 function addHelper(element) {//add helper test and border
@@ -245,6 +239,7 @@ function onlyAlphabets(e) {//onlyAlphabets allowed
     return ((char >= 65 && char <= 90) ||
         (char >= 97 && char <= 122)) ? true : false
 }
+//reset
 const resetBorder = () => {//reset all helper and borders
     RESET_INPUTS.forEach(input => input.classList.remove('border_red'))
     RESET_INPUTS.forEach(input => input.nextElementSibling.classList.remove('display_block'))
@@ -268,6 +263,7 @@ const resetInputs = () => {
     male.checked = true;
     getImage.files.length = 0;
     registerBTN.value = 'REGISTER';
+    getCopyAddress.checked = false
     removeHelper(getImage)
     resetBorder()
     resetSelect()
