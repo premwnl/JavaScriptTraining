@@ -40,10 +40,46 @@ const RESET_INPUTS = document.querySelectorAll('.input')
 const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const regexMobile = /^\+?\d.\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}?/;
 const regexPincode = /[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}/;
+const API = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries%2Bstates%2Bcities.json'
+const API_URL = 'https://restcountries.com/v3.1/all'
 let editing = -1;
 //Error declaration
-
 //Main functions
+const fetchdata = async () => {
+    try {
+        const response = await fetch(API_URL)
+        let data = await response.json()
+        let sortedData = data.sort((a, b) => a.name.common.localeCompare(b.name.common))
+        return sortedData;
+    } catch (error) {
+        console.log(error);
+    }
+}
+const fetchIIFE = (async () => {
+    const apiData = await fetchdata()
+    for (const value in apiData) {
+        const option = document.createElement('option')
+        option.value = apiData[value].name.common
+        option.textContent = apiData[value].name.common
+        getCountry.appendChild(option)
+    }
+    getCountry.addEventListener('change', async () => {
+        getState.innerHTML = `<option value="">----Select State----</option>`
+        for (const key in apiData) {
+            if (getCountry.value == apiData[key].name.common) { setData(apiData, key) }
+        }
+    })
+})()
+const setData = (data, key) => {
+    const states = data[key].capital;
+    for (const index of states) {
+        const option = document.createElement('option')
+        option.value = index
+        option.textContent = index
+        getState.appendChild(option)
+    }
+
+}
 const register = () => {//validations
     const organization = getOrganization.value
     const firstName = getFirstName.value
@@ -59,27 +95,13 @@ const register = () => {//validations
     const communicationaddress = getCommunicationAddress.value
     const permanentaddress = getPermanentAddress.value
     const pincode = getPincode.value
-
-    let elementObj = {
-        organization: getOrganization, firstName: getFirstName,
-        lastName: getLastName, dateOfBirth: getDob, mobile: getMobile, email: getEmail, country: getCountry, state: getState, city: getCity, communicationaddress: getCommunicationAddress, permanentaddress: getPermanentAddress, pincode: getPincode,
-    }
-    // console.log(elementObj);
+    const inputObj = { organization, firstName, lastName, dateOfBirth, mobile, email, country, state, city, communicationaddress, permanentaddress, pincode }
 
     if (setImage.src.includes('images/whiteBG.png') || !organization || !firstName || !lastName || !dateOfBirth || !mobile || !email || !country || !state || !city || !communicationaddress || !permanentaddress || !pincode) {
         if (setImage.src.includes('images/whiteBG.png')) { addHelper(getImage) }
-        if (!organization) addHelper(getOrganization);
-        if (!firstName) addHelper(getFirstName);
-        if (!lastName) addHelper(getLastName);
-        if (!dateOfBirth) addHelper(getDob);
-        if (!mobile) addHelper(getMobile);
-        if (!email) addHelper(getEmail);
-        if (!country) addHelper(getCountry);
-        if (!state) addHelper(getState);
-        if (!city) addHelper(getCity);
-        if (!communicationaddress) addHelper(getCommunicationAddress);
-        if (!permanentaddress) addHelper(getPermanentAddress);
-        if (!pincode) addHelper(getPincode);
+        for (const input in inputObj) {
+            if (!inputObj[input]) addHelper(document.getElementById(`${input}`));
+        }
     } else if (firstName.length < 3) { addHelper(getFirstName) }
     else if (new Date(dateOfBirth) > new Date(Date.now())) { addHelper(getDob) }
     else if (!regexMobile.test(mobile) || mobile.replaceAll(" ", '').length > 15) { addHelper(getMobile) }
@@ -92,20 +114,19 @@ const register = () => {//validations
         createData(items)
         resetInputs()
     }
-
 }
 const createData = (data) => {//create object and set item to locale storage
     let prevData = JSON.parse(localStorage.getItem('crud') || '[]')
     if (editing >= 0) {
-        let upd = prevData.filter(item => item != prevData[editing])
-        localStorage.setItem('crud', JSON.stringify([...upd, data]))
-        readData()
+        let updated = prevData.filter(item => item != prevData[editing])
+        let first = updated.slice(0, editing) || '[]'
+        let last = updated.slice(editing, updated.length) || '[]'
+
+        localStorage.setItem('crud', JSON.stringify([...first, data, ...last]))
         editing = -1;
         container.style.pointerEvents = 'all'
-    } else {
-        localStorage.setItem('crud', JSON.stringify([...prevData, data]))
-        readData()
-    }
+    } else { localStorage.setItem('crud', JSON.stringify([...prevData, data])) }
+    readData()
 }
 const readData = () => {//read data and set table
     container.innerHTML = '';
@@ -125,18 +146,18 @@ const readData = () => {//read data and set table
             <i id='delete_${prevData.indexOf(loop)}' class="fa-solid fa-trash padding_ten red"></i>`;
             rowElement.append(dataElement)
             container.append(rowElement)
-            document.getElementById(`edit_${prevData.indexOf(loop)}`).addEventListener('click', () => { editing = prevData.indexOf(loop); updateData(prevData.indexOf(loop)); })
-            document.getElementById(`delete_${prevData.indexOf(loop)}`).addEventListener('click', () => { deleteData(prevData.indexOf(loop)) })
+            document.getElementById(`edit_${prevData.indexOf(loop)}`).addEventListener('click', () => { editing = prevData.indexOf(loop); updateData(prevData.indexOf(loop)); });
+            document.getElementById(`delete_${prevData.indexOf(loop)}`).addEventListener('click', () => { deleteData(prevData.indexOf(loop)) });
         }
     } else {
         container.parentElement.classList.add('display-none');
     }
 
 }
-readData()
-const updateData = (index) => {//
+const updateData = async (index) => {//update data and renders to table
     resetInputs()
-    editing >= 0 ? (registerBTN.value = 'UPDATE', container.style.pointerEvents = 'none') : 'REGISTER';
+    editing >= 0 ? (registerBTN.value = 'UPDATE', container.style.pointerEvents = 'none', getPermanentAddress.readOnly = true) : 'REGISTER';
+    let apiData = await fetchdata()
     let prevData = JSON.parse(localStorage.getItem('crud') || '[]');
     let data = prevData[index];
     setImage.src = data.image;
@@ -149,6 +170,9 @@ const updateData = (index) => {//
     getCopyAddress.checked = data.addressCopy
     getEmail.value = data.email
     getCountry.value = data.country
+    for (const key in apiData) {
+        if (getCountry.value == apiData[key].name.common) { setData(apiData, key) }
+    }
     getState.value = data.state
     getCity.value = data.city
     getCommunicationAddress.value = data.communicationaddress
@@ -163,6 +187,7 @@ const deleteData = (index) => {//deleting data using index
         readData()
     }
 }
+
 getImage.addEventListener('change', () => {//event listerner for image
     let extension = getImage.files[0] ? getImage.files[0].name.split('.').pop().toLowerCase() : null;
     if (getImage.files[0] && (extension == 'jpg' || extension == 'jpeg' || extension == 'png') && getImage.files[0].size < 8000000) {
@@ -193,10 +218,10 @@ getCopyAddress.addEventListener('change', () => {//radio button for copy address
 function copyaddress() { getPermanentAddress.value = getCommunicationAddress.value }//function for event handler
 
 
+
 let elements = [getImage, getOrganization, getFirstName, getLastName, getDob, getMobile, getEmail, getCountry, getState, getCity, getCommunicationAddress, getPermanentAddress, getPincode]
 elements.forEach(element => element.addEventListener('input', () => { removeHelper(element) }))
 function addHelper(element) {//add helper test and border
-    element.classList.remove('border_green')
     element.classList.add('border_red')
     element.nextElementSibling.classList.add('display_block')
 }
@@ -235,6 +260,7 @@ const resetSelect = () => {//reset all select options
 }
 const resetInputs = () => {
     RESET_INPUTS.forEach(input => input.value = '')
+    getState.innerHTML = `<option value="">----Select State----</option>`
     setImage.src = 'images/whiteBG.png'
     male.checked = true;
     getImage.files.length = 0;
@@ -247,6 +273,6 @@ const reset = () => {//reset all
     if (editing >= 0) { updateData(editing) }
     else { resetInputs() }
 }
-
+readData();
 
 
