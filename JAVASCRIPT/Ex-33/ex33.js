@@ -80,7 +80,7 @@ const register = () => {//validations
     const lastName = getLastName.value
     const gender = document.querySelector("input[name='gender']:checked").value;
     const addressCopy = getCopyAddress.checked
-    const dateOfBirth = getDob.value
+    const dateOfBirth = getDob.value.split("-").reverse().join("-");
     const mobile = getMobile.value
     const email = getEmail.value
     const country = getCountry.value
@@ -158,8 +158,8 @@ const updateData = async (index) => {//update data and renders to table
     getOrganization.value = data.organization;
     getFirstName.value = data.firstName
     getLastName.value = data.lastName
-    document.getElementById(`${data.gender}`).checked = true;
-    getDob.value = data.dateOfBirth
+    document.getElementById(`${data.gender.toLowerCase()}`).checked = true;
+    getDob.value = data.dateOfBirth.split("-").reverse().join("-")
     getMobile.value = data.mobile
     getCopyAddress.checked = data.addressCopy
     getEmail.value = data.email
