@@ -186,6 +186,9 @@ td {
 .display-none {
     display: none;
 }
-/* .noPointerEvents {
-    pointer-events: none;
-} */
+tr:nth-child(odd) {
+    background: rgb(244, 244, 244);
+}
+tr:nth-child(even) {
+    background: rgb(232, 232, 232);
+}

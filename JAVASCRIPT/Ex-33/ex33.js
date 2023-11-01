@@ -136,6 +136,9 @@ const readData = () => {//read data and set table
         for (const loop of prevData) {//looping to asssign table values
             let dataArray = [loop.firstName, loop.lastName, loop.organization, loop.gender, loop.dateOfBirth, loop.mobile, loop.email, loop.country, loop.state, loop.city, loop.pincode]
             const rowElement = document.createElement('tr')
+            const imageElement = document.createElement('td')
+            imageElement.innerHTML = `<img id="image" src="${loop.image}" alt="Profile Picture">`
+            rowElement.append(imageElement)
             for (const data of dataArray) {
                 const dataElement = document.createElement('td')
                 dataElement.textContent = data
@@ -190,7 +193,7 @@ const deleteData = (index) => {//deleting data using index
 
 getImage.addEventListener('change', () => {//event listerner for image
     let extension = getImage.files[0] ? getImage.files[0].name.split('.').pop().toLowerCase() : null;
-    if (getImage.files[0] && (extension == 'jpg' || extension == 'jpeg' || extension == 'png') && getImage.files[0].size < 8000000) {
+    if (getImage.files[0] && (extension == 'jpg' || extension == 'jpeg' || extension == 'png') && getImage.files[0].size < 1000000) {
         removeHelper(getImage);
         let reader = new FileReader();
         reader.onload = function (e) {
