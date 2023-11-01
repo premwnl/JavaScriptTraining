@@ -90,7 +90,7 @@ const register = () => {//validations
     const permanentaddress = getPermanentAddress.value
     const pincode = getPincode.value
     const inputObj = { organization, firstName, lastName, dateOfBirth, mobile, email, country, state, city, communicationaddress, permanentaddress, pincode }
-    if (setImage.src.includes('images/whiteBG.png') || !organization || !firstName || !lastName || !dateOfBirth || !mobile || !email || !country || !state || !city || !communicationaddress || !permanentaddress || !pincode) {
+    if (setImage.src.includes('images/whiteBG.png') || !organization || !firstName || !lastName || !dateOfBirth || !mobile || !email || !country || !city || !communicationaddress || !permanentaddress || !pincode) {
         if (setImage.src.includes('images/whiteBG.png')) { addHelper(getImage) }
         for (const input in inputObj) {
             if (!inputObj[input]) addHelper(document.getElementById(`${input}`));
