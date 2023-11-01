@@ -273,5 +273,3 @@ const reset = () => {//reset all
     else { resetInputs() }
 }
 readData();
-
-
