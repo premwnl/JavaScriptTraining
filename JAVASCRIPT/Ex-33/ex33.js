@@ -248,11 +248,9 @@ const resetBorder = () => {//reset all helper and borders
     })
 
 }
-const resetSelect = () => {//reset all select options
-    RESET_SELECT.forEach(select => select.selectedIndex = 0)
-}
 const resetInputs = () => {//reset all inputs
     RESET_INPUTS.forEach(input => input.value = '')
+    RESET_SELECT.forEach(select => select.selectedIndex = 0)
     getState.innerHTML = `<option value="">----Select State----</option>`
     setImage.src = 'images/whiteBG.png'
     male.checked = true;
@@ -261,7 +259,6 @@ const resetInputs = () => {//reset all inputs
     getCopyAddress.checked = false
     removeHelper(getImage)
     resetBorder()
-    resetSelect()
 }
 const reset = () => {//reset all
     if (editing >= 0) { updateData(editing) }
