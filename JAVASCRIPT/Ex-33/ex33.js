@@ -11,7 +11,6 @@ setInterval(() => {
     document.getElementById('currentDate').innerText = new Date().toLocaleDateString()
     document.getElementById('currentTime').innerText = new Date().toLocaleTimeString('en-in')
 }, 1000)
-
 //DOM declaration
 const getImage = document.getElementById('file')
 const setImage = document.getElementById('image')
@@ -35,7 +34,6 @@ const form = document.querySelector('form')
 const container = document.getElementById('tableBodyContainer')
 const RESET_SELECT = document.querySelectorAll("select")
 const RESET_INPUTS = document.querySelectorAll('.input')
-
 //Constant declaration
 const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const regexMobile = /^\+?\d.\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}?/;
@@ -43,9 +41,8 @@ const regexPincode = /[1-9]{1}[0-9]{5}|[1-9]{1}[0-9]{3}\\s[0-9]{3}/;
 const API = 'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries%2Bstates%2Bcities.json'
 const API_URL = 'https://restcountries.com/v3.1/all'
 let editing = -1;
-
 //Main functions
-const fetchdata = async () => {
+const fetchdata = async () => {//fetch api and return data
     try {
         const response = await fetch(API_URL)
         let data = await response.json()
@@ -53,7 +50,7 @@ const fetchdata = async () => {
         return sortedData;
     } catch (error) { console.log(error); }
 }
-const fetchIIFE = (async () => {
+const fetchIIFE = (async () => {//setrting options to country
     const apiData = await fetchdata()
     for (const value in apiData) {
         const option = document.createElement('option')
@@ -68,7 +65,7 @@ const fetchIIFE = (async () => {
         }
     })
 })()
-const setData = (data, key) => {
+const setData = (data, key) => {//setrting options to states
     const states = data[key].capital;
     for (const index of states) {
         const option = document.createElement('option')
@@ -184,7 +181,6 @@ const deleteData = (index) => {//deleting data using index
         readData()
     }
 }
-
 //event listerners
 getImage.addEventListener('change', () => {//event listerner for image
     let extension = getImage.files[0] ? getImage.files[0].name.split('.').pop().toLowerCase() : null;
@@ -214,10 +210,9 @@ getCopyAddress.addEventListener('change', () => {//radio button for copy address
         (getCommunicationAddress.removeEventListener('input', copyaddress), getPermanentAddress.readOnly = false, permanentaddress.value = '');
 })
 function copyaddress() { getPermanentAddress.value = getCommunicationAddress.value }//function for event handler
-
 //css 
 let elements = [getImage, getOrganization, getFirstName, getLastName, getDob, getMobile, getEmail, getCountry, getState, getCity, getCommunicationAddress, getPermanentAddress, getPincode]
-elements.forEach(element => element.addEventListener('input', () => { removeHelper(element) }))
+elements.forEach(element => element.addEventListener('input', () => { removeHelper(element) }))//removing helper texts
 function addHelper(element) {//add helper test and border
     element.classList.add('border_red')
     element.nextElementSibling.classList.add('display_block')
@@ -256,7 +251,7 @@ const resetBorder = () => {//reset all helper and borders
 const resetSelect = () => {//reset all select options
     RESET_SELECT.forEach(select => select.selectedIndex = 0)
 }
-const resetInputs = () => {
+const resetInputs = () => {//reset all inputs
     RESET_INPUTS.forEach(input => input.value = '')
     getState.innerHTML = `<option value="">----Select State----</option>`
     setImage.src = 'images/whiteBG.png'
