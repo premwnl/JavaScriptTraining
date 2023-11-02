@@ -9,6 +9,7 @@
 //DOM declaration
 const boxes = document.querySelectorAll('.box')
 const container = document.getElementById('container')
+const result = document.getElementById('result')
 //Constant declaration
 const x = '<i class="fa-solid fa-xmark fa-9x"></i>'
 const o = '<i class="fa-solid fa-o fa-7x"></i>'
@@ -33,7 +34,10 @@ const cpuMove = () => {
             document.getElementById(`box_${index}`).style.pointerEvents = 'none'
             swapTurn()
         } else cpuMove()
-    } else setTimeout(() => { reset() }, 1000)
+    } else {
+        result.textContent = 'GAME DRAW'
+        setTimeout(() => { reset() }, 1000)
+    }
 }
 const getRandomNumber = () => {
     let index = Math.floor(Math.random() * 9)
@@ -45,7 +49,11 @@ const swapTurn = () => {
         youTurn = !youTurn;
         cpuTurn = !cpuTurn;
         cpuTurn ? (container.style.pointerEvents = 'none', setTimeout(() => cpuMove(), 500)) : container.style.pointerEvents = 'all';
-    } else { container.style.pointerEvents = 'none'; reset() }
+    } else {
+        container.style.pointerEvents = 'none';
+        result.textContent = youTurn ? 'YOU WIN' : 'CPU WIN'
+        reset();
+    }
 }
 const isNOWinner = () => {
     if ((game[0] == 2 && game[1] == 2 && game[2] == 2) || (game[0] == 1 && game[1] == 1 && game[2] == 1)) { return false }
