@@ -12,14 +12,40 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="ex34.css">
+    <link rel="stylesheet" href="ex35.css">
 </head>
 
 <body>
-    <main class="d_flex justifyContent_center alignItems_center">
-
+    <main class="d_flex justifyContent_center alignItems_center" style="color: antiquewhite;">
+        <button class="" id="reset" style="margin-bottom: 100px;background: transparent ;outline: none;border: none;"><i
+                class="fa-solid fa-arrows-rotate fa-7x" style="color: antiquewhite;"></i></button>
+        <div class="d_flex flex_col justifyContent_center alignItems_center padding_twenty" id="main">
+            <h1 class="padding_twenty" id="question"></h1>
+            <h2 class="d_flex" id="options" style="color: antiquewhite;">
+                <div class="padding_twenty d_flex">
+                    <input type="radio" name="option" id="option_1" value="">
+                    <label for="option_1"></label>
+                </div>
+                <div class="padding_twenty d_flex">
+                    <input type="radio" name="option" id="option_2" value="">
+                    <label for="option_2"></label>
+                </div>
+                <div class="padding_twenty d_flex">
+                    <input type="radio" name="option" id="option_3" value="">
+                    <label for="option_3"></label>
+                </div>
+                <div class="padding_twenty d_flex">
+                    <input type="radio" name="option" id="option_4" value="">
+                    <label for="option_4"></label>
+                </div>
+            </h2>
+            <h2 class="padding_twenty" id="answer" style="color: green;opacity: 0;">Paris</h2>
+            <h2 class="padding_twenty"><span id="correct">0</span> / <span id="total">1</span></h2>
+        </div>
+        <button class="" id="next" style="margin-bottom: 100px;background: transparent ;outline: none;border: none;"><i
+                class="fa-solid fa-arrow-right fa-7x" style="color: antiquewhite;"></i></button>
+        <script src="ex35.js"></script>
     </main>
-    <script src="ex35.js"></script>
 </body>
 
 </html>

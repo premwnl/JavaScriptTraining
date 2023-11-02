@@ -2,13 +2,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-align: center;
+    text-shadow: 2px 2px 20px gray,
+        -2px 1px 20px gray;
+    transition: 0.5s;
 }
 main {
     width: 100%;
     height: 100vh;
-}
-main {
+    font-size: 2rem;
     background-color: black;
+}
+#main {
+    width: 80%;
 }
 .container {
     width: 750px;
@@ -41,4 +47,24 @@ main {
 }
 .padding_ten {
     padding: 10px;
+}
+input[type=radio] {
+    border: 0px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    height: 1.5em;
+    margin: 5px;
+    margin-top: 20px;
+    display: none;
+}
+label {
+    margin: 40px;
+}
+i, label {
+    transition: 0.2s;
+}
+i:hover {
+    color: aliceblue !important;
+    text-shadow: 1px 1px 10px gray,
+        -1px 0.5px 10px gray;
 }
