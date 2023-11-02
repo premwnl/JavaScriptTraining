@@ -75,33 +75,27 @@ const setData = (data, key) => {//setrting options to states
     }
 }
 const register = () => {//validations
-    const organization = getOrganization.value
-    const firstName = getFirstName.value
-    const lastName = getLastName.value
+    const inputValueObj = { organization: getOrganization.value, firstName: getFirstName.value, lastName: getLastName.value, dateOfBirth: getDob.value, mobile: getMobile.value, email: getEmail.value, country: getCountry.value, state: getState.value, city: getCity.value, communicationaddress: getCommunicationAddress.value, permanentaddress: getPermanentAddress.value, pincode: getPincode.value }
     const gender = document.querySelector("input[name='gender']:checked").value;
     const addressCopy = getCopyAddress.checked
-    const dateOfBirth = getDob.value.split("-").reverse().join("-");
-    const mobile = getMobile.value
-    const email = getEmail.value
-    const country = getCountry.value
-    const state = getState.value
-    const city = getCity.value
-    const communicationaddress = getCommunicationAddress.value
-    const permanentaddress = getPermanentAddress.value
-    const pincode = getPincode.value
-    const inputObj = { organization, firstName, lastName, dateOfBirth, mobile, email, country, state, city, communicationaddress, permanentaddress, pincode }
-    if (setImage.src.includes('images/whiteBG.png') || !organization || !firstName || !lastName || !dateOfBirth || !mobile || !email || !country || !city || !communicationaddress || !permanentaddress || !pincode) {
-        if (setImage.src.includes('images/whiteBG.png')) { addHelper(getImage) }
-        for (const input in inputObj) {
-            if (!inputObj[input]) addHelper(document.getElementById(`${input}`));
+    function check() {
+        for (const key in inputValueObj) {
+            if (!inputValueObj[key]) return true
         }
-    } else if (firstName.length < 3) { addHelper(getFirstName) }
-    else if (new Date(dateOfBirth) > new Date(Date.now())) { addHelper(getDob) }
-    else if (!regexMobile.test(mobile) || mobile.replaceAll(" ", '').length > 15) { addHelper(getMobile) }
-    else if (!regexEmail.test(email)) { addHelper(getEmail) }
-    else if (!regexPincode.test(pincode) || pincode.length > 6) { addHelper(getPincode) }
+        return false
+    }
+    if (setImage.src.includes('images/whiteBG.png') || check()) {
+        if (setImage.src.includes('images/whiteBG.png')) { addHelper(getImage) }
+        for (const input in inputValueObj) {
+            if (!inputValueObj[input]) addHelper(document.getElementById(`${input}`));
+        }
+    } else if (inputValueObj.firstName.length < 3) { addHelper(getFirstName) }
+    else if (new Date(inputValueObj.dateOfBirth) > new Date(Date.now())) { addHelper(getDob) }
+    else if (!regexMobile.test(inputValueObj.mobile) || inputValueObj.mobile.replaceAll(" ", '').length > 15) { addHelper(getMobile) }
+    else if (!regexEmail.test(inputValueObj.email)) { addHelper(getEmail) }
+    else if (!regexPincode.test(inputValueObj.pincode) || inputValueObj.pincode.length > 6) { addHelper(getPincode) }
     else {
-        let items = { image: setImage.src, organization, firstName, lastName, gender, dateOfBirth, mobile, email, addressCopy, country, state, city, communicationaddress, permanentaddress, pincode }
+        let items = { image: setImage.src, organization: inputValueObj.organization, firstName: inputValueObj.firstName, lastName: inputValueObj.lastName, gender, dateOfBirth: inputValueObj.dateOfBirth.split("-").reverse().join("-"), mobile: inputValueObj.mobile, email: inputValueObj.email, addressCopy, country: inputValueObj.country, state: inputValueObj.state, city: inputValueObj.city, communicationaddress: inputValueObj.communicationaddress, permanentaddress: inputValueObj.permanentaddress, pincode: inputValueObj.pincode }
         createData(items)
         resetInputs()
     }
@@ -154,24 +148,18 @@ const updateData = async (index) => {//update data and renders to table
     let apiData = await fetchdata()
     let prevData = JSON.parse(localStorage.getItem('crud') || '[]');
     let data = prevData[index];
+    let elementArray = [getOrganization, getFirstName, getLastName, getDob, getMobile, getEmail, getCountry, getState, getCity, getCommunicationAddress, getPermanentAddress, getPincode]
+    let valueArray = ['organization', 'firstName', 'lastName', 'dateOfBirth', 'mobile', 'email', 'country', 'state', 'city', 'communicationaddress', 'permanentaddress', 'pincode']
     setImage.src = data.image;
-    getOrganization.value = data.organization;
-    getFirstName.value = data.firstName
-    getLastName.value = data.lastName
-    document.getElementById(`${data.gender.toLowerCase()}`).checked = true;
-    getDob.value = data.dateOfBirth.split("-").reverse().join("-")
-    getMobile.value = data.mobile
-    getCopyAddress.checked = data.addressCopy
-    getEmail.value = data.email
-    getCountry.value = data.country
+    for (let index = 0; index < elementArray.length; index++) {
+        elementArray[index] = getDob ? elementArray[index].value = `${data[valueArray[index]]}`.split("-").reverse().join("-") : elementArray[index].value = data[valueArray[index]]
+    }
     for (const key in apiData) {
-        if (getCountry.value == apiData[key].name.common) { setData(apiData, key) }
+        if (elementArray[6] == apiData[key].name.common) { setData(apiData, key) }
     }
     getState.value = data.state
-    getCity.value = data.city
-    getCommunicationAddress.value = data.communicationaddress
-    getPermanentAddress.value = data.permanentaddress
-    getPincode.value = data.pincode
+    getCopyAddress.checked = data.addressCopy
+    document.getElementById(`${data.gender.toLowerCase()}`).checked = true;
 }
 const deleteData = (index) => {//deleting data using index
     let answer = confirm('Are You Want to Delete This Data?')
@@ -184,7 +172,7 @@ const deleteData = (index) => {//deleting data using index
 //event listerners
 getImage.addEventListener('change', () => {//event listerner for image
     let extension = getImage.files[0] ? getImage.files[0].name.split('.').pop().toLowerCase() : null;
-    if (getImage.files[0] && (extension == 'jpg' || extension == 'jpeg' || extension == 'png') && getImage.files[0].size < 1000000) {
+    if (getImage.files[0] && (extension == 'jpg' || extension == 'jpeg' || extension == 'png') && getImage.files[0].size < 1600000) {
         removeHelper(getImage);
         let reader = new FileReader();
         reader.onload = function (e) {
@@ -205,7 +193,7 @@ form.addEventListener('reset', (e) => {//reset button
     reset()
 })
 getCopyAddress.addEventListener('change', () => {//radio button for copy address
-    getCopyAddress.checked ? (getPermanentAddress.value = getCommunicationAddress.value,
+    getCopyAddress.checked ? (getPermanentAddress.value = getCommunicationAddress.value, getCommunicationAddress.value ? removeHelper(getPermanentAddress) : null,
         getCommunicationAddress.addEventListener('input', copyaddress), getPermanentAddress.readOnly = true) :
         (getCommunicationAddress.removeEventListener('input', copyaddress), getPermanentAddress.readOnly = false, permanentaddress.value = '');
 })

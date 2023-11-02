@@ -11,3 +11,11 @@
 //DOM declaration
 //Constant declaration
 //Main functions
+let fetchData = (async () => {
+    try {
+        let questionResponse = await fetch('questions.js')
+        let data = questionResponse.json()
+    } catch (error) {
+        console.log(error);
+    }
+})()
