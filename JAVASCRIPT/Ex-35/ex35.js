@@ -72,4 +72,9 @@ reset.addEventListener('click', () => {
     correct.textContent = 0
     total.textContent = 1
     createQuestion()
+    main.style.pointerEvents = 'all'
+    inputs.forEach(input => {
+        input.checked = false
+        input.nextElementSibling.style.color = 'antiquewhite'
+    })
 })
