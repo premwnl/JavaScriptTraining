@@ -1,4 +1,3 @@
-
 [
     {
         "question": "What is the capital of France?",
@@ -568,7 +567,7 @@
     },
     {
         "question": "What is the term for the total value of all goods and services produced within a country's borders in a given year?",
-        "options": ["Gross National Product", "Gross Domestic Product", "Net National Income", "Consumer Price Index"],
+        "options": ["Gross National Product", "Gross Domestic Product", "Net National Income", "Consumer Price Index (CPI)"],
         "answer": "Gross Domestic Product"
     },
     {
