@@ -543,7 +543,7 @@
     {
         "question": "Which of the following is considered a key indicator of a country's economic health?",
         "options": ["Gross National Product", "Gross Domestic Product", "Consumer Price Index", "Industrial Production Index"],
-        "answer": " Gross Domestic Product"
+        "answer": "Gross Domestic Product"
     },
     {
         "question": "What does the term 'supply and demand' refer to in economics?",
