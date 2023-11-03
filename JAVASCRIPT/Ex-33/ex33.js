@@ -220,7 +220,7 @@ function onlyMobile(e) {//onlyDigits allowed
 function onlyAlphabets(e) {//onlyAlphabets allowed
     let char = e.charCode
     return ((char >= 65 && char <= 90) ||
-        (char >= 97 && char <= 122)) ? true : false
+        (char >= 97 && char <= 122) || char == 32) ? true : false
 }
 //reset
 const resetBorder = () => {//reset all helper and borders
