@@ -78,18 +78,18 @@ const register = () => {//validations
     const inputValueObj = { organization: getOrganization.value, firstName: getFirstName.value, lastName: getLastName.value, dateOfBirth: getDob.value, mobile: getMobile.value, email: getEmail.value, country: getCountry.value, state: getState.value, city: getCity.value, communicationaddress: getCommunicationAddress.value, permanentaddress: getPermanentAddress.value, pincode: getPincode.value }
     const gender = document.querySelector("input[name='gender']:checked").value;
     const addressCopy = getCopyAddress.checked
-    function check() {
+    function checkInputs() {
         for (const key in inputValueObj) {
             if (!inputValueObj[key]) return true
         }
         return false
     }
-    if (setImage.src.includes('images/whiteBG.png') || check()) {
+    if (setImage.src.includes('images/whiteBG.png') || checkInputs()) {
         if (setImage.src.includes('images/whiteBG.png')) { addHelper(getImage) }
         for (const input in inputValueObj) {
             if (!inputValueObj[input]) addHelper(document.getElementById(`${input}`));
         }
-    } else if (inputValueObj.firstName.length < 3) { addHelper(getFirstName) }
+    }
     else if (new Date(inputValueObj.dateOfBirth) > new Date(Date.now())) { addHelper(getDob) }
     else if (!regexMobile.test(inputValueObj.mobile) || inputValueObj.mobile.replaceAll(" ", '').length > 15) { addHelper(getMobile) }
     else if (!regexEmail.test(inputValueObj.email)) { addHelper(getEmail) }
@@ -155,7 +155,7 @@ const updateData = async (index) => {//update data and renders to table
         elementArray[index] = getDob ? elementArray[index].value = `${data[valueArray[index]]}`.split("-").reverse().join("-") : elementArray[index].value = data[valueArray[index]]
     }
     for (const key in apiData) {
-        if (elementArray[6] == apiData[key].name.common) { setData(apiData, key) }
+        if (elementArray[getCountry] == apiData[key].name.common) { setData(apiData, key) }
     }
     getState.value = data.state
     getCopyAddress.checked = data.addressCopy
