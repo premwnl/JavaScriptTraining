@@ -72,12 +72,11 @@ class Form extends React.Component {
           <tbody>
             {this.props.todoList?.map((todo, index) => (
               <tr key={index}>
+                {console.log(this.props.editing)}
                 <td>{todo.title}</td>
                 <td>{todo.estimation}</td>
                 <td>{todo.description}</td>
-                <td
-                  style={{ pointerEvents: this.props.editing ? "all" : "none" }}
-                >
+                <td>
                   <i
                     className="fa-solid fa-edit"
                     onClick={() => this.handleEdit(index)}
