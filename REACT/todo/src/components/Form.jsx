@@ -71,8 +71,17 @@ class Form extends React.Component {
           </thead>
           <tbody>
             {this.props.todoList?.map((todo, index) => (
-              <tr key={index}>
-                {console.log(this.props.editing)}
+              <tr
+                key={index}
+                style={{
+                  pointerEvents:
+                    this.state.title ||
+                    this.state.estimation ||
+                    this.state.description
+                      ? "none"
+                      : "all",
+                }}
+              >
                 <td>{todo.title}</td>
                 <td>{todo.estimation}</td>
                 <td>{todo.description}</td>
