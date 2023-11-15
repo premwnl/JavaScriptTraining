@@ -49,7 +49,6 @@ class App extends React.Component {
           addTodo={this.addTodo}
           updateTodo={this.updateTodo}
           todoList={this.state.todoList}
-          editing={this.state.editing}
           handleDelete={this.handleDelete}
         />
       </>

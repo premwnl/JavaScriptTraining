@@ -49,9 +49,21 @@ th {
 }
 .fa-edit {
   color: blue;
+}
+.fa-trash,
+h6 {
+  color: red;
+}
+.fa-trash,
+.fa-edit {
   margin-inline: 30px;
 }
-.fa-trash {
-  color: red;
-  margin-inline: 30px;
+.fa-trash,
+.fa-edit,
+button {
+  cursor: pointer;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }

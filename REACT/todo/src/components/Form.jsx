@@ -7,9 +7,10 @@ class Form extends React.Component {
       title: "",
       estimation: "",
       description: "",
+      validating: false,
     };
   }
-
+  onlyDigits(e) {}
   //setting inputs to state
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -38,8 +39,9 @@ class Form extends React.Component {
             name="title"
             value={this.state.title}
             onChange={this.handleChange}
-            required
+            // required
           />
+          {this.state.validating && !this.state.title && <h6>Enter Title</h6>}
           <input
             type="number"
             placeholder="Estimation(hrs)"
@@ -47,8 +49,11 @@ class Form extends React.Component {
             max={100}
             name="estimation"
             value={this.state.estimation}
+            onKeyDown={(e) =>
+              (e.keyCode === 69 || e.keyCode === 190) && e.preventDefault()
+            }
             onChange={this.handleChange}
-            required
+            // required
           />
           <textarea
             type="text"
@@ -56,7 +61,7 @@ class Form extends React.Component {
             name="description"
             value={this.state.description}
             onChange={this.handleChange}
-            required
+            // required
           />
           <button type="submit">ADD</button>
         </form>
