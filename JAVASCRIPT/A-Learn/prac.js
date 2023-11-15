@@ -27,7 +27,6 @@ import colors from "colors";
 
 // console.log(a('abcadea'));
 
-
 //  Write a JavaScript function to find a word within a string
 
 // function findWord(str, substr) {
@@ -49,7 +48,6 @@ import colors from "colors";
 
 // console.log(`${findWord("ABCDsh", 'd sH')}`);
 
-
 // Write a JavaScript function that takes a string which has lower and upper case letters as a parameter and converts upper case letters to lower case, and lower case letters to upper case
 // function convertCases(str) {
 //     let newStr = ''
@@ -61,14 +59,13 @@ import colors from "colors";
 // }
 // console.log(convertCases('AbCd'));
 
-//Write a JavaScript function to calculate the percentage (%) of a number 
+//Write a JavaScript function to calculate the percentage (%) of a number
 
 // function findPercentage(num, per) {
 //     return (num / 100 * per)
 // }
 
 // console.log(findPercentage(100, 50));
-
 
 // Write Javascript program to print armstrong number between(1 - 1000) in Javascript ?
 // function isArmstrong(num) {
@@ -97,7 +94,6 @@ import colors from "colors";
 //     return arr;
 // }
 // console.log(armstrongNumber(1, 1000));
-
 
 // Write a program in Javascript to print Fibonacci series up to given number ? Write both iterative and recursive version
 
@@ -131,8 +127,6 @@ import colors from "colors";
 
 // console.log('rec', fiboRec(10));
 
-
-
 // let n = 5
 
 // for (let i = 0; i < 2 * n; i++) {
@@ -151,8 +145,7 @@ import colors from "colors";
 //     console.log(result);
 // }
 
-
-// triangular pattern 
+// triangular pattern
 
 // function tria(arr) {
 //     if (arr.length < 1) return arr
@@ -226,7 +219,6 @@ import colors from "colors";
 
 // console.log(triangularNumbers(5))
 
-
 // Write code that enhances all arrays such that you can call the snail(rowsCount, colsCount) method that transforms the 1D array into a 2D array organised in the pattern known as snail traversal order.
 //     nums = [19, 10, 3, 7, 9, 8, 5, 2, 1, 17, 16, 14, 12, 18, 6, 13, 11, 20, 4, 15]
 // rowsCount = 5
@@ -257,7 +249,6 @@ import colors from "colors";
 // let rowsCount = 5
 // let colsCount = 4
 // console.log(snailTraversal(rowsCount, colsCount, nums));
-
 
 // array = [90, 8, 0, 9, 0, 9, 0, 7, 99]
 // Move all the zeroes to the last index of the array.Do this without any inbuilt methods
@@ -301,7 +292,6 @@ import colors from "colors";
 
 // console.log(moveZeroes(array));
 
-
 // function find(array) {
 //     for (let i = 0; i < array.length - 1; i++) {
 //         for (let j = 0; j < array.length; j++) {
@@ -341,7 +331,6 @@ import colors from "colors";
 
 // console.log(c);
 
-
 //array chucking
 
 // function chunk(arr, val) {
@@ -357,8 +346,7 @@ import colors from "colors";
 
 // console.log(chunk(arr, val));
 
-
-//longest  country 
+//longest  country
 
 // function longest(array) {
 //     longest = ''
@@ -370,8 +358,6 @@ import colors from "colors";
 
 // let arr = ['Germany', 'Australia', 'United State of America', "United Kingdom"]
 // console.log(longest(arr));
-
-
 
 //find top notes
 
@@ -401,7 +387,6 @@ import colors from "colors";
 // ]
 
 // console.log(topNotes(arr));
-
 
 //flames
 
@@ -436,17 +421,13 @@ import colors from "colors";
 //         size--
 //     }
 
-
 //     return FLAMES
 // }
-
 
 // let n1 = 'Premkumar'
 // let n2 = 'someone'
 
-
 // console.log(calculate(n1, n2));
-
 
 //min and max
 
@@ -461,12 +442,9 @@ import colors from "colors";
 //     return `Min:${min}  Max:${max}`
 // }
 
-
-
 // let arr = [7, 5, 2, 6, 3, 4, 1]
 
 // console.log(calculate(arr));
-
 
 //add even nums 2d array
 
@@ -485,7 +463,6 @@ import colors from "colors";
 
 // console.log(calculate(arr));
 
-
 // let username = 'prem kumar london'
 // let arr = username.split(' ')
 // for (let i = 0; i < arr.length; i++) {
@@ -493,7 +470,6 @@ import colors from "colors";
 // }
 // arr = arr.join(' ')
 // console.log(arr);
-
 
 // const s1 = [[4, 2], [2, 4], [1, 2]];
 // const s2 = [[6, 2], [4, 2], [1, 1], [1, 1]];
@@ -537,11 +513,15 @@ import colors from "colors";
 //     setMatrix.appendChild(tr);
 // }
 
-
-{/* <i class="fa-solid fa-hand fa-2xl"></i> */ }
-{/* <i class="fa-solid fa-hand-scissors fa-2xl"></i> */ }
-{/* <i class="fa-solid fa-hand-back-fist fa-2xl"></i> */ }
-
+{
+  /* <i class="fa-solid fa-hand fa-2xl"></i> */
+}
+{
+  /* <i class="fa-solid fa-hand-scissors fa-2xl"></i> */
+}
+{
+  /* <i class="fa-solid fa-hand-back-fist fa-2xl"></i> */
+}
 
 // function add(a) {
 //     return (b) => {
@@ -550,7 +530,6 @@ import colors from "colors";
 // }
 
 // console.log(add(1)(2))
-
 
 // let cards = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'drawTwo', 'skip', 'reverse']
 // let colorss = ['red', 'green', 'blue', 'yellow']
