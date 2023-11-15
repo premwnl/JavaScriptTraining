@@ -13,7 +13,7 @@ form {
   flex-direction: column;
 }
 h1 {
-  width: 24%;
+  width: 360px;
   margin: 10px;
   border-bottom: 2px black solid;
 }
