@@ -21,7 +21,7 @@ input,
 button,
 textarea {
   font-size: 1rem;
-  width: 360px;
+  min-width: 360px;
   height: 40px;
   margin: 10px;
   padding: 6px;
