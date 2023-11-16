@@ -34,7 +34,11 @@ class App extends React.Component {
 
   //setting updating index
   updateTodo = (index) => {
-    this.state.editing = index;
+    // this.state.editing = index;
+    this.setState((prevState) => ({
+      todoList: [...prevState.todoList],
+      editing: index,
+    }));
   };
 
   //delete item

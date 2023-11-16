@@ -7,20 +7,29 @@ class Form extends React.Component {
       title: "",
       estimation: "",
       description: "",
-      validating: false,
+      isEmpty: false,
     };
   }
-  onlyDigits(e) {}
   //setting inputs to state
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    this.state.isEmpty = false;
   };
   // submit form and setting  table
   handleSubmit = (e) => {
     e.preventDefault();
     const { title, estimation, description } = this.state;
-    this.props.addTodo({ title, estimation, description });
-    this.setState({ title: "", estimation: "", description: "" });
+    if (!title || !estimation || !description) {
+      this.setState({
+        title: this.state.title,
+        estimation: this.state.estimation,
+        description: this.state.description,
+        isEmpty: true,
+      });
+    } else {
+      this.props.addTodo({ title, estimation, description });
+      this.setState({ title: "", estimation: "", description: "" });
+    }
   };
   //editing index set and update
   handleEdit = (index) => {
@@ -39,31 +48,56 @@ class Form extends React.Component {
             name="title"
             value={this.state.title}
             onChange={this.handleChange}
-            // required
+            style={{
+              border:
+                this.state.isEmpty && !this.state.title && "2px solid red",
+            }}
           />
-          {this.state.validating && !this.state.title && <h6>Enter Title</h6>}
+          <h5>
+            {this.state.isEmpty && !this.state.title && "Enter Title"}&nbsp;
+          </h5>
           <input
             type="number"
             placeholder="Estimation(hrs)"
             min={1}
-            max={100}
+            max={1000}
             name="estimation"
             value={this.state.estimation}
             onKeyDown={(e) =>
               (e.keyCode === 69 || e.keyCode === 190) && e.preventDefault()
             }
             onChange={this.handleChange}
-            // required
+            style={{
+              border:
+                this.state.isEmpty && !this.state.estimation && "2px solid red",
+            }}
           />
+          <h5>
+            {this.state.isEmpty &&
+              !this.state.estimation &&
+              "Enter Estimation hours"}
+            &nbsp;
+          </h5>
           <textarea
             type="text"
             placeholder="Description..."
             name="description"
             value={this.state.description}
             onChange={this.handleChange}
-            // required
+            style={{
+              border:
+                this.state.isEmpty &&
+                !this.state.description &&
+                "2px solid red",
+            }}
           />
-          <button type="submit">ADD</button>
+          <h5>
+            {this.state.isEmpty &&
+              !this.state.description &&
+              "Enter Description"}
+            &nbsp;
+          </h5>
+          <button type="submit">{this.props.editing ? "UPDATE" : "ADD"}</button>
         </form>
         {this.props.todoList.length && (
           <table>

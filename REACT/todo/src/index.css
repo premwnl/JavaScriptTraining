@@ -23,7 +23,8 @@ textarea {
   font-size: 1rem;
   min-width: 360px;
   height: 40px;
-  margin: 10px;
+  margin-inline: 10px;
+  margin-top: 10px;
   padding: 6px;
 }
 button {
@@ -51,7 +52,7 @@ th {
   color: blue;
 }
 .fa-trash,
-h6 {
+h5 {
   color: red;
 }
 .fa-trash,
