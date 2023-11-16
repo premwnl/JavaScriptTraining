@@ -94,7 +94,7 @@ class Form extends React.Component {
             }}
             className={
               this.state.isEmpty.title && !this.state.title
-                ? "placeHolder"
+                ? "redPlaceHolder"
                 : null
             }
           />
@@ -121,7 +121,7 @@ class Form extends React.Component {
             }}
             className={
               this.state.isEmpty.estimation && !this.state.estimation
-                ? "placeHolder"
+                ? "redPlaceHolder"
                 : null
             }
           />
@@ -145,7 +145,7 @@ class Form extends React.Component {
             }}
             className={
               this.state.isEmpty.description && !this.state.description
-                ? "placeHolder"
+                ? "redPlaceHolder"
                 : null
             }
           />

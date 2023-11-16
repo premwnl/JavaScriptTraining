@@ -2,14 +2,19 @@ import React from "react";
 
 class Table extends React.Component {
   render() {
+    const tableContent = [
+      { label: "Title", data: "title" },
+      { label: "Estimation(hours)", data: "estimation" },
+      { label: "Description", data: "description" },
+    ];
     return (
       <>
         <table>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Estimation (hours)</th>
-              <th>Description</th>
+              {tableContent.map((item, index) => (
+                <th key={index}>{item.label}</th>
+              ))}
               <th>Manage</th>
             </tr>
           </thead>
@@ -26,9 +31,9 @@ class Table extends React.Component {
                       : "all",
                 }}
               >
-                <td>{todo.title}</td>
-                <td>{todo.estimation}</td>
-                <td>{todo.description}</td>
+                {tableContent.map((item, index) => (
+                  <td key={index}>{todo[item.data]}</td>
+                ))}
                 <td>
                   <i
                     className="fa-solid fa-edit"
