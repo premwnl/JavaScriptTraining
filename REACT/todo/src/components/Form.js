@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "./Table";
 
-class Form extends React.Component {
+export default class Form extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -44,8 +44,8 @@ class Form extends React.Component {
   };
   //add item to table
   addTodo = (todo) => {
+    //edited add
     if (this.state.editing != -1) {
-      //editing submit
       let updatedTodo = this.state.todoList.filter(
         (item) => item != this.state.todoList[this.state.editing]
       );
@@ -171,5 +171,3 @@ class Form extends React.Component {
     );
   }
 }
-
-export default Form;

@@ -1,6 +1,6 @@
 import React from "react";
 
-class Table extends React.Component {
+export default class Table extends React.Component {
   render() {
     const tableContent = [
       { label: "Title", data: "title" },
@@ -53,4 +53,4 @@ class Table extends React.Component {
   }
 }
 
-export default Table;
+// export default Table;
