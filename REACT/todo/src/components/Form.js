@@ -44,23 +44,9 @@ export default class Form extends React.Component {
   };
   //add item to table
   addTodo = (todo) => {
-    //edited add
-    if (this.state.editing != -1) {
-      let updatedTodo = this.state.todoList.filter(
-        (item) => item != this.state.todoList[this.state.editing]
-      );
-      let firstSet = updatedTodo.slice(0, this.state.editing) || "[]";
-      let lastSet =
-        updatedTodo.slice(this.state.editing, updatedTodo.length) || "[]";
-      this.setState(() => ({
-        todoList: [...firstSet, todo, ...lastSet],
-      }));
-    } else {
-      //normal add
-      this.setState((prevState) => ({
-        todoList: [...prevState.todoList, todo],
-      }));
-    }
+    this.state.editing != -1
+      ? this.state.todoList.splice(this.state.editing, 1, todo)
+      : this.state.todoList.splice(this.state.todoList.length, 0, todo);
     this.setState({
       isEmpty: {
         title: false,

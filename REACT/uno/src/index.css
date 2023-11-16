@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  /* text-shadow: 3px 3px 20px gray, -2px 1px 30px gray; */
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.width_full {
+  width: 100%;
+}
+.height_vh {
+  height: 100vh;
+}
+.d_flex {
+  display: flex;
+}
+.flex_col {
+  flex-direction: column;
+}
+.justifyContent_center {
+  justify-content: center;
+}
+.justifyContent_spaceBetween {
+  justify-content: space-between;
+}
+.alignItems_center {
+  align-items: center;
+}
+.padding_twenty {
+  padding: 20px;
+}
+.padding_ten {
+  padding: 10px;
+}
+.margin_ten {
+  margin: 10px;
+}
+.margin_inline_ten {
+  margin: 10px;
+}
+.padding_ten_top {
+  padding-top: 10px;
+}
+.colorWhite {
+  color: white;
+}
+.colorAqua {
+  color: aqua;
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 3px 3px 20px gray, -2px 1px 30px gray;
+}
+html,
+body,
+main,
+.container,
+.modal,
+.innerContainer {
+  width: 100%;
+  height: 100%;
+}
+.widthFull {
+  width: 100%;
+}
+.opacity {
+  opacity: 0;
+}
+.d_flex {
+  display: flex;
+}
+.flex_col {
+  flex-direction: column;
+}
+.justifyContent_center {
+  justify-content: center;
+}
+.justifyContent_spaceBetween {
+  justify-content: space-between;
+}
+.alignItems_center {
+  align-items: center;
+}
+.overflow {
+  overflow: auto;
+}
+.overflow::-webkit-scrollbar {
+  display: none;
+}
+.padding_twenty {
+  padding: 20px;
+}
+.padding_ten {
+  padding: 10px;
+}
+.margin_ten {
+  margin: 10px;
+}
+.margin_inline_ten {
+  margin: 10px;
+}
+.padding_ten_top {
+  padding-top: 10px;
+}
+.colorWhite {
+  color: white;
+}
+.colorAqua {
+  color: aqua;
+}
+.container,
+.modal {
+  background-image: url(/src/Images/bg-4.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+  filter: brightness(100%);
+}
+.modal {
+  background: transparent;
+}
+.modalContainer {
+  width: 40%;
+  aspect-ratio: 16/11;
+  border-block: 10px solid hsla(180, 100%, 50%, 0.44);
+  border-radius: 20%;
+}
+.play_button {
+  width: 100px;
+  background: transparent;
+  outline: none;
+  border: 3px solid aqua;
+  border-radius: 5px;
+  font-size: larger;
+  font-weight: bolder;
+  transition: 0.5s;
+  margin-top: 100px;
+}
+.play_button:hover {
+  background: aqua;
+  color: black;
+  border: 3px solid black;
+}
+.modalInput input {
+  width: 300px;
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: larger;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid aqua;
+  border-radius: 10%;
+}
+.modal {
+  color: #ffffff;
+  text-align: center;
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(50%, -50%) scale(0.000001);
+  transition: 1s;
+  top: 0%;
+  left: -100%;
+  letter-spacing: 200px;
+}
+.popUpModal {
+  letter-spacing: 10px;
+  border-radius: 20px;
+  top: 50%;
+  left: -50%;
+  transform: translate(50%, -50%) scale(1);
+}
+.card {
+  min-width: 148px;
+  aspect-ratio: 22/31;
+  border-radius: 10px;
+  color: white;
+  margin-left: -60px;
+  outline: 10px solid antiquewhite;
+}
+#playerCards .card,
+#deck {
+  transition: 0.5s;
+}
+#deck:active {
+  transform: rotate(2deg) translate(2px, 2px);
+}
+#playerCards .card:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 3px 3px 20px gray, -2px 1px 30px gray;
+}
+.card_bg,
+.card_deck {
+  min-width: 160px;
+  aspect-ratio: 22/31;
+  background: url(/src/Images/uno-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+.wild {
+  background: url(/src/Images/wild.1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.wildDrawFour {
+  background: url(/src/Images/wildplus4.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.card_bg {
+  margin-left: -70px;
+}
+.decks {
+  margin-left: -158px;
+  border: 0.1px solid gray;
+  border-radius: 15px;
+}
+.cardInfo {
+  height: 80%;
+}
+.card :first-child,
+.card :last-child {
+  display: flex;
+  font-size: large;
+  font-weight: bolder;
+  padding-inline: 5px;
+  justify-content: start;
+}
+.fa-solid {
+  padding: 5px;
+}
+.card :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72%;
+  font-size: 5rem;
+  font-weight: bolder;
+  text-shadow: none;
+  color: white !important;
+  border: 5px solid antiquewhite;
+  border-top-right-radius: 160px;
+  border-bottom-left-radius: 160px;
+  border-top-left-radius: 360px;
+  border-bottom-right-radius: 360px;
+  margin-inline: -5px;
+}
+.card :last-child {
+  transform: rotate(180deg);
+}
+#color {
+  background-color: #fff;
+  transform: rotate(45deg);
+  border-radius: 10px;
+}
+#unoPlayer,
+#unoCpu,
+#color {
+  width: 70px;
+  aspect-ratio: 1/1;
+  margin-right: 200px;
+  border-radius: 50%;
+  border: 2px double gray;
+}
+#playButton {
+  opacity: 0;
+  margin-left: 200px;
+  transition: 0.5s;
+}
+#playButton:hover {
+  transform: scale(0.95);
+}
+#openCard {
+  pointer-events: none;
+}
+#chooseColor,
+#resultModal {
+  position: absolute;
+  z-index: 9999 !important;
+  margin: auto;
+  transition: 0.5s;
+}
+#chooseColor {
+  width: 99%;
+  height: 98%;
+  background-color: rgba(128, 128, 128, 0.882);
+  transform: scale(0.0000000000001);
+}
+#resultModal {
+  background: url(/src/Images/bg-3.gif);
+  width: 100%;
+  height: 100%;
+  transform: scale(0.0000000000001);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.wildColors {
+  width: 100px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  padding: 40px;
+  border: 2px double gray;
+}
+.showColor,
+.showResult {
+  top: 0;
+  transform: scale(1) !important;
+}
+.playAgain {
+  width: 200px;
+  height: 60px;
+  background: transparent;
+  outline: none;
+  border: 3px solid aqua;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: bolder;
+  transition: 0.5s;
+  margin-top: 100px;
+}
+.playAgain:hover {
+  background: hsla(0, 0%, 100%, 0.2);
+  color: black;
+  border: 3px solid black;
+}
+#resultModal h1,
+#resultModal h2,
+#resultModal h3,
+#resultModal span,
+#resultModal button {
+  text-shadow: 3px 3px 20px black, -2px 1px 30px black !important;
+  text-align: center;
+}
+#unoPlayer {
+  transition: 0.5s;
+}
+#unoPlayer:hover {
+  transform: scale(0.95);
+}
+#time {
+  border: 2px dotted aqua;
+  text-align: center;
+  transform: translateX(-100px);
+} */

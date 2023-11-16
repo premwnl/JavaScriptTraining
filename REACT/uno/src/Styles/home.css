@@ -1,0 +1,55 @@
+.modal {
+  background-image: url(../Images/bg-2.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.modalContainer {
+  width: 50%;
+  aspect-ratio: 16/11;
+  border-block: 10px solid hsla(180, 100%, 50%, 0.64);
+  border-radius: 20%;
+}
+h1 {
+  font-size: 3rem;
+}
+.modalInput input {
+  width: 300px;
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: larger;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid aqua;
+  border-radius: 10%;
+}
+.helper {
+  color: red;
+  margin-left: 10%;
+  letter-spacing: 1;
+}
+.play_button {
+  width: 100px;
+  background: transparent;
+  outline: none;
+  border: 3px solid aqua;
+  border-radius: 5px;
+  font-size: larger;
+  font-weight: bolder;
+  transition: 0.5s;
+  margin-block: 40px;
+  cursor: pointer;
+}
+.play_button:hover {
+  background: aqua;
+  color: black;
+  border: 3px solid black;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input::placeholder {
+  color: rgba(0, 255, 255, 0.33);
+}
