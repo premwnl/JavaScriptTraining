@@ -5,16 +5,16 @@ import Game from "./Components/Game";
 import Result from "./Components/Result";
 
 function App() {
-  const [name, setName] = useState("");
+  const [data, setData] = useState({ name: "", time: "" });
 
-  const setUserName = (name) => {
-    setName(name);
+  const setUserName = (name, time) => {
+    setData({ name, time });
   };
   return (
     <>
       <Routes>
         <Route path="/" element={<Home setUserName={setUserName} />} />
-        <Route path="/game" element={<Game name={name} />} />
+        <Route path="/game" element={<Game data={data} />} />
         <Route path="/result" element={<Result />} />
       </Routes>
     </>

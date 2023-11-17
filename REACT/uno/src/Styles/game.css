@@ -1,0 +1,143 @@
+.container,
+.innerContainer {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  height: 100vh;
+  background-image: url(../Images/bg-4.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.overflow {
+  overflow: auto;
+}
+.overflow::-webkit-scrollbar {
+  display: none;
+}
+.names {
+  height: 5%;
+  padding-right: 100px;
+  text-align: center;
+}
+.card {
+  min-width: 148px;
+  aspect-ratio: 22/31;
+  border-radius: 10px;
+  color: white;
+  margin-left: -60px;
+  outline: 10px solid antiquewhite;
+}
+#playerCards .card,
+#deck,
+.wild,
+.wildDrawFour,
+#exit {
+  transition: 0.5s;
+  cursor: pointer;
+}
+#deck:active {
+  transform: rotate(2deg) translate(2px, 2px);
+}
+#playerCards .card:hover,
+.wild:hover,
+.wildDrawFour:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 3px 3px 20px gray, -2px 1px 30px gray;
+}
+.card_bg,
+.card_deck {
+  min-width: 160px;
+  aspect-ratio: 22/31;
+  background: url(/src/Images/uno-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+.wild {
+  background: url(/src/Images/wild.1.jpg);
+}
+.wildDrawFour {
+  background: url(/src/Images/wildplus4.jpeg);
+}
+.wild,
+.wildDrawFour {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-width: 148px;
+  aspect-ratio: 22/31;
+  border-radius: 10px;
+  color: white;
+  margin-left: -60px;
+  outline: 10px solid antiquewhite;
+}
+.card_bg {
+  margin-left: -70px;
+}
+.decks {
+  margin-left: -158px;
+  border: 0.1px solid gray;
+  border-radius: 15px;
+}
+.cardInfo {
+  height: 80%;
+}
+.card :first-child,
+.card :last-child {
+  display: flex;
+  font-size: large;
+  font-weight: bolder;
+  padding-inline: 5px;
+  justify-content: start;
+}
+.fa-solid {
+  padding: 5px;
+}
+.card :nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72%;
+  font-size: 5rem;
+  font-weight: bolder;
+  text-shadow: none;
+  color: white !important;
+  border: 5px solid antiquewhite;
+  border-top-right-radius: 160px;
+  border-bottom-left-radius: 160px;
+  border-top-left-radius: 360px;
+  border-bottom-right-radius: 360px;
+  margin-inline: -5px;
+}
+.card :last-child {
+  transform: rotate(180deg);
+}
+#color {
+  background-color: #fff;
+  transform: rotate(45deg);
+  border-radius: 10px;
+}
+#unoPlayer,
+#unoCpu,
+#color {
+  width: 70px;
+  aspect-ratio: 1/1;
+  margin-top: 5px;
+  margin-right: 200px;
+  border-radius: 50%;
+  border: 2px double gray;
+  transition: 0.5s;
+}
+#playButton {
+  margin-left: 200px;
+  transition: 0.5s;
+}
+#playButton:hover,
+#unoPlayer:hover,
+#unoCpu:hover {
+  transform: scale(0.95);
+}
+#exit:hover {
+  transform: scale(0.95) translateX(-80px) translateY(-8px) !important;
+}

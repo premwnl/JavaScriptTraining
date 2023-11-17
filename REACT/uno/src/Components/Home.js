@@ -9,18 +9,18 @@ const Home = ({ setUserName }) => {
   const startGame = () => {
     if (
       !name.value ||
-      (time.value < 5 && !time.value == "") ||
+      (time.value < 5 && !time.value === "") ||
       time.value > 30
     ) {
       if (!name.value) setName({ value: "", hasValue: false });
       if (
-        (time.value < 5 && !time.value == "") ||
+        (time.value < 5 && !time.value === "") ||
         time.value > 30 ||
-        !time.value == ""
+        !time.value === ""
       )
         setTime({ value: "", hasValue: false });
     } else {
-      setUserName(name.value);
+      setUserName(name.value, time.value);
       navigate("./game");
     }
   };
@@ -41,12 +41,6 @@ const Home = ({ setUserName }) => {
                 setName({ value: e.target.value, hasValue: true })
               }
               className="colorAqua margin_inline_ten"
-              onKeyDown={(e) =>
-                !e.keyCode == 8 ||
-                (!e.keyCode == 32 &&
-                  !(e.keyCode >= 65 && e.keyCode <= 90) &&
-                  e.preventDefault())
-              }
               placeholder="--NAME--"
             />
           </div>
@@ -80,7 +74,7 @@ const Home = ({ setUserName }) => {
               }
               placeholder="--DEFAULT : 10 MIN--"
               onKeyDown={(e) =>
-                (e.keyCode == 69 || e.keyCode == 190) && e.preventDefault()
+                (e.keyCode === 69 || e.keyCode === 190) && e.preventDefault()
               }
             />
           </div>
