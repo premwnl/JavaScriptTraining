@@ -7,13 +7,9 @@ const Home = ({ setUserName }) => {
   const [time, setTime] = useState({ value: "", hasValue: true });
   const navigate = useNavigate();
   const startGame = () => {
-    if (
-      !name.value ||
-      (time.value < 5 && !time.value === "") ||
-      time.value > 30
-    ) {
+    if (!name.value || (time.value < 5 && time.value) || time.value > 30) {
       if (!name.value) setName({ value: "", hasValue: false });
-      if ((time.value < 5 && !time.value === "") || time.value > 30)
+      if (time.value < 5 || time.value > 30)
         setTime({ value: "", hasValue: false });
     } else {
       setUserName(name.value, time.value);

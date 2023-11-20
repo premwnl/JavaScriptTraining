@@ -15,3 +15,7 @@ export const cards = [
 ];
 export const colors = ["red", "green", "blue", "yellow"];
 export const wildCards = ["wild", "wildDrawFour"];
+export let copyDeck = [];
+export let playerSet = [];
+export let cpuSet = [];
+export let openSet = [];

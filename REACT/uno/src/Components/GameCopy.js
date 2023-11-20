@@ -13,7 +13,7 @@ import {
   openSet,
 } from "../Constants/gameConstants";
 /* {data.name || "PLAYER"}{data.time || 10} */
-const Game = ({ data }) => {
+const GameCopy = ({ data }) => {
   const [deck, setDeck] = useState([]);
   const [playerCards, setPlayerCards] = useState([]);
   const [cpuCards, setCpuCards] = useState([]);
@@ -30,30 +30,14 @@ const Game = ({ data }) => {
     //creating number cards
     for (const value of cards) {
       for (const color of colors) {
-        allCards.push({
-          color,
-          value,
-          isSpecialCard: value >= 0 && value < 10 ? false : true,
-          penalty: value === "drawTwo" ? 2 : 0,
-        });
-        if (value != 0)
-          allCards.push({
-            color,
-            value,
-            isSpecialCard: value >= 0 && value < 10 ? false : true,
-            penalty: value === "drawTwo" ? 2 : 0,
-          });
+        allCards.push({ color, value });
+        if (value != 0) allCards.push({ color, value });
       }
     }
     //creating wild cards
     for (const wildCard of wildCards) {
       for (let index = 0; index < 4; index++)
-        allCards.push({
-          color: "wild",
-          value: wildCard,
-          isSpecialCard: true,
-          penalty: wildCard === "wildDrawFour" ? 4 : 0,
-        });
+        allCards.push({ color: "wild", value: wildCard });
     }
     //shuffling mainDeck
     for (let index = 0; index < allCards.length; index++) {
@@ -78,7 +62,6 @@ const Game = ({ data }) => {
     distributeCard(playerSet, "player");
     distributeCard(cpuSet, "cpu");
   };
-
   //distribute cards seperate with timeout
   const distributeCard = (array, player) => {
     for (let index = 0; index < array.length; index++) {
@@ -88,11 +71,15 @@ const Game = ({ data }) => {
     }
     player === "player" && drawFirstCard();
   };
-
   //setting first open card
   const drawFirstCard = () => {
     let newCard = copyDeck.pop();
-    if (newCard.isSpecialCard) {
+    if (
+      newCard.color === "wild" ||
+      newCard.value === "skip" ||
+      newCard.value === "drawTwo" ||
+      newCard.value === "reverse"
+    ) {
       copyDeck.unshift(newCard);
       drawFirstCard();
     } else {
@@ -102,7 +89,7 @@ const Game = ({ data }) => {
   //check whether he has card
   const checkmatch = (array) => {
     let item = openCards[0];
-    if (copyDeck.length)
+    if (deck.length)
       for (const index of array)
         if (
           color === index.color ||
@@ -170,7 +157,8 @@ const Game = ({ data }) => {
             setColor(colors[Math.floor(Math.random() * 4)]);
           }
           if (item?.value === "drawTwo" || item?.value === "wildDrawFour") {
-            addCardsOnSet(item?.penalty, "cpu");
+            item?.value === "drawTwo" && addCardsOnSet(2, "cpu");
+            item?.value === "wildDrawFour" && addCardsOnSet(4, "cpu");
           } else if (item.value === "skip" || item.value === "reverse") {
             setTurn({ player: false, cpu: true });
           } else setTurn({ player: true, cpu: false });
@@ -275,7 +263,8 @@ const Game = ({ data }) => {
       setColor(colors[Math.floor(Math.random() * 4)]);
     }
     if (item?.value === "drawTwo" || item?.value === "wildDrawFour") {
-      addCardsOnSet(item?.penalty, "cpu");
+      item?.value === "drawTwo" && addCardsOnSet(2, "cpu");
+      item?.value === "wildDrawFour" && addCardsOnSet(4, "cpu");
     } else if (item.value === "skip" || item.value === "reverse") {
       setTurn({ player: false, cpu: true });
     } else setTurn({ player: true, cpu: false });
@@ -348,4 +337,4 @@ const Game = ({ data }) => {
   );
 };
 
-export default Game;
+export default GameCopy;

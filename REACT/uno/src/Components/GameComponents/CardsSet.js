@@ -1,15 +1,21 @@
 import React from "react";
 
-const CardsSet = ({ cards, player }) => {
+const CardsSet = ({ cards, player, dropCard }) => {
   const playerCards = () => {
     return cards?.map((card, index) =>
       card.color === "wild" ? (
-        <div className={card.value} key={index} style={{ zIndex: index }}></div>
+        <div
+          className={card.value}
+          key={index}
+          style={{ zIndex: index }}
+          onClick={() => dropCard(card)}
+        ></div>
       ) : card.value === "skip" ? (
         <div
           className="card"
           style={{ background: card.color, zIndex: index }}
           key={index}
+          onClick={() => dropCard(card)}
         >
           <i className="fa-solid fa-ban"></i>
           <i className="fa-solid fa-ban"></i>
@@ -20,6 +26,7 @@ const CardsSet = ({ cards, player }) => {
           className="card"
           style={{ background: card.color, zIndex: index }}
           key={index}
+          onClick={() => dropCard(card)}
         >
           <i className="fa-solid fa-rotate"></i>
           <i className="fa-solid fa-rotate"></i>
@@ -30,6 +37,7 @@ const CardsSet = ({ cards, player }) => {
           className="card"
           style={{ background: card.color, zIndex: index }}
           key={index}
+          onClick={() => dropCard(card)}
         >
           <i className="fa-solid fa-plus">2</i>
           <i className="fa-solid fa-plus">2</i>
@@ -40,6 +48,7 @@ const CardsSet = ({ cards, player }) => {
           className="card"
           style={{ background: card.color, zIndex: index }}
           key={index}
+          onClick={() => dropCard(card)}
         >
           <div>{card.value}</div>
           <div>{card.value}</div>
