@@ -13,11 +13,7 @@ const Home = ({ setUserName }) => {
       time.value > 30
     ) {
       if (!name.value) setName({ value: "", hasValue: false });
-      if (
-        (time.value < 5 && !time.value === "") ||
-        time.value > 30 ||
-        !time.value === ""
-      )
+      if ((time.value < 5 && !time.value === "") || time.value > 30)
         setTime({ value: "", hasValue: false });
     } else {
       setUserName(name.value, time.value);

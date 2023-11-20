@@ -6,7 +6,7 @@ import ExitGame from "./ExitGame";
 const GameContent = ({
   card,
   checkmatch,
-  playerSet,
+  playerCards,
   playerTurn,
   drawDeckCard,
 }) => {
@@ -29,7 +29,9 @@ const GameContent = ({
           id="deck"
           className="card_deck decks"
           onClick={() =>
-            playerTurn && !checkmatch(playerSet) && drawDeckCard(playerSet, 1)
+            playerTurn &&
+            !checkmatch(playerCards) &&
+            drawDeckCard(playerCards, "player")
           }
         ></div>
         <div

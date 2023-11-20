@@ -46,19 +46,22 @@ const Game = ({ data }) => {
   //distribute cards
   const distributeCards = () => {
     copyDeck = [...deck];
-    for (let index = 0; index < 14; index++)
+    for (let index = 0; index < 14; index++) {
       index % 2 == 0
         ? playerSet.push(copyDeck.pop())
-        : cpuSet.push(copyDeck.pop()); //7 cards each
-    distributeCard(playerSet, 1);
-    distributeCard(cpuSet, 0);
+        : cpuSet.push(copyDeck.pop());
+    }
+    distributeCard(playerSet, "player");
+    distributeCard(cpuSet, "cpu");
   };
   //distribute cards seperate with timeout
   const distributeCard = (array, player) => {
     for (let index = 0; index < array.length; index++) {
-      player ? setPlayerCards([...array]) : setCpuCards([...array]);
+      player === "player"
+        ? setPlayerCards([...array])
+        : setCpuCards([...array]);
     }
-    player && drawFirstCard();
+    player === "player" && drawFirstCard();
   };
   //setting first open card
   const drawFirstCard = () => {
@@ -80,23 +83,23 @@ const Game = ({ data }) => {
   //check whether he has card
   const checkmatch = (array) => {
     let item = openCards[0];
-    console.log(array, playerTurn);
-    // if (deck.length)
-    //   for (const index of array)
-    //     if (
-    //       // getColor.style.background == index.color ||
-    //       index.color == item?.color ||
-    //       index.value == item?.value ||
-    //       index.color == "wild"
-    //     )
-    //       return true;
-    // return false;
+    if (deck.length)
+      for (const index of array)
+        if (
+          // getColor.style.background == index.color ||
+          index.color == item?.color ||
+          index.value == item?.value ||
+          index.color == "wild"
+        )
+          return true;
+    return false;
   };
-  //draw card from deck-----
+  //draw card from deck
   const drawDeckCard = (array, player) => {
     if (cpuCards.length <= 0) {
       return;
     }
+    console.log(array);
     if (deck.length <= 1) {
       let deckCards = [...openCards];
       let turnDeck = [];
@@ -105,42 +108,39 @@ const Game = ({ data }) => {
       }
       setDeck([...turnDeck]);
     }
-    // if (playerTurn && player) {
-    //   deck.length ? array.push(deck.pop()) : null;
-    //   updateCards(array, 1, { took: true, drop: false });
-    // } else if (cpuTurn || !player) {
-    //   array.push(deck.pop());
-    //   updateCards(array, 0, { took: true, drop: false });
-    //   if (checkmatch(array)) {
-    //     let item = array.pop();
-    //     cpuTurn = true;
-    //     playerTurn = false;
-    //     setOpenCard(item, 0, { took: false, drop: true });
-    //     updateCards(cpuCards, 0, { took: false, drop: true });
-    //   }
-    // }
+    //     if (playerTurn && player === "player") {
+    //       deck.length ? array.push(deck.pop()) : null;
+    //       updateCards(array, 1, { took: true, drop: false });
+    //     } else if (cpuTurn || player === "cpu") {
+    // q      if (checkmatch(array)) {
+    //         let item = array.pop();
+    //         cpuTurn = true;
+    //         playerTurn = false;
+    //         setOpenCard(item, 0, { took: false, drop: true });
+    //         updateCards(cpuCards, 0, { took: false, drop: true });
+    //       }
+    //     }
   };
   useEffect(() => {
     !deck.length && startingGame();
-    deck.length && distributeCards();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    deck.length === 108 && distributeCards();
   }, [deck]);
 
   return (
     <>
       <div className="container height_vh">
         <div className="d_flex flex_col justifyContent_spaceBetween alignItems_center innerContainer padding_ten">
-          <CardsSet cards={playerCards} player={0} />
+          <CardsSet cards={cpuCards} player={"cpu"} />
           <PlayerName name={"COMPUTER"} />
           <GameContent
             card={openCards}
             checkmatch={checkmatch}
-            playerset={playerSet}
+            playerCards={playerCards}
             playerTurn={playerTurn}
             drawDeckCard={drawDeckCard}
           />
           <PlayerName name={data.name || "PLAYER"} />
-          <CardsSet cards={cpuCards} player={1} />
+          <CardsSet cards={playerCards} player={"player"} />
         </div>
       </div>
     </>
