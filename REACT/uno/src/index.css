@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  text-shadow: 3px 3px 20px gray, -2px 1px 30px gray;
+  text-shadow: 3px 3px 20px black, -2px 1px 30px black !important;
 }
 html,
 body {

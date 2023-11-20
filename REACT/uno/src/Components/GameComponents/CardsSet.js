@@ -3,9 +3,9 @@ import React from "react";
 const CardsSet = ({ cards, player }) => {
   const playerCards = () => {
     return cards?.map((card, index) =>
-      card.color == "wild" ? (
+      card.color === "wild" ? (
         <div className={card.value} key={index} style={{ zIndex: index }}></div>
-      ) : card.value == "skip" ? (
+      ) : card.value === "skip" ? (
         <div
           className="card"
           style={{ background: card.color, zIndex: index }}
@@ -15,7 +15,7 @@ const CardsSet = ({ cards, player }) => {
           <i className="fa-solid fa-ban"></i>
           <i className="fa-solid fa-ban"></i>
         </div>
-      ) : card.value == "reverse" ? (
+      ) : card.value === "reverse" ? (
         <div
           className="card"
           style={{ background: card.color, zIndex: index }}
@@ -25,7 +25,7 @@ const CardsSet = ({ cards, player }) => {
           <i className="fa-solid fa-rotate"></i>
           <i className="fa-solid fa-rotate"></i>
         </div>
-      ) : card.value == "drawTwo" ? (
+      ) : card.value === "drawTwo" ? (
         <div
           className="card"
           style={{ background: card.color, zIndex: index }}
