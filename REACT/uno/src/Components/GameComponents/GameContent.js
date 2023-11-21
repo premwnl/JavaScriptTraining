@@ -21,6 +21,8 @@ const GameContent = ({
   exitGame,
   decideColor,
   checkResult,
+  saidUNO,
+  setSaidUNO,
 }) => {
   const skipIcon = "fa-solid fa-ban";
   const reverseIcon = "fa-solid fa-rotate";
@@ -105,8 +107,8 @@ const GameContent = ({
               src={lastCard}
               alt="last-card"
               id="unoPlayer"
-              style={{ opacity: playerCards.length === 1 ? 100 : 0 }}
-              onClick={() => console.log("op")}
+              style={{ opacity: saidUNO ? 100 : 0 }}
+              onClick={() => setSaidUNO(false)}
             />
           </div>
         </div>

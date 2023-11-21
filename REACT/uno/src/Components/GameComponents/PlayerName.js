@@ -13,7 +13,7 @@ const PlayerName = ({ name, turn }) => {
           style={{
             textDecoration: turn && "underline",
             color: !turn && "grey",
-            width: "14%",
+            width: "34%",
           }}
         >
           {name.toUpperCase()}
