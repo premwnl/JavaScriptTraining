@@ -45,7 +45,7 @@ const Game = ({ data }) => {
               : value,
           isSkipReverse: (value === "skip" || value === "reverse") && true,
         });
-        if (value != 0)
+        if (value !== "0")
           allCards.push({
             color,
             value,
@@ -96,7 +96,7 @@ const Game = ({ data }) => {
       copyDeck.push(copy[index]);
     }
     for (let index = 0; index < 14; index++) {
-      index % 2 == 0
+      index % 2 === 0
         ? playerSet.push(copyDeck.pop())
         : cpuSet.push(copyDeck.pop());
     }
@@ -295,7 +295,7 @@ const Game = ({ data }) => {
           break;
         }
       }
-      if (index == cpuSet.length - 1) {
+      if (index === cpuSet.length - 1) {
         !drop && drawDeckCard(cpuSet, "cpu");
       }
       drop = false;
@@ -390,7 +390,7 @@ const Game = ({ data }) => {
   const calculatePoints = (array) => {
     let sum = 0;
     for (const index of array) {
-      sum += index.point;
+      sum += parseInt(index.point);
     }
     return sum;
   };

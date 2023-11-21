@@ -10,7 +10,7 @@ const Timer = ({ data, checkResult }) => {
     } else setSeconds((prev) => prev - 1);
   }
   useEffect(() => {
-    const time = setInterval(start, 1000);
+    const time = setInterval(start, 10);
     if (minutes <= 0 && seconds <= 0) {
       checkResult();
       clearInterval(time);
