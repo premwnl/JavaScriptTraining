@@ -162,9 +162,10 @@
 .score {
   color: yellow;
 }
-/* #unoPlayer {
+#unoPlayer {
   transition: 0.5s;
+  cursor: pointer;
 }
 #unoPlayer:hover {
   transform: scale(0.95);
-} */
+}
