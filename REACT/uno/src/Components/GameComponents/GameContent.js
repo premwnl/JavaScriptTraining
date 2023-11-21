@@ -1,15 +1,18 @@
 import React from "react";
-import UnoButton from "./UnoButton";
 import DeckCards from "./DeckCards";
 import Timer from "./Timer";
 import ExitGame from "./ExitGame";
 import ChooseColor from "./ChooseColor";
+import lastCard from "../../Images/lastCard.png";
+
 const GameContent = ({
   card,
   color,
+  data,
   setTurn,
   checkmatch,
   playerCards,
+  cpuCards,
   playerTurn,
   drawDeckCard,
   skip,
@@ -17,58 +20,65 @@ const GameContent = ({
   chooseColor,
   exitGame,
   decideColor,
+  checkResult,
 }) => {
   const skipIcon = "fa-solid fa-ban";
   const reverseIcon = "fa-solid fa-rotate";
   const drawTwoIcon = "fa-solid fa-plus";
   const openCardSet = () => {
-    return card[0]?.color === "wild" ? (
-      <div className={card[0]?.value}></div>
-    ) : card[0]?.value === "skip" ||
+    if (card[0]?.color === "wild") {
+      return <div className={card[0]?.value}></div>;
+    } else if (
+      card[0]?.value === "skip" ||
       card[0]?.value === "reverse" ||
-      card[0]?.value === "drawTwo" ? (
-      <div className="card" style={{ background: card[0]?.color }}>
-        <i
-          className={
-            card[0]?.value === "skip"
-              ? skipIcon
-              : card[0]?.value === "reverse"
-              ? reverseIcon
-              : drawTwoIcon
-          }
-        >
-          {card[0]?.value === "drawTwo" && "2"}
-        </i>
-        <i
-          className={
-            card[0]?.value === "skip"
-              ? skipIcon
-              : card[0]?.value === "reverse"
-              ? reverseIcon
-              : drawTwoIcon
-          }
-        >
-          {card[0]?.value === "drawTwo" && "2"}
-        </i>
-        <i
-          className={
-            card[0]?.value === "skip"
-              ? skipIcon
-              : card[0]?.value === "reverse"
-              ? reverseIcon
-              : drawTwoIcon
-          }
-        >
-          {card[0]?.value === "drawTwo" && "2"}
-        </i>
-      </div>
-    ) : (
-      <div className="card" style={{ background: card[0]?.color }}>
-        <div>{card[0]?.value}</div>
-        <div>{card[0]?.value}</div>
-        <div>{card[0]?.value}</div>
-      </div>
-    );
+      card[0]?.value === "drawTwo"
+    ) {
+      return (
+        <div className="card" style={{ background: card[0]?.color }}>
+          <i
+            className={
+              card[0]?.value === "skip"
+                ? skipIcon
+                : card[0]?.value === "reverse"
+                ? reverseIcon
+                : drawTwoIcon
+            }
+          >
+            {card[0]?.value === "drawTwo" && "2"}
+          </i>
+          <i
+            className={
+              card[0]?.value === "skip"
+                ? skipIcon
+                : card[0]?.value === "reverse"
+                ? reverseIcon
+                : drawTwoIcon
+            }
+          >
+            {card[0]?.value === "drawTwo" && "2"}
+          </i>
+          <i
+            className={
+              card[0]?.value === "skip"
+                ? skipIcon
+                : card[0]?.value === "reverse"
+                ? reverseIcon
+                : drawTwoIcon
+            }
+          >
+            {card[0]?.value === "drawTwo" && "2"}
+          </i>
+        </div>
+      );
+    } else {
+      return (
+        <div className="card" style={{ background: card[0]?.color }}>
+          <div>{card[0]?.value}</div>
+          <div>{card[0]?.value}</div>
+          <div>{card[0]?.value}</div>
+        </div>
+      );
+    }
   };
   return (
     <>
@@ -78,12 +88,27 @@ const GameContent = ({
         id="allCards"
       >
         <ExitGame exitGame={exitGame} />
-        <Timer />
+        <Timer data={data} checkResult={checkResult} />
         <div className="d_flex flex_col justifyContent_center alignItems_center">
-          <UnoButton />
+          <div>
+            <img
+              src={lastCard}
+              alt="last-card"
+              id="unoPlayer"
+              style={{ opacity: cpuCards.length === 1 ? 100 : 0 }}
+            />
+          </div>
           <div id="color" style={{ background: color }} />
           {chooseColor && <ChooseColor decideColor={decideColor} />}
-          <UnoButton />
+          <div>
+            <img
+              src={lastCard}
+              alt="last-card"
+              id="unoPlayer"
+              style={{ opacity: playerCards.length === 1 ? 100 : 0 }}
+              onClick={() => console.log("op")}
+            />
+          </div>
         </div>
         <DeckCards />
         <div

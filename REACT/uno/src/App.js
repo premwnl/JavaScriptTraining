@@ -6,7 +6,6 @@ import Result from "./Components/Result";
 
 function App() {
   const [data, setData] = useState({ name: "", time: "" });
-
   const setUserName = (name, time) => {
     setData({ name, time });
   };

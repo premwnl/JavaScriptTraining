@@ -159,3 +159,12 @@
   padding: 40px;
   border: 2px double gray;
 }
+.score {
+  color: yellow;
+}
+/* #unoPlayer {
+  transition: 0.5s;
+}
+#unoPlayer:hover {
+  transform: scale(0.95);
+} */

@@ -13,6 +13,7 @@ const Home = ({ setUserName }) => {
         setTime({ value: "", hasValue: false });
     } else {
       setUserName(name.value, time.value);
+      localStorage.removeItem("points");
       navigate("./game");
     }
   };

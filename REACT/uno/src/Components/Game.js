@@ -13,7 +13,6 @@ import {
   copyDeck,
   openSet,
 } from "../Constants/gameConstants";
-/* {data.name || "PLAYER"}{data.time || 10} */
 const Game = ({ data }) => {
   const navigate = useNavigate();
   const [deck, setDeck] = useState([]);
@@ -24,8 +23,10 @@ const Game = ({ data }) => {
   const [turn, setTurn] = useState({ player: true, cpu: false });
   const [skip, setSkip] = useState(false);
   const [chooseColor, setChooseColor] = useState(false);
+  const [points, setPoints] = useState({ playerPoints: 0, cpuPoints: 0 });
   const [saidUNO, setSaidUNO] = useState(false);
   const [clicked, setClicked] = useState(false);
+
   //create and shuffle 108 cards
   const startingGame = () => {
     const allCards = [];
@@ -68,6 +69,10 @@ const Game = ({ data }) => {
 
   //distribute cards
   const distributeCards = () => {
+    copyDeck.length = 0;
+    playerSet.length = 0;
+    cpuSet.length = 0;
+    openSet.length = 0;
     let copy = [...deck];
     for (let index = 0; index < copy.length; index++) {
       copyDeck.push(copy[index]);
@@ -101,6 +106,7 @@ const Game = ({ data }) => {
       dropOpenCard(newCard);
     }
   };
+
   //check whether he has card
   const checkmatch = (array) => {
     let item = openCards[0];
@@ -115,6 +121,7 @@ const Game = ({ data }) => {
           return true;
     return false;
   };
+
   //draw card from deck
   const drawDeckCard = (array, player) => {
     if (cpuCards.length <= 0) {
@@ -180,12 +187,15 @@ const Game = ({ data }) => {
       } else setTurn({ player: true, cpu: false });
     }
   };
+
   // set open card in UI
   const dropOpenCard = (card) => {
     card.color !== "wild" && setColor(card.color);
     openSet.unshift(card);
     setOpenCards([...openSet.map((index) => index)]);
+    cpuSet.length <= 0 && playerSet.length > 0 && checkResult();
   };
+
   //drop card to deck
   const dropCard = (card) => {
     let item = openCards[0];
@@ -223,9 +233,11 @@ const Game = ({ data }) => {
       }
     }
   };
+
   // computer play
   const computerPlay = () => {
     if (playerCards.length <= 0) {
+      checkResult();
       return;
     }
     let drop = false;
@@ -267,6 +279,7 @@ const Game = ({ data }) => {
       drop = false;
     }
   };
+
   //updating the computer array
   const computerChoice = (card) => {
     let drop = cpuSet.splice(cpuSet.indexOf(card), 1);
@@ -317,6 +330,32 @@ const Game = ({ data }) => {
 
   //exiting game
   const exitGame = () => {
+    localStorage.removeItem("points");
+    restartGame();
+    navigate("/");
+  };
+
+  //check winner function
+  const checkResult = () => {
+    setTimeout(() => {
+      let prevPoints = JSON.parse(localStorage.getItem("points") || "[]");
+      let playerScore = calculatePoints(cpuSet);
+      let cpuScore = calculatePoints(playerSet);
+      setPoints({ playerPoints: playerScore, cpuPoints: cpuScore });
+      localStorage.setItem(
+        "points",
+        JSON.stringify([
+          (prevPoints[0] || 0) + playerScore,
+          (prevPoints[1] || 0) + cpuScore,
+        ])
+      );
+      restartGame();
+      navigate("/result");
+    }, 1000);
+  };
+
+  //restart all variables
+  const restartGame = () => {
     setCpuCards([]);
     setOpenCards([]);
     setPlayerCards([]);
@@ -324,8 +363,24 @@ const Game = ({ data }) => {
     cpuSet.length = 0;
     copyDeck.length = 0;
     openSet.length = 0;
-    navigate("/");
   };
+
+  //points Calculate
+  const calculatePoints = (array) => {
+    let sum = 0;
+    for (const index of array) {
+      index.color == "wild"
+        ? (sum += 50)
+        : index.value == "skip" ||
+          index.value == "reverse" ||
+          index.value == "drawTwo"
+        ? (sum += 20)
+        : (sum += parseInt(index.value));
+    }
+    return sum;
+  };
+
+  //useEffect
   useEffect(() => {
     !deck.length && startingGame();
     deck.length === 108 && distributeCards();
@@ -336,6 +391,7 @@ const Game = ({ data }) => {
         computerPlay();
       }, 1000);
   }, [turn]);
+
   return (
     <>
       <div className="container height_vh">
@@ -345,25 +401,19 @@ const Game = ({ data }) => {
           <GameContent
             card={openCards}
             playerCards={playerCards}
+            cpuCards={cpuCards}
             playerTurn={turn.player}
-            playerSet={playerSet}
-            cpuSet={cpuSet}
-            copyDeck={copyDeck}
-            openSet={openSet}
             color={color}
             skip={skip}
             chooseColor={chooseColor}
             checkmatch={checkmatch}
             drawDeckCard={drawDeckCard}
-            setCpuCards={setCpuCards}
-            setPlayerCards={setPlayerCards}
-            setOpenCards={setOpenCards}
             setTurn={setTurn}
             setSkip={setSkip}
-            setColor={setColor}
-            setChooseColor={setChooseColor}
             exitGame={exitGame}
             decideColor={decideColor}
+            data={data}
+            checkResult={checkResult}
           />
           <PlayerName name={data.name || "PLAYER"} turn={turn.player} />
           <CardsSet cards={playerCards} player={"player"} dropCard={dropCard} />
@@ -374,3 +424,23 @@ const Game = ({ data }) => {
 };
 
 export default Game;
+
+// let prevData = JSON.parse(localStorage.getItem("crud") || "[]");
+//   if (editing >= 0) {
+//     let updated = prevData.filter((item) => item != prevData[editing]);
+//     let first = updated.slice(0, editing) || "[]";
+//     let last = updated.slice(editing, updated.length) || "[]";
+
+//     localStorage.setItem("crud", JSON.stringify([...first, data, ...last]));
+//     editing = -1;
+//     container.style.pointerEvents = "all";
+//   } else {
+//     localStorage.setItem("crud", JSON.stringify([...prevData, data]));
+//   }
+//   readData();
+// };
+// let prevData = JSON.parse(localStorage.getItem("crud") || "[]");
+// localStorage.setItem(
+//   "crud",
+//   JSON.stringify([...prevData.filter((data) => data != prevData[index])])
+// );

@@ -6,70 +6,78 @@ const CardsSet = ({ cards, player, dropCard }) => {
   const drawTwo = "fa-solid fa-plus";
 
   const playerCards = () => {
-    return cards?.map((card, index) =>
-      card.color === "wild" ? (
-        <div
-          className={card.value}
-          key={index}
-          style={{ zIndex: index }}
-          onClick={() => dropCard(card)}
-        ></div>
-      ) : card.value === "skip" ||
+    return cards?.map((card, index) => {
+      if (card.color === "wild") {
+        return (
+          <div
+            className={card.value}
+            key={index}
+            style={{ zIndex: index }}
+            onClick={() => dropCard(card)}
+          ></div>
+        );
+      } else if (
+        card.value === "skip" ||
         card.value === "reverse" ||
-        card.value === "drawTwo" ? (
-        <div
-          className="card"
-          style={{ background: card.color, zIndex: index }}
-          key={index}
-          onClick={() => dropCard(card)}
-        >
-          <i
-            className={
-              card.value === "skip"
-                ? skip
-                : card.value === "reverse"
-                ? reverse
-                : drawTwo
-            }
+        card.value === "drawTwo"
+      ) {
+        return (
+          <div
+            className="card"
+            style={{ background: card.color, zIndex: index }}
+            key={index}
+            onClick={() => dropCard(card)}
           >
-            {card.value === "drawTwo" && "2"}
-          </i>
-          <i
-            className={
-              card.value === "skip"
-                ? skip
-                : card.value === "reverse"
-                ? reverse
-                : drawTwo
-            }
+            <i
+              className={
+                card.value === "skip"
+                  ? skip
+                  : card.value === "reverse"
+                  ? reverse
+                  : drawTwo
+              }
+            >
+              {card.value === "drawTwo" && "2"}
+            </i>
+            <i
+              className={
+                card.value === "skip"
+                  ? skip
+                  : card.value === "reverse"
+                  ? reverse
+                  : drawTwo
+              }
+            >
+              {card.value === "drawTwo" && "2"}
+            </i>
+            <i
+              className={
+                card.value === "skip"
+                  ? skip
+                  : card.value === "reverse"
+                  ? reverse
+                  : drawTwo
+              }
+            >
+              {card.value === "drawTwo" && "2"}
+            </i>
+          </div>
+        );
+      } else {
+        return (
+          <div
+            className="card"
+            style={{ background: card.color, zIndex: index }}
+            key={index}
+            onClick={() => dropCard(card)}
           >
-            {card.value === "drawTwo" && "2"}
-          </i>
-          <i
-            className={
-              card.value === "skip"
-                ? skip
-                : card.value === "reverse"
-                ? reverse
-                : drawTwo
-            }
-          >
-            {card.value === "drawTwo" && "2"}
-          </i>
-        </div>
-      ) : (
-        <div
-          className="card"
-          style={{ background: card.color, zIndex: index }}
-          key={index}
-          onClick={() => dropCard(card)}
-        >
-          <div>{card.value}</div>
-          <div>{card.value}</div>
-          <div>{card.value}</div>
-        </div>
-      )
-    );
+            <div>{card.value}</div>
+            <div>{card.value}</div>
+            <div>{card.value}</div>
+          </div>
+        );
+      }
+    });
   };
   const cpuCards = () => {
     return cards?.map((card, index) => (
