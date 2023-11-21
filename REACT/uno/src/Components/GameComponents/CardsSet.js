@@ -7,7 +7,7 @@ const CardsSet = ({ cards, player, dropCard }) => {
 
   const playerCards = () => {
     return cards?.map((card, index) => {
-      if (card.color === "wild") {
+      if (card.isWildCard) {
         return (
           <div
             className={card.value}
@@ -16,11 +16,7 @@ const CardsSet = ({ cards, player, dropCard }) => {
             onClick={() => dropCard(card)}
           ></div>
         );
-      } else if (
-        card.value === "skip" ||
-        card.value === "reverse" ||
-        card.value === "drawTwo"
-      ) {
+      } else if (card.isPowerCard) {
         return (
           <div
             className="card"

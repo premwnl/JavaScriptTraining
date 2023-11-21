@@ -28,13 +28,9 @@ const GameContent = ({
   const reverseIcon = "fa-solid fa-rotate";
   const drawTwoIcon = "fa-solid fa-plus";
   const openCardSet = () => {
-    if (card[0]?.color === "wild") {
+    if (card[0]?.isWildCard) {
       return <div className={card[0]?.value}></div>;
-    } else if (
-      card[0]?.value === "skip" ||
-      card[0]?.value === "reverse" ||
-      card[0]?.value === "drawTwo"
-    ) {
+    } else if (card[0]?.isPowerCard) {
       return (
         <div className="card" style={{ background: card[0]?.color }}>
           <i

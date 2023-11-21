@@ -11,22 +11,22 @@ const ChooseColor = ({ decideColor }) => {
         <div className="d_flex">
           <div
             className="wildColors margin_ten"
-            style={{ backgroundColor: "red" }}
+            style={{ backgroundColor: "red", cursor: "pointer" }}
             onClick={() => decideColor("red")}
           />
           <div
             className="wildColors margin_ten"
-            style={{ backgroundColor: "green" }}
+            style={{ backgroundColor: "green", cursor: "pointer" }}
             onClick={() => decideColor("green")}
           />
           <div
             className="wildColors margin_ten"
-            style={{ backgroundColor: "blue" }}
+            style={{ backgroundColor: "blue", cursor: "pointer" }}
             onClick={() => decideColor("blue")}
           />
           <div
             className="wildColors margin_ten"
-            style={{ backgroundColor: "yellow" }}
+            style={{ backgroundColor: "yellow", cursor: "pointer" }}
             onClick={() => decideColor("yellow")}
           />
         </div>

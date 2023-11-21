@@ -3,6 +3,7 @@ import "../Styles/game.css";
 import PlayerName from "./GameComponents/PlayerName";
 import CardsSet from "./GameComponents/CardsSet";
 import GameContent from "./GameComponents/GameContent";
+import { useNavigate } from "react-router-dom";
 import {
   cards,
   colors,
@@ -12,8 +13,8 @@ import {
   copyDeck,
   openSet,
 } from "../Constants/gameConstants";
-/* {data.name || "PLAYER"}{data.time || 10} */
-const GameCopy = ({ data }) => {
+const Game = ({ data }) => {
+  const navigate = useNavigate();
   const [deck, setDeck] = useState([]);
   const [playerCards, setPlayerCards] = useState([]);
   const [cpuCards, setCpuCards] = useState([]);
@@ -23,22 +24,48 @@ const GameCopy = ({ data }) => {
   const [skip, setSkip] = useState(false);
   const [chooseColor, setChooseColor] = useState(false);
   const [saidUNO, setSaidUNO] = useState(false);
-  const [clicked, setClicked] = useState(false);
+
   //create and shuffle 108 cards
   const startingGame = () => {
     const allCards = [];
     //creating number cards
     for (const value of cards) {
       for (const color of colors) {
-        allCards.push({ color, value });
-        if (value != 0) allCards.push({ color, value });
+        allCards.push({
+          color,
+          value,
+          isSpecialCard: value >= 0 && value < 10 ? false : true,
+          penalty: value === "drawTwo" ? 2 : 0,
+          isPowerCard:
+            (value === "drawTwo" || value === "skip" || value === "reverse") &&
+            true,
+        });
+        if (value != 0)
+          allCards.push({
+            color,
+            value,
+            isSpecialCard: value >= 0 && value < 10 ? false : true,
+            penalty: value === "drawTwo" ? 2 : 0,
+            isPowerCard:
+              (value === "drawTwo" ||
+                value === "skip" ||
+                value === "reverse") &&
+              true,
+          });
       }
     }
     //creating wild cards
     for (const wildCard of wildCards) {
       for (let index = 0; index < 4; index++)
-        allCards.push({ color: "wild", value: wildCard });
+        allCards.push({
+          color: "wild",
+          value: wildCard,
+          isSpecialCard: true,
+          penalty: wildCard === "wildDrawFour" ? 4 : 0,
+          isWildCard: true,
+        });
     }
+    console.log(...allCards);
     //shuffling mainDeck
     for (let index = 0; index < allCards.length; index++) {
       let loop = Math.floor(Math.random() * allCards.length);
@@ -50,6 +77,10 @@ const GameCopy = ({ data }) => {
 
   //distribute cards
   const distributeCards = () => {
+    copyDeck.length = 0;
+    playerSet.length = 0;
+    cpuSet.length = 0;
+    openSet.length = 0;
     let copy = [...deck];
     for (let index = 0; index < copy.length; index++) {
       copyDeck.push(copy[index]);
@@ -62,6 +93,7 @@ const GameCopy = ({ data }) => {
     distributeCard(playerSet, "player");
     distributeCard(cpuSet, "cpu");
   };
+
   //distribute cards seperate with timeout
   const distributeCard = (array, player) => {
     for (let index = 0; index < array.length; index++) {
@@ -71,25 +103,22 @@ const GameCopy = ({ data }) => {
     }
     player === "player" && drawFirstCard();
   };
+
   //setting first open card
   const drawFirstCard = () => {
     let newCard = copyDeck.pop();
-    if (
-      newCard.color === "wild" ||
-      newCard.value === "skip" ||
-      newCard.value === "drawTwo" ||
-      newCard.value === "reverse"
-    ) {
+    if (newCard.isSpecialCard) {
       copyDeck.unshift(newCard);
       drawFirstCard();
     } else {
       dropOpenCard(newCard);
     }
   };
+
   //check whether he has card
   const checkmatch = (array) => {
     let item = openCards[0];
-    if (deck.length)
+    if (copyDeck.length)
       for (const index of array)
         if (
           color === index.color ||
@@ -100,6 +129,7 @@ const GameCopy = ({ data }) => {
           return true;
     return false;
   };
+
   //draw card from deck
   const drawDeckCard = (array, player) => {
     if (cpuCards.length <= 0) {
@@ -157,8 +187,7 @@ const GameCopy = ({ data }) => {
             setColor(colors[Math.floor(Math.random() * 4)]);
           }
           if (item?.value === "drawTwo" || item?.value === "wildDrawFour") {
-            item?.value === "drawTwo" && addCardsOnSet(2, "cpu");
-            item?.value === "wildDrawFour" && addCardsOnSet(4, "cpu");
+            addCardsOnSet(item?.penalty, "cpu");
           } else if (item.value === "skip" || item.value === "reverse") {
             setTurn({ player: false, cpu: true });
           } else setTurn({ player: true, cpu: false });
@@ -166,12 +195,15 @@ const GameCopy = ({ data }) => {
       } else setTurn({ player: true, cpu: false });
     }
   };
+
   // set open card in UI
   const dropOpenCard = (card) => {
     card.color !== "wild" && setColor(card.color);
     openSet.unshift(card);
     setOpenCards([...openSet.map((index) => index)]);
+    cpuSet.length <= 0 && playerSet.length > 0 && checkResult();
   };
+
   //drop card to deck
   const dropCard = (card) => {
     let item = openCards[0];
@@ -185,6 +217,11 @@ const GameCopy = ({ data }) => {
         card.value === item.value ||
         card.color === "wild"
       ) {
+        if (saidUNO) {
+          setSaidUNO(false);
+          addCardsOnSet(2, "cpu");
+          return;
+        }
         let copyPlayerSet = playerSet.map((index) => index);
         let drop = copyPlayerSet.splice(copyPlayerSet.indexOf(card), 1);
         let item = drop[0];
@@ -206,9 +243,16 @@ const GameCopy = ({ data }) => {
           item?.value === "drawTwo" && addCardsOnSet(2, "player");
           setTurn({ player: true, cpu: false });
         } else setTurn({ player: false, cpu: true });
+        if (playerSet.length === 1) {
+          setSaidUNO(true);
+        }
+        if (playerSet.length <= 0 && cpuSet.length > 0) {
+          !saidUNO && checkResult();
+        }
       }
     }
   };
+
   // computer play
   const computerPlay = () => {
     if (playerCards.length <= 0) {
@@ -253,6 +297,7 @@ const GameCopy = ({ data }) => {
       drop = false;
     }
   };
+
   //updating the computer array
   const computerChoice = (card) => {
     let drop = cpuSet.splice(cpuSet.indexOf(card), 1);
@@ -263,8 +308,7 @@ const GameCopy = ({ data }) => {
       setColor(colors[Math.floor(Math.random() * 4)]);
     }
     if (item?.value === "drawTwo" || item?.value === "wildDrawFour") {
-      item?.value === "drawTwo" && addCardsOnSet(2, "cpu");
-      item?.value === "wildDrawFour" && addCardsOnSet(4, "cpu");
+      addCardsOnSet(item?.penalty, "cpu");
     } else if (item.value === "skip" || item.value === "reverse") {
       setTurn({ player: false, cpu: true });
     } else setTurn({ player: true, cpu: false });
@@ -292,6 +336,68 @@ const GameCopy = ({ data }) => {
       setTurn({ player: false, cpu: true });
     }
   };
+
+  //changing color of setcolor
+  const decideColor = (color) => {
+    setColor(color);
+    setChooseColor(false);
+    openSet[0].value === "wild"
+      ? setTurn({ player: false, cpu: true })
+      : setTurn({ player: true, cpu: false });
+  };
+
+  //exiting game
+  const exitGame = () => {
+    localStorage.removeItem("points");
+    restartGame();
+    navigate("/");
+  };
+
+  //check winner function
+  const checkResult = () => {
+    setTimeout(() => {
+      let prevPoints = JSON.parse(localStorage.getItem("points") || "[]");
+      let playerScore = calculatePoints(cpuSet);
+      let cpuScore = calculatePoints(playerSet);
+      localStorage.setItem(
+        "points",
+        JSON.stringify([
+          (prevPoints[0] || 0) + playerScore,
+          (prevPoints[1] || 0) + cpuScore,
+        ])
+      );
+      restartGame();
+      navigate("/result");
+    }, 1000);
+  };
+
+  //restart all variables
+  const restartGame = () => {
+    setCpuCards([]);
+    setOpenCards([]);
+    setPlayerCards([]);
+    playerSet.length = 0;
+    cpuSet.length = 0;
+    copyDeck.length = 0;
+    openSet.length = 0;
+  };
+
+  //points Calculate
+  const calculatePoints = (array) => {
+    let sum = 0;
+    for (const index of array) {
+      index.color == "wild"
+        ? (sum += 50)
+        : index.value == "skip" ||
+          index.value == "reverse" ||
+          index.value == "drawTwo"
+        ? (sum += 20)
+        : (sum += parseInt(index.value));
+    }
+    return sum;
+  };
+
+  //useEffect
   useEffect(() => {
     !deck.length && startingGame();
     deck.length === 108 && distributeCards();
@@ -302,6 +408,17 @@ const GameCopy = ({ data }) => {
         computerPlay();
       }, 1000);
   }, [turn]);
+
+  useEffect(() => {
+    let penalty = setTimeout(() => {
+      if (saidUNO) {
+        addCardsOnSet(2, "cpu");
+        setSaidUNO(false);
+      }
+    }, 3000);
+    !saidUNO && clearTimeout(penalty);
+    return () => clearTimeout(penalty);
+  }, [saidUNO]);
   return (
     <>
       <div className="container height_vh">
@@ -311,23 +428,21 @@ const GameCopy = ({ data }) => {
           <GameContent
             card={openCards}
             playerCards={playerCards}
+            cpuCards={cpuCards}
             playerTurn={turn.player}
-            playerSet={playerSet}
-            cpuSet={cpuSet}
-            copyDeck={copyDeck}
-            openSet={openSet}
             color={color}
             skip={skip}
             chooseColor={chooseColor}
+            saidUNO={saidUNO}
             checkmatch={checkmatch}
             drawDeckCard={drawDeckCard}
-            setCpuCards={setCpuCards}
-            setPlayerCards={setPlayerCards}
-            setOpenCards={setOpenCards}
             setTurn={setTurn}
             setSkip={setSkip}
-            setColor={setColor}
-            setChooseColor={setChooseColor}
+            exitGame={exitGame}
+            decideColor={decideColor}
+            data={data}
+            checkResult={checkResult}
+            setSaidUNO={setSaidUNO}
           />
           <PlayerName name={data.name || "PLAYER"} turn={turn.player} />
           <CardsSet cards={playerCards} player={"player"} dropCard={dropCard} />
@@ -337,4 +452,4 @@ const GameCopy = ({ data }) => {
   );
 };
 
-export default GameCopy;
+export default Game;

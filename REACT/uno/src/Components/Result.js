@@ -7,6 +7,7 @@ const Result = () => {
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("points") || "[]"));
   }, []);
+
   return (
     <>
       <div
@@ -30,7 +31,10 @@ const Result = () => {
           </button>
           <button
             className="colorAqua playAgain modalInput"
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+              localStorage.removeItem("points");
+            }}
           >
             E X I T
           </button>

@@ -36,6 +36,14 @@ const Game = ({ data }) => {
           value,
           isSpecialCard: value >= 0 && value < 10 ? false : true,
           penalty: value === "drawTwo" ? 2 : 0,
+          isPowerCard:
+            (value === "drawTwo" || value === "skip" || value === "reverse") &&
+            true,
+          point:
+            value === "drawTwo" || value === "skip" || value === "reverse"
+              ? 20
+              : value,
+          isSkipReverse: (value === "skip" || value === "reverse") && true,
         });
         if (value != 0)
           allCards.push({
@@ -43,6 +51,16 @@ const Game = ({ data }) => {
             value,
             isSpecialCard: value >= 0 && value < 10 ? false : true,
             penalty: value === "drawTwo" ? 2 : 0,
+            isPowerCard:
+              (value === "drawTwo" ||
+                value === "skip" ||
+                value === "reverse") &&
+              true,
+            point:
+              value === "drawTwo" || value === "skip" || value === "reverse"
+                ? 20
+                : value,
+            isSkipReverse: (value === "skip" || value === "reverse") && true,
           });
       }
     }
@@ -54,6 +72,8 @@ const Game = ({ data }) => {
           value: wildCard,
           isSpecialCard: true,
           penalty: wildCard === "wildDrawFour" ? 4 : 0,
+          isWildCard: true,
+          point: 50,
         });
     }
     //shuffling mainDeck
@@ -114,7 +134,7 @@ const Game = ({ data }) => {
           color === index.color ||
           index.color === item?.color ||
           index.value === item?.value ||
-          index.color === "wild"
+          index.isWildCard
         )
           return true;
     return false;
@@ -173,12 +193,12 @@ const Game = ({ data }) => {
         setTimeout(() => {
           setCpuCards([...copyArray]);
           dropOpenCard(item);
-          if (item?.value === "wild" || item?.value === "wildDrawFour") {
+          if (item?.isWildCard) {
             setColor(colors[Math.floor(Math.random() * 4)]);
           }
-          if (item?.value === "drawTwo" || item?.value === "wildDrawFour") {
+          if (item?.penalty) {
             addCardsOnSet(item?.penalty, "cpu");
-          } else if (item.value === "skip" || item.value === "reverse") {
+          } else if (item?.isSkipReverse) {
             setTurn({ player: false, cpu: true });
           } else setTurn({ player: true, cpu: false });
         }, 1000);
@@ -188,7 +208,7 @@ const Game = ({ data }) => {
 
   // set open card in UI
   const dropOpenCard = (card) => {
-    card.color !== "wild" && setColor(card.color);
+    !card?.isWildCard && setColor(card.color);
     openSet.unshift(card);
     setOpenCards([...openSet.map((index) => index)]);
     cpuSet.length <= 0 && playerSet.length > 0 && checkResult();
@@ -205,7 +225,7 @@ const Game = ({ data }) => {
         color === card.color ||
         card.color === item.color ||
         card.value === item.value ||
-        card.color === "wild"
+        card.isWildCard
       ) {
         if (saidUNO) {
           setSaidUNO(false);
@@ -221,16 +241,12 @@ const Game = ({ data }) => {
         setPlayerCards([...copyPlayerSet]);
         setSkip(false);
         dropOpenCard(item);
-        if (item?.value === "wild" || item?.value === "wildDrawFour") {
+        if (item?.isWildCard) {
           setTurn({ player: false, cpu: false });
           setChooseColor(true);
-          item?.value === "wildDrawFour" && addCardsOnSet(4, "player");
-        } else if (
-          item?.value === "drawTwo" ||
-          item?.value === "skip" ||
-          item?.value === "reverse"
-        ) {
-          item?.value === "drawTwo" && addCardsOnSet(2, "player");
+          item?.penalty && addCardsOnSet(4, "player");
+        } else if (item?.isPowerCard) {
+          item?.penalty && addCardsOnSet(2, "player");
           setTurn({ player: true, cpu: false });
         } else setTurn({ player: false, cpu: true });
         if (playerSet.length === 1) {
@@ -251,22 +267,20 @@ const Game = ({ data }) => {
     let drop = false;
     let card = openSet[0];
     for (const index in cpuSet) {
-      if (card.color === "wild") {
-        if (color === cpuSet[index].color || cpuSet[index].color === "wild") {
+      if (card?.isWildCard) {
+        if (color === cpuSet[index].color || cpuSet[index]?.isWildCard) {
           computerChoice(cpuSet[index]);
           drop = true;
           break;
         }
       } else {
-        if (cpuSet[index].color === "wild") {
+        if (cpuSet[index]?.isWildCard) {
           computerChoice(cpuSet[index]);
           drop = true;
           break;
         } else if (
           cpuSet[index].color === card.color &&
-          (cpuSet[index].value === "skip" ||
-            cpuSet[index].value === "reverse" ||
-            cpuSet[index].value === "drawTwo")
+          cpuSet[index]?.isPowerCard
         ) {
           computerChoice(cpuSet[index]);
           drop = true;
@@ -294,12 +308,12 @@ const Game = ({ data }) => {
     setCpuCards([...cpuSet.map((index) => index)]);
     let item = drop[0];
     dropOpenCard(item);
-    if (item?.value === "wild" || item?.value === "wildDrawFour") {
+    if (item?.isWildCard) {
       setColor(colors[Math.floor(Math.random() * 4)]);
     }
-    if (item?.value === "drawTwo" || item?.value === "wildDrawFour") {
+    if (item?.penalty) {
       addCardsOnSet(item?.penalty, "cpu");
-    } else if (item.value === "skip" || item.value === "reverse") {
+    } else if (item?.isSkipReverse) {
       setTurn({ player: false, cpu: true });
     } else setTurn({ player: true, cpu: false });
   };
@@ -331,9 +345,9 @@ const Game = ({ data }) => {
   const decideColor = (color) => {
     setColor(color);
     setChooseColor(false);
-    openSet[0].value === "wild"
-      ? setTurn({ player: false, cpu: true })
-      : setTurn({ player: true, cpu: false });
+    openSet[0].penalty
+      ? setTurn({ player: true, cpu: false })
+      : setTurn({ player: false, cpu: true });
   };
 
   //exiting game
@@ -376,13 +390,7 @@ const Game = ({ data }) => {
   const calculatePoints = (array) => {
     let sum = 0;
     for (const index of array) {
-      index.color == "wild"
-        ? (sum += 50)
-        : index.value == "skip" ||
-          index.value == "reverse" ||
-          index.value == "drawTwo"
-        ? (sum += 20)
-        : (sum += parseInt(index.value));
+      sum += index.point;
     }
     return sum;
   };
@@ -392,6 +400,7 @@ const Game = ({ data }) => {
     !deck.length && startingGame();
     deck.length === 108 && distributeCards();
   }, [deck]);
+
   useEffect(() => {
     turn.cpu &&
       setTimeout(() => {
