@@ -295,7 +295,7 @@ const Game = ({ data }) => {
           break;
         }
       }
-      if (index === cpuSet.length - 1) {
+      if (index == cpuSet.length - 1) {
         !drop && drawDeckCard(cpuSet, "cpu");
       }
       drop = false;
