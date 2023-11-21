@@ -1,26 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const ExitGame = ({
-  setCpuCards,
-  setPlayerCards,
-  setOpenCards,
-  playerSet,
-  cpuSet,
-  copyDeck,
-  openSet,
-}) => {
-  const navigate = useNavigate();
-  const exitGame = () => {
-    setCpuCards([]);
-    setOpenCards([]);
-    setPlayerCards([]);
-    playerSet.length = 0;
-    cpuSet.length = 0;
-    copyDeck.length = 0;
-    openSet.length = 0;
-    navigate("/");
-  };
+const ExitGame = ({ exitGame }) => {
   return (
     <>
       <h2

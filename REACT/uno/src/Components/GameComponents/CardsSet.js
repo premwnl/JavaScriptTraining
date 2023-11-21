@@ -1,6 +1,10 @@
 import React from "react";
 
 const CardsSet = ({ cards, player, dropCard }) => {
+  const skip = "fa-solid fa-ban";
+  const reverse = "fa-solid fa-rotate";
+  const drawTwo = "fa-solid fa-plus";
+
   const playerCards = () => {
     return cards?.map((card, index) =>
       card.color === "wild" ? (
@@ -10,38 +14,48 @@ const CardsSet = ({ cards, player, dropCard }) => {
           style={{ zIndex: index }}
           onClick={() => dropCard(card)}
         ></div>
-      ) : card.value === "skip" ? (
+      ) : card.value === "skip" ||
+        card.value === "reverse" ||
+        card.value === "drawTwo" ? (
         <div
           className="card"
           style={{ background: card.color, zIndex: index }}
           key={index}
           onClick={() => dropCard(card)}
         >
-          <i className="fa-solid fa-ban"></i>
-          <i className="fa-solid fa-ban"></i>
-          <i className="fa-solid fa-ban"></i>
-        </div>
-      ) : card.value === "reverse" ? (
-        <div
-          className="card"
-          style={{ background: card.color, zIndex: index }}
-          key={index}
-          onClick={() => dropCard(card)}
-        >
-          <i className="fa-solid fa-rotate"></i>
-          <i className="fa-solid fa-rotate"></i>
-          <i className="fa-solid fa-rotate"></i>
-        </div>
-      ) : card.value === "drawTwo" ? (
-        <div
-          className="card"
-          style={{ background: card.color, zIndex: index }}
-          key={index}
-          onClick={() => dropCard(card)}
-        >
-          <i className="fa-solid fa-plus">2</i>
-          <i className="fa-solid fa-plus">2</i>
-          <i className="fa-solid fa-plus">2</i>
+          <i
+            className={
+              card.value === "skip"
+                ? skip
+                : card.value === "reverse"
+                ? reverse
+                : drawTwo
+            }
+          >
+            {card.value === "drawTwo" && "2"}
+          </i>
+          <i
+            className={
+              card.value === "skip"
+                ? skip
+                : card.value === "reverse"
+                ? reverse
+                : drawTwo
+            }
+          >
+            {card.value === "drawTwo" && "2"}
+          </i>
+          <i
+            className={
+              card.value === "skip"
+                ? skip
+                : card.value === "reverse"
+                ? reverse
+                : drawTwo
+            }
+          >
+            {card.value === "drawTwo" && "2"}
+          </i>
         </div>
       ) : (
         <div

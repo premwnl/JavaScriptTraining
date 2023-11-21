@@ -3,6 +3,7 @@ import "../Styles/game.css";
 import PlayerName from "./GameComponents/PlayerName";
 import CardsSet from "./GameComponents/CardsSet";
 import GameContent from "./GameComponents/GameContent";
+import { useNavigate } from "react-router-dom";
 import {
   cards,
   colors,
@@ -14,6 +15,7 @@ import {
 } from "../Constants/gameConstants";
 /* {data.name || "PLAYER"}{data.time || 10} */
 const Game = ({ data }) => {
+  const navigate = useNavigate();
   const [deck, setDeck] = useState([]);
   const [playerCards, setPlayerCards] = useState([]);
   const [cpuCards, setCpuCards] = useState([]);
@@ -303,6 +305,27 @@ const Game = ({ data }) => {
       setTurn({ player: false, cpu: true });
     }
   };
+
+  //changing color of setcolor
+  const decideColor = (color) => {
+    setColor(color);
+    setChooseColor(false);
+    openSet[0].value === "wild"
+      ? setTurn({ player: false, cpu: true })
+      : setTurn({ player: true, cpu: false });
+  };
+
+  //exiting game
+  const exitGame = () => {
+    setCpuCards([]);
+    setOpenCards([]);
+    setPlayerCards([]);
+    playerSet.length = 0;
+    cpuSet.length = 0;
+    copyDeck.length = 0;
+    openSet.length = 0;
+    navigate("/");
+  };
   useEffect(() => {
     !deck.length && startingGame();
     deck.length === 108 && distributeCards();
@@ -339,6 +362,8 @@ const Game = ({ data }) => {
             setSkip={setSkip}
             setColor={setColor}
             setChooseColor={setChooseColor}
+            exitGame={exitGame}
+            decideColor={decideColor}
           />
           <PlayerName name={data.name || "PLAYER"} turn={turn.player} />
           <CardsSet cards={playerCards} player={"player"} dropCard={dropCard} />

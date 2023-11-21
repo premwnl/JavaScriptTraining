@@ -1,13 +1,6 @@
 import React from "react";
 
-const ChooseColor = ({ setChooseColor, setColor, setTurn, openSet }) => {
-  const decideColor = (color) => {
-    setColor(color);
-    setChooseColor(false);
-    openSet[0].value === "wild"
-      ? setTurn({ player: false, cpu: true })
-      : setTurn({ player: true, cpu: false });
-  };
+const ChooseColor = ({ decideColor }) => {
   return (
     <>
       <div
