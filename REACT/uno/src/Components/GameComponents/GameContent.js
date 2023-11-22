@@ -27,43 +27,26 @@ const GameContent = ({
   const skipIcon = "fa-solid fa-ban";
   const reverseIcon = "fa-solid fa-rotate";
   const drawTwoIcon = "fa-solid fa-plus";
+  const chooseCard = (card) => {
+    return card.value === "skip"
+      ? skipIcon
+      : card.value === "reverse"
+      ? reverseIcon
+      : drawTwoIcon;
+  };
   const openCardSet = () => {
     if (card[0]?.isWildCard) {
       return <div className={card[0]?.value}></div>;
     } else if (card[0]?.isPowerCard) {
       return (
         <div className="card" style={{ background: card[0]?.color }}>
-          <i
-            className={
-              card[0]?.value === "skip"
-                ? skipIcon
-                : card[0]?.value === "reverse"
-                ? reverseIcon
-                : drawTwoIcon
-            }
-          >
+          <i className={chooseCard(card[0])}>
             {card[0]?.value === "drawTwo" && "2"}
           </i>
-          <i
-            className={
-              card[0]?.value === "skip"
-                ? skipIcon
-                : card[0]?.value === "reverse"
-                ? reverseIcon
-                : drawTwoIcon
-            }
-          >
+          <i className={chooseCard(card[0])}>
             {card[0]?.value === "drawTwo" && "2"}
           </i>
-          <i
-            className={
-              card[0]?.value === "skip"
-                ? skipIcon
-                : card[0]?.value === "reverse"
-                ? reverseIcon
-                : drawTwoIcon
-            }
-          >
+          <i className={chooseCard(card[0])}>
             {card[0]?.value === "drawTwo" && "2"}
           </i>
         </div>

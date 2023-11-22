@@ -13,6 +13,7 @@ import {
   copyDeck,
   openSet,
 } from "../Constants/gameConstants";
+import History from "./GameComponents/History";
 const Game = ({ data }) => {
   const navigate = useNavigate();
   const [deck, setDeck] = useState([]);
@@ -24,6 +25,9 @@ const Game = ({ data }) => {
   const [skip, setSkip] = useState(false);
   const [chooseColor, setChooseColor] = useState(false);
   const [saidUNO, setSaidUNO] = useState(false);
+  const [store, setStore] = useState([]);
+  const [points, setPoints] = useState([0, 0]);
+  const [history, setHistory] = useState(false);
 
   //create and shuffle 108 cards
   const startingGame = () => {
@@ -352,7 +356,6 @@ const Game = ({ data }) => {
 
   //exiting game
   const exitGame = () => {
-    localStorage.removeItem("points");
     restartGame();
     navigate("/");
   };
@@ -360,16 +363,30 @@ const Game = ({ data }) => {
   //check winner function
   const checkResult = () => {
     setTimeout(() => {
-      let prevPoints = JSON.parse(localStorage.getItem("points") || "[]");
+      let prevGame = JSON.parse(localStorage.getItem("points") || "[]");
       let playerScore = calculatePoints(cpuSet);
       let cpuScore = calculatePoints(playerSet);
-      localStorage.setItem(
-        "points",
-        JSON.stringify([
-          (prevPoints[0] || 0) + playerScore,
-          (prevPoints[1] || 0) + cpuScore,
-        ])
-      );
+
+      let item = prevGame.find((item) => item.playerName == data.name);
+      if (item) {
+        let otherData = prevGame.filter((other) => other != item);
+        item.playerPoints = item.playerPoints + playerScore;
+        item.cpuPoints = item.cpuPoints + cpuScore;
+        localStorage.setItem("points", JSON.stringify([...otherData, item]));
+      } else {
+        localStorage.setItem(
+          "points",
+          JSON.stringify([
+            ...prevGame,
+            {
+              playerName: data.name || "PLAYER",
+              cpuName: "COMPUTER",
+              playerPoints: playerScore,
+              cpuPoints: cpuScore,
+            },
+          ])
+        );
+      }
       restartGame();
       navigate("/result");
     }, 1000);
@@ -418,10 +435,42 @@ const Game = ({ data }) => {
     !saidUNO && clearTimeout(penalty);
     return () => clearTimeout(penalty);
   }, [saidUNO]);
+
+  useEffect(() => {
+    setStore(JSON.parse(localStorage.getItem("points") || "[]"));
+  }, []);
+
+  useEffect(() => {
+    if (store.length) {
+      let value = store.find((item) => item.playerName == data.name);
+      value && setPoints([value.playerPoints, value.cpuPoints]);
+    } else setPoints([0, 0]);
+  }, [store]);
+
   return (
     <>
       <div className="container height_vh">
         <div className="d_flex flex_col justifyContent_spaceBetween alignItems_center innerContainer padding_ten">
+          <div className="d_flex header justifyContent_center alignItems_center">
+            <h3 className="score">
+              SCORE :&nbsp;
+              <span>
+                {data.name} ({points[0]}) - CPU ({points[1]})
+              </span>
+            </h3>
+            <button
+              className="history colorWhite"
+              style={{ justifySelf: "end" }}
+              onClick={() => setHistory(!history)}
+            >
+              {history ? (
+                <i className="fa-solid fa-xmark"></i>
+              ) : (
+                <i className="fa-solid fa-clock-rotate-left"></i>
+              )}
+            </button>
+          </div>
+          {history && <History store={store} setStore={setStore} />}
           <CardsSet cards={cpuCards} player={"cpu"} />
           <PlayerName name={"COMPUTER"} turn={turn.cpu} />
           <GameContent

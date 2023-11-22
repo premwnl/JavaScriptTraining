@@ -12,8 +12,7 @@ const Home = ({ setUserName }) => {
       if (time.value < 5 || time.value > 30)
         setTime({ value: "", hasValue: false });
     } else {
-      setUserName(name.value, time.value);
-      localStorage.removeItem("points");
+      setUserName(name.value.replaceAll(" ", "").toUpperCase(), time.value);
       navigate("./game");
     }
   };

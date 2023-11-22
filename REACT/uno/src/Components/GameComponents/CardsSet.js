@@ -5,6 +5,14 @@ const CardsSet = ({ cards, player, dropCard }) => {
   const reverse = "fa-solid fa-rotate";
   const drawTwo = "fa-solid fa-plus";
 
+  const chooseCard = (card) => {
+    return card.value === "skip"
+      ? skip
+      : card.value === "reverse"
+      ? reverse
+      : drawTwo;
+  };
+
   const playerCards = () => {
     return cards?.map((card, index) => {
       if (card.isWildCard) {
@@ -24,37 +32,13 @@ const CardsSet = ({ cards, player, dropCard }) => {
             key={index}
             onClick={() => dropCard(card)}
           >
-            <i
-              className={
-                card.value === "skip"
-                  ? skip
-                  : card.value === "reverse"
-                  ? reverse
-                  : drawTwo
-              }
-            >
+            <i className={chooseCard(card)}>
               {card.value === "drawTwo" && "2"}
             </i>
-            <i
-              className={
-                card.value === "skip"
-                  ? skip
-                  : card.value === "reverse"
-                  ? reverse
-                  : drawTwo
-              }
-            >
+            <i className={chooseCard(card)}>
               {card.value === "drawTwo" && "2"}
             </i>
-            <i
-              className={
-                card.value === "skip"
-                  ? skip
-                  : card.value === "reverse"
-                  ? reverse
-                  : drawTwo
-              }
-            >
+            <i className={chooseCard(card)}>
               {card.value === "drawTwo" && "2"}
             </i>
           </div>

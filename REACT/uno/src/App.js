@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home setUserName={setUserName} />} />
         <Route path="/game" element={<Game data={data} />} />
-        <Route path="/result" element={<Result />} />
+        <Route path="/result" element={<Result user={data} />} />
       </Routes>
     </>
   );

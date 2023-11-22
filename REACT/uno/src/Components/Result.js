@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/result.css";
-const Result = () => {
+const Result = ({ user }) => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [points, setPoints] = useState([0, 0]);
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("points") || "[]"));
   }, []);
-
+  useEffect(() => {
+    if (data.length) {
+      let value = data.find((item) => item.playerName == user.name);
+      value && setPoints([value?.playerPoints, value?.cpuPoints]);
+    }
+  }, [data]);
   return (
     <>
       <div
@@ -17,10 +23,10 @@ const Result = () => {
       >
         <h1>R E S U L T</h1>
         <h3>
-          CPU POINTS : <span id="points">{data[1] || 0}</span>
+          CPU POINTS : <span id="points">{points[1]}</span>
         </h3>
         <h3>
-          PLAYER POINTS : <span id="points">{data[0] || 0}</span>
+          {user.name || "PLAYER"} POINTS : <span id="points">{points[0]}</span>
         </h3>
         <div className="buttons">
           <button
@@ -33,7 +39,6 @@ const Result = () => {
             className="colorAqua playAgain modalInput"
             onClick={() => {
               navigate("/");
-              localStorage.removeItem("points");
             }}
           >
             E X I T

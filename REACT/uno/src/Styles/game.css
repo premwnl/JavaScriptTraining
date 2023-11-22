@@ -5,7 +5,7 @@
 }
 .container {
   height: 100vh;
-  background-image: url(../Images/bg-4.gif);
+  background-image: linear-gradient(to right, #141e30, #243b55);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -160,7 +160,8 @@
   border: 2px double gray;
 }
 .score {
-  color: yellow;
+  color: cyan;
+  letter-spacing: 5px;
 }
 #unoPlayer {
   transition: 0.5s;
@@ -168,4 +169,73 @@
 }
 #unoPlayer:hover {
   transform: scale(0.95);
+}
+.history {
+  transition: 0.5s;
+  width: 40px;
+  background: transparent;
+  outline: none;
+  border: 3px solid aqua;
+  border-radius: 50%;
+  font-size: larger;
+  font-weight: bolder;
+  cursor: pointer;
+  transform: translateX(100px);
+}
+.history:hover,
+.clearHistory:hover {
+  background: aqua;
+  color: black;
+  border: 3px solid black;
+}
+.header {
+  width: 100%;
+}
+.data {
+  position: absolute;
+  width: 420px;
+  height: 354px;
+  background-image: linear-gradient(to right, #243b55, #141e30);
+  border-radius: 10px;
+  z-index: 9998;
+  top: 33%;
+  right: 2%;
+  overflow-y: auto;
+}
+.data::-webkit-scrollbar {
+  appearance: none;
+}
+.clearHistory {
+  width: 80px;
+  transform: translateX(294px);
+  margin: 5px;
+  background: transparent;
+  outline: none;
+  border: 3px solid aqua;
+  border-radius: 5px;
+  font-weight: bolder;
+  padding: 5px;
+  transition: 0.5s;
+}
+table {
+  padding: 10px;
+  border-collapse: collapse;
+  border: 0.1px dotted gray;
+}
+tr {
+  width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+  width: 133px;
+  border: 2px solid cyan;
+  padding: 5px;
+}
+td {
+  border: 2px solid white;
+}
+.dataBody {
+  font-weight: bolder;
 }
