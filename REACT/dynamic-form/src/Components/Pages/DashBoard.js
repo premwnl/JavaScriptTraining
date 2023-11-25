@@ -1,11 +1,13 @@
-import { DragArea } from "../DragArea.js";
+import { useState } from "react";
 import "../../Styles/dashboard.js";
+import { DragArea } from "../DragArea.js";
 import { DropArea } from "../DropArea.js";
 import { MobileArea } from "../MobileArea.js";
 import { Layout } from "../Layout/Layout.js";
 import { Stack, Typography } from "@mui/material";
 
 export const DashBoard = () => {
+  const [drop, setDrop] = useState([]);
   const name = new URLSearchParams(window.location.search);
   return (
     <Layout location={"dashboard"}>
@@ -27,8 +29,8 @@ export const DashBoard = () => {
         spacing={6}
       >
         <DragArea />
-        <DropArea />
-        <MobileArea />
+        <DropArea drop={drop} setDrop={setDrop} />
+        <MobileArea drop={drop} />
       </Stack>
     </Layout>
   );

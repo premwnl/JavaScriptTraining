@@ -1,4 +1,4 @@
-import { Stack, styled } from "@mui/material";
+import { Stack, styled, Button } from "@mui/material";
 
 export const Notch = styled(Stack)({
   width: "160px",
@@ -10,6 +10,7 @@ export const Notch = styled(Stack)({
   flexDirection: "row",
   borderBottom: "#9b9b9b 2px solid",
   borderLeft: "#9b9b9b 2px solid",
+  boxShadow: "outlet 0 0 20px gray",
 });
 
 export const NotchSpeaker = styled(Stack)({
@@ -33,14 +34,17 @@ export const NotchIcon = styled(Stack)({
 export const Mobile = styled(Stack)({
   height: 740,
   width: "24%",
-  background: "#FFF",
+  background: "antiquewhite",
   border: "10px solid black",
   borderRadius: "36px",
+  boxShadow: "inset 0 0 16px gray",
+  outline: "2px solid gray",
 });
 
 export const MainArea = styled(Stack)({
   height: 640,
   width: "52%",
+  borderRadius: "8px",
   background: "#9FF5B9",
 });
 
@@ -75,6 +79,15 @@ export const OptionItem = styled(Stack)({
   alignItems: "center",
   background: "#52AB98",
   fontWeight: "bold",
-  borderBottomRightRadius: "10px",
-  borderBottomLeftRadius: "10px",
+  borderBottomRightRadius: "4px",
+  borderBottomLeftRadius: "4px",
+});
+
+export const ButtonItem = styled(Button)({
+  background: "#2B6777",
+  borderTopRightRadius: 0,
+  borderTopLeftRadius: 0,
+  "&:hover": {
+    background: "#2B6777",
+  },
 });

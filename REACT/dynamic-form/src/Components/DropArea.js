@@ -1,5 +1,10 @@
-import React, { useState, useRef } from "react";
-import { OverFlowEl, MainArea, OptionItem } from "../Styles/dashboard.js";
+import React, { useRef } from "react";
+import {
+  OverFlowEl,
+  MainArea,
+  OptionItem,
+  ButtonItem,
+} from "../Styles/dashboard.js";
 import {
   Stack,
   TextField,
@@ -11,8 +16,7 @@ import {
 import BackspaceIcon from "@mui/icons-material/Backspace";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
-export const DropArea = () => {
-  const [drop, setDrop] = useState([]);
+export const DropArea = ({ drop, setDrop }) => {
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
 
@@ -60,19 +64,40 @@ export const DropArea = () => {
             >
               <Stack>
                 <TextField variant="filled" label={item.label} value={""} />
-
-                <OptionItem
-                  direction={"row"}
-                  spacing={2}
-                  onClick={() => alert(item.label)}
-                >
-                  <Typography color="#2B6777">Add Option</Typography>
-                  <IconButton>
-                    <LibraryAddIcon />
-                  </IconButton>
-                </OptionItem>
+                {item.hasOptions && (
+                  <OptionItem
+                    direction={"row"}
+                    spacing={2}
+                    onClick={() => alert(item.label)}
+                  >
+                    <Typography
+                      variant="strong"
+                      component={"div"}
+                      color="#2B6777"
+                    >
+                      Add Option
+                    </Typography>
+                    <IconButton>
+                      <LibraryAddIcon />
+                    </IconButton>
+                  </OptionItem>
+                )}
+                {item.hasUpload && (
+                  <ButtonItem variant="contained">
+                    <label htmlFor="file" style={{ width: "100%" }}>
+                      Upload
+                      <input
+                        accept={item.accept}
+                        hidden
+                        id="file"
+                        type="file"
+                      />
+                    </label>
+                  </ButtonItem>
+                )}
               </Stack>
               <FormControlLabel
+                sx={{ height: "66%", opacity: item.hasUpload ? 0 : 100 }}
                 label="Required"
                 control={
                   <Checkbox
@@ -84,7 +109,10 @@ export const DropArea = () => {
                   />
                 }
               />
-              <IconButton onClick={() => handleRemove(item)}>
+              <IconButton
+                sx={{ height: "66%" }}
+                onClick={() => handleRemove(item)}
+              >
                 <BackspaceIcon />
               </IconButton>
             </Stack>
