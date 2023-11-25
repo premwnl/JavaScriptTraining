@@ -31,7 +31,7 @@ export const NavBar = ({ setOpen, location }) => {
         color="initial"
         fontWeight={"bold"}
       >
-        DYNAMIC FORM - PREM
+        DYNAMIC FORM
       </Typography>
       {location === "home" ? (
         <Stack bgcolor={"#52AB98"}>

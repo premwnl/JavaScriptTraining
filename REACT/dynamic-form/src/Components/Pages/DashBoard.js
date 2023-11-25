@@ -4,7 +4,9 @@ import { DropArea } from "../DropArea.js";
 import { MobileArea } from "../MobileArea.js";
 import { Layout } from "../Layout/Layout.js";
 import { Stack, Typography } from "@mui/material";
-export const DashBoard = ({ folderName }) => {
+
+export const DashBoard = () => {
+  const name = new URLSearchParams(window.location.search);
   return (
     <Layout location={"dashboard"}>
       <Stack
@@ -13,7 +15,7 @@ export const DashBoard = ({ folderName }) => {
         sx={{ height: 40 }}
       >
         <Typography variant="h5" component={"div"} color="initial">
-          {folderName}
+          {name.get("filename")}
         </Typography>
       </Stack>
       <Stack

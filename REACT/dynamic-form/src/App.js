@@ -5,16 +5,12 @@ import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const [folderName, setFolderName] = useState("");
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home setFolderName={setFolderName} />} />
-          <Route
-            path="/dashboard"
-            element={<DashBoard folderName={folderName} />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<DashBoard />} />
         </Routes>
       </BrowserRouter>
     </div>

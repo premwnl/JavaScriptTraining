@@ -67,3 +67,14 @@ export const OverFlowEl = styled(Stack)({
     display: "none",
   },
 });
+
+export const OptionItem = styled(Stack)({
+  width: "100%",
+  height: "36px",
+  justifyContent: "center",
+  alignItems: "center",
+  background: "#52AB98",
+  fontWeight: "bold",
+  borderBottomRightRadius: "10px",
+  borderBottomLeftRadius: "10px",
+});

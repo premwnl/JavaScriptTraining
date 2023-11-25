@@ -13,7 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Home = ({ setFolderName }) => {
+export const Home = () => {
   const navigate = useNavigate();
   const regEx = new RegExp(/^[a-zA-Z ]*$/);
   const [open, setOpen] = useState(false);
@@ -21,11 +21,14 @@ export const Home = ({ setFolderName }) => {
 
   //handle submit function
   const handleSubmit = () => {
-    if (!fileName.name || !regEx.test(fileName.name)) {
+    if (
+      !fileName.name ||
+      fileName.name.replaceAll(" ", "").length < 3 ||
+      !regEx.test(fileName.name)
+    ) {
       setFileName({ name: "", hasvalue: false });
     } else {
-      setFolderName(fileName.name);
-      navigate("/dashboard");
+      navigate(`/dashboard/?filename=${fileName.name}`);
     }
   };
 

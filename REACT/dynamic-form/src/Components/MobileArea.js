@@ -13,11 +13,7 @@ export const MobileArea = ({}) => {
         <NotchSpeaker />
         <NotchIcon />
       </Notch>
-      <OverFlowEl spacing={6} p={6}>
-        <Stack>hii</Stack>
-        <Stack>hii</Stack>
-        <Stack>hii</Stack>
-      </OverFlowEl>
+      <OverFlowEl spacing={6} p={6}></OverFlowEl>
     </Mobile>
   );
 };
